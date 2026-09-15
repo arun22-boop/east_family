@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Member - P.K. வேலம்பாளையம் கிழக்கு
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Noto Sans Tamil",
+                sans-serif;
+
+            background: #f5f6fa;
+
+            color: #222;
+
+        }
+
+
+        /* ==================================================
+           HEADER
+        ================================================== */
+
+        .member-header {
+
+            background: #6b21a8;
+
+            color: white;
+
+            padding: 18px;
+
+            text-align: center;
+
+        }
+
+
+        .member-header h1 {
+
+            margin: 0;
+
+            font-size: 22px;
+
+        }
+
+
+        .member-header p {
+
+            margin: 6px 0 0;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ==================================================
+           CONTAINER
+        ================================================== */
+
+        .member-container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 15px;
+
+        }
+
+
+        /* ==================================================
+           TOP BAR
+        ================================================== */
+
+        .top-bar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .back-btn {
+
+            border: 0;
+
+            background: white;
+
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 2px 7px #0001;
+
+            font-size: 14px;
+
+        }
+
+
+        .back-btn:hover {
+
+            background: #faf5ff;
+
+        }
+
+
+        .top-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        .header-btn {
+
+            border: 0;
+
+            padding: 11px 16px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .list-btn {
+
+            background: #ede9fe;
+
+            color: #6b21a8;
+
+        }
+
+
+        .add-btn {
+
+            background: #6b21a8;
+
+            color: white;
+
+        }
+
+
+        .header-btn:hover {
+
+            opacity: 0.9;
+
+        }
+
+
+        /* ==================================================
+           TITLE
+        ================================================== */
+
+        .page-title {
+
+            margin: 10px 0 15px;
+
+        }
+
+
+        .page-title h2 {
+
+            margin: 0;
+
+            font-size: 22px;
+
+        }
+
+
+        .page-title p {
+
+            margin: 5px 0;
+
+            color: #666;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ==================================================
+           SECTION
+        ================================================== */
+
+        .section {
+
+            display: none;
+
+        }
+
+
+        /* ==================================================
+           LIST CARD
+        ================================================== */
+
+        .list-card {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            box-shadow:
+                0 2px 8px #0001;
+
+        }
+
+
+        /* ==================================================
+           LIST HEADER
+        ================================================== */
+
+        .list-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .list-header h2 {
+
+            margin: 0;
+
+            font-size: 19px;
+
+        }
+
+
+        .member-count {
+
+            color: #6b21a8;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==================================================
+           SEARCH
+        ================================================== */
+
+        .search-box {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .search-box input:focus {
+
+            border-color: #6b21a8;
+
+        }
+
+
+        /* ==================================================
+           TABLE
+        ================================================== */
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        .member-table {
+
+            width: 100%;
+
+            min-width: 1000px;
+
+            border-collapse: collapse;
+
+        }
+
+
+        .member-table th {
+
+            background: #6b21a8;
+
+            color: white;
+
+            padding: 11px;
+
+            text-align: left;
+
+            font-size: 13px;
+
+            white-space: nowrap;
+
+        }
+
+
+        .member-table td {
+
+            padding: 10px;
+
+            border-bottom: 1px solid #eee;
+
+            font-size: 13px;
+
+            vertical-align: top;
+
+        }
+
+
+        .member-table tr:hover td {
+
+            background: #faf5ff;
+
+        }
+
+
+        .member-name {
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==================================================
+           CATEGORY
+        ================================================== */
+
+        .category-badge {
+
+            display: inline-block;
+
+            background: #f3e8ff;
+
+            color: #6b21a8;
+
+            padding: 5px 8px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==================================================
+           ACTIONS
+        ================================================== */
+
+        .member-actions {
+
+            display: flex;
+
+            gap: 6px;
+
+        }
+
+
+        .edit-btn,
+        .delete-btn {
+
+            border: 0;
+
+            padding: 7px 10px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+        }
+
+
+        .edit-btn {
+
+            background: #e0f2fe;
+
+            color: #0369a1;
+
+        }
+
+
+        .delete-btn {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+        }
+
+
+        .edit-btn:hover,
+        .delete-btn:hover {
+
+            opacity: 0.85;
+
+        }
+
+
+        /* ==================================================
+           LOADING
+        ================================================== */
+
+        .loading {
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #666;
+
+        }
+
+
+        .no-data {
+
+            display: none;
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: #777;
+
+        }
+
+
+        /* ==================================================
+           FORM CARD
+        ================================================== */
+
+        .form-card {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 2px 8px #0001;
+
+            max-width: 750px;
+
+            margin: auto;
+
+        }
+
+
+        .form-header {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .form-back-btn {
+
+            border: 0;
+
+            background: #f3f4f6;
+
+            padding: 9px 12px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+        }
+
+
+        .form-back-btn:hover {
+
+            background: #ede9fe;
+
+        }
+
+
+        .form-header h2 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+        }
+
+
+        .form-header p {
+
+            margin: 5px 0 0;
+
+            color: #666;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ==================================================
+           FORM
+        ================================================== */
+
+        .form-group {
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #6b21a8;
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+
+        }
+
+
+        /* ==================================================
+           FORM BUTTONS
+        ================================================== */
+
+        .form-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .save-member-btn {
+
+            border: 0;
+
+            background: #6b21a8;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .save-member-btn:hover {
+
+            background: #581c87;
+
+        }
+
+
+        .cancel-btn {
+
+            border: 0;
+
+            background: #e5e7eb;
+
+            color: #333;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .cancel-btn:hover {
+
+            background: #d1d5db;
+
+        }
+
+
+        /* ==================================================
+           MESSAGE
+        ================================================== */
+
+        #message {
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        #message:empty {
+
+            display: none;
+
+        }
+
+
+        #message.success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+
+        #message.error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 600px) {
+
+            .member-header h1 {
+
+                font-size: 19px;
+
+            }
+
+
+            .top-bar {
+
+                align-items: stretch;
+
+            }
+
+
+            .top-buttons {
+
+                width: 100%;
+
+            }
+
+
+            .header-btn {
+
+                flex: 1;
+
+            }
+
+
+            .form-card {
+
+                padding: 15px;
+
+            }
+
+
+            .form-header {
+
+                flex-direction: column;
+
+            }
+
+
+            .form-buttons {
+
+                flex-direction: column;
+
+            }
+
+
+            .save-member-btn,
+            .cancel-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="member-header">
+
+    <h1>
+        🛕 P.K. வேலம்பாளையம் கிழக்கு
+    </h1>
+
+    <p>
+        👥 Member Management
+    </p>
+
+</header>
+
+
+
+<div class="member-container">
+
+
+    <!-- ==================================================
+         TOP BAR
+    ================================================== -->
+
+    <div class="top-bar">
+
+
+        <button
+            type="button"
+            class="back-btn"
+            onclick="
+                window.location.href =
+                '../index.html'
+            "
+        >
+
+            ← முகப்பு
+
+        </button>
+
+
+        <div class="top-buttons">
+
+
+            <button
+                type="button"
+                class="header-btn list-btn"
+                id="showListBtn"
+            >
+
+                👥 Member List
+
+            </button>
+
+
+            <button
+                type="button"
+                class="header-btn add-btn"
+                id="showAddBtn"
+            >
+
+                ➕ Add Member
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MEMBER LIST SECTION
+    ================================================== -->
+
+    <section
+        id="memberListSection"
+        class="section"
+    >
+
+
+        <div class="page-title">
+
+            <h2>
+                👥 Member List
+            </h2>
+
+            <p>
+                அனைத்து உறுப்பினர்களின் பட்டியல்
+            </p>
+
+        </div>
+
+
+        <div class="list-card">
+
+
+            <div class="list-header">
+
+                <h2>
+                    உறுப்பினர் விவரங்கள்
+                </h2>
+
+                <div
+                    id="memberCount"
+                    class="member-count"
+                >
+                    Total Members: 0
+                </div>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="search"
+                    id="searchMember"
+                    placeholder="
+                        🔍 Search Member Name / Phone / Category...
+                    "
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading"
+            >
+
+                பதிவுகள் ஏற்றப்படுகிறது...
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table class="member-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                S.No
+                            </th>
+
+                            <th>
+                                Member Name
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Wife Name
+                            </th>
+
+                            <th>
+                                Son / Daughter 1
+                            </th>
+
+                            <th>
+                                Son / Daughter 2
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Address
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="memberTableBody"
+                    >
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- NO DATA -->
+
+            <div
+                id="noData"
+                class="no-data"
+            >
+
+                👥 உறுப்பினர்கள் இல்லை
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         ADD / EDIT FORM SECTION
+    ================================================== -->
+
+    <section
+        id="memberFormSection"
+        class="section"
+    >
+
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+
+                <button
+                    type="button"
+                    class="form-back-btn"
+                    id="formBackBtn"
+                >
+
+                    ← Member List
+
+                </button>
+
+
+                <div>
+
+                    <h2 id="formTitle">
+                        ➕ Add Member
+                    </h2>
+
+                    <p id="formSubtitle">
+                        புதிய உறுப்பினர் பதிவு
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form
+                id="memberForm"
+            >
+
+
+                <!-- MEMBER NAME -->
+
+                <div class="form-group">
+
+                    <label
+                        for="memberName"
+                    >
+                        Member Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="memberName"
+                        placeholder="Member Name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label
+                        for="category"
+                    >
+                        Category *
+                    </label>
+
+                    <select
+                        id="category"
+                        required
+                    >
+
+                        <option value="">
+                            Category தேர்வு செய்யவும்
+                        </option>
+
+                        <option value="பெரியபூசாரி">
+                            1. பெரியபூசாரி
+                        </option>
+
+                        <option value="சின்னபூசாரி">
+                            2. சின்னபூசாரி
+                        </option>
+
+                        <option value="பெரியதனம்">
+                            3. பெரியதனம்
+                        </option>
+
+                        <option value="கரகமாடி">
+                            4. கரகமாடி
+                        </option>
+
+                        <option value="உக்கிராணம்">
+                            5. உக்கிராணம்
+                        </option>
+
+                        <option value="கணக்குபிள்ளை">
+                            6. கணக்குபிள்ளை
+                        </option>
+
+                        <option value="செயற்குழ உறுப்பினர்">
+                            7. செயற்குழ உறுப்பினர்
+                        </option>
+
+                        <option value="குடி">
+                            8. குடி
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- WIFE -->
+
+                <div class="form-group">
+
+                    <label
+                        for="wifeName"
+                    >
+                        Wife Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="wifeName"
+                        placeholder="Wife Name"
+                    >
+
+                </div>
+
+
+
+                <!-- CHILD 1 -->
+
+                <div class="form-group">
+
+                    <label
+                        for="sonOrDaughterName1"
+                    >
+                        Son / Daughter Name 1
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sonOrDaughterName1"
+                        placeholder="Son / Daughter Name 1"
+                    >
+
+                </div>
+
+
+
+                <!-- CHILD 2 -->
+
+                <div class="form-group">
+
+                    <label
+                        for="sonOrDaughterName2"
+                    >
+                        Son / Daughter Name 2
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sonOrDaughterName2"
+                        placeholder="Son / Daughter Name 2"
+                    >
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label
+                        for="phone"
+                    >
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="10 digit Phone Number"
+                        maxlength="10"
+                        inputmode="numeric"
+                    >
+
+                </div>
+
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group">
+
+                    <label
+                        for="address"
+                    >
+                        Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        placeholder="Address"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-buttons">
+
+
+                    <button
+                        type="submit"
+                        class="save-member-btn"
+                        id="saveMemberBtn"
+                    >
+
+                        ➕ Add Member
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelBtn"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+            ></div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
+<script
+    type="module"
+    src="../js/member.js"
+></script>
+
+
+</body>
+
+</html>

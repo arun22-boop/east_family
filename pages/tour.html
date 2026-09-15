@@ -1,0 +1,3845 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tour Dashboard - PKV East</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                "Noto Sans Tamil",
+                sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+
+        .header p {
+            margin: 5px 0 0;
+            opacity: .9;
+        }
+
+
+        .home-btn {
+            color: white;
+            text-decoration: none;
+            background: #2563eb;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .home-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1450px;
+            margin: auto;
+            padding: 25px;
+        }
+
+
+        /* =========================
+           DASHBOARD
+        ========================= */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .card {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .card-icon {
+            font-size: 30px;
+        }
+
+
+        .card-title {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+
+        .card-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            margin-top: 30px;
+        }
+
+
+        .section-title {
+            background: #1e3a8a;
+            color: white;
+
+            padding: 15px 20px;
+
+            border-radius:
+                10px 10px 0 0;
+        }
+
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+
+        .section-title p {
+            margin: 5px 0 0;
+            opacity: .9;
+        }
+
+
+        /* =========================
+           ACTION BAR
+        ========================= */
+
+        .action-bar {
+            background: white;
+
+            padding: 18px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            border-radius:
+                0 0 10px 10px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .add-btn {
+            border: none;
+
+            background: #16a34a;
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .add-btn:hover {
+            background: #15803d;
+        }
+
+
+        .search {
+            width: 330px;
+
+            padding: 12px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-card {
+            display: none;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .form-card h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            background: white;
+        }
+
+
+        textarea {
+            resize: vertical;
+        }
+
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .save-btn {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        .save-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+
+        .cancel-btn {
+            border: none;
+
+            background: #6b7280;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+
+        .cancel-btn:hover {
+            background: #4b5563;
+        }
+
+
+        .success {
+            color: #15803d;
+        }
+
+
+        .error {
+            color: #dc2626;
+        }
+
+
+        #tourMessage,
+        #collectionMessage {
+            margin-top: 15px;
+
+            font-weight: bold;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           LIST
+        ========================= */
+
+        .list-card {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .list-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+
+            gap: 15px;
+        }
+
+
+        .list-header h2 {
+            margin: 0;
+
+            color: #1e3a8a;
+        }
+
+
+        .count {
+            color: #6b7280;
+
+            margin-top: 5px;
+        }
+
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 800px;
+        }
+
+
+        th,
+        td {
+            padding: 12px 10px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            text-align: left;
+        }
+
+
+        th {
+            background: #eff6ff;
+
+            color: #1e3a8a;
+
+            white-space: nowrap;
+        }
+
+
+        td {
+            vertical-align: middle;
+        }
+
+
+        .tour-name,
+        .member-name {
+            font-weight: bold;
+        }
+
+
+        .income {
+            color: #15803d;
+            font-weight: bold;
+        }
+
+
+        .expense {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+
+        .balance {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+
+        .edit-btn,
+        .delete-btn {
+
+            border: none;
+
+            padding: 7px 10px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            margin-right: 4px;
+        }
+
+
+        .edit-btn {
+            background: #dbeafe;
+        }
+
+
+        .delete-btn {
+            background: #fee2e2;
+        }
+
+
+        .edit-btn:hover {
+            background: #bfdbfe;
+        }
+
+
+        .delete-btn:hover {
+            background: #fecaca;
+        }
+
+
+        #tourLoading,
+        #collectionLoading {
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: #6b7280;
+        }
+
+
+        #tourNoData,
+        #collectionNoData,
+        #monthlyCollectionNoData {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #6b7280;
+        }
+
+
+        /* =========================
+           COLLECTION DASHBOARD
+        ========================= */
+
+        .collection-dashboard {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+
+        .collection-card {
+
+            background: white;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .collection-card-title {
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        .collection-card-value {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+
+            color: #15803d;
+        }
+
+
+        .monthly-total {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #15803d;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .dashboard {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .form-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .container {
+                padding: 15px;
+            }
+
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+
+            .collection-dashboard {
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .action-bar {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .search {
+                width: 100%;
+            }
+
+
+            .list-header {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .form-buttons {
+
+                flex-direction: column;
+            }
+
+
+            .save-btn,
+            .cancel-btn {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div>
+
+        <h1>
+            🚌 Tour Dashboard
+        </h1>
+
+        <p>
+            சுற்றுலா வரவு • செலவு • கையிருப்பு
+        </p>
+
+    </div>
+
+
+    <a
+        href="../index.html"
+        class="home-btn"
+    >
+        ← முகப்பு
+    </a>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     TOUR DASHBOARD
+===================================================== -->
+
+<section class="dashboard">
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            🚌
+        </div>
+
+        <div class="card-title">
+            Total Tours
+        </div>
+
+        <div
+            class="card-value"
+            id="totalTours"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            💰
+        </div>
+
+        <div class="card-title">
+            Total Collection
+        </div>
+
+        <div
+            class="card-value"
+            id="totalTourCollection"
+        >
+            ₹0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            💸
+        </div>
+
+        <div class="card-title">
+            Total Expense
+        </div>
+
+        <div
+            class="card-value"
+            id="totalTourExpense"
+        >
+            ₹0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            💵
+        </div>
+
+        <div class="card-title">
+            Total Balance
+        </div>
+
+        <div
+            class="card-value"
+            id="totalTourBalance"
+        >
+            ₹0
+        </div>
+
+    </div>
+
+
+</section>
+
+<!-- =====================================================
+     MEMBER COLLECTION
+===================================================== -->
+
+<section class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            👥 Member Collection
+        </h2>
+
+        <p>
+            உறுப்பினர் மாதாந்திர தொகை வசூல்
+        </p>
+
+    </div>
+
+
+
+    <!-- COLLECTION DASHBOARD -->
+
+    <div class="collection-dashboard">
+
+
+        <div class="collection-card">
+
+            <div class="collection-card-title">
+                Total Collections
+            </div>
+
+            <div
+                class="collection-card-value"
+                id="totalCollections"
+            >
+                0
+            </div>
+
+        </div>
+
+
+
+        <div class="collection-card">
+
+            <div class="collection-card-title">
+                This Month Collection
+            </div>
+
+            <div
+                class="collection-card-value"
+                id="thisMonthCollection"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+
+        <div class="collection-card">
+
+            <div class="collection-card-title">
+                Total Collection Amount
+            </div>
+
+            <div
+                class="collection-card-value"
+                id="allCollectionAmount"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- COLLECTION FORM -->
+
+    <section
+        class="form-card"
+        id="collectionFormSection"
+        style="display:block;"
+    >
+
+        <h2 id="collectionFormTitle">
+            ➕ Member Collection
+        </h2>
+
+
+        <form id="collectionForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Member Name
+                    </label>
+
+                    <select
+                        id="collectionMember"
+                        required
+                    >
+
+                        <option value="">
+                            Select Member
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Month
+                    </label>
+
+                    <input
+                        type="month"
+                        id="collectionMonth"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="collectionAmount"
+                        min="1"
+                        step="1"
+                        placeholder="₹500"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-buttons">
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                    id="saveCollectionBtn"
+                >
+                    💾 Save Collection
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelCollectionBtn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+        <div id="collectionMessage"></div>
+
+    </section>
+
+
+
+    <!-- COLLECTION LIST -->
+
+    <section class="list-card">
+
+
+        <div class="list-header">
+
+            <div>
+
+                <h2>
+                    📋 Member Collection List
+                </h2>
+
+                <div
+                    class="count"
+                    id="collectionCount"
+                >
+                    Total Collections: 0
+                </div>
+
+            </div>
+
+
+            <input
+                type="text"
+                class="search"
+                id="searchCollection"
+                placeholder="🔍 Search Member / Month..."
+            >
+
+        </div>
+
+
+
+        <div id="collectionLoading">
+            Loading...
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            S.No
+                        </th>
+
+                        <th>
+                            Member Name
+                        </th>
+
+                        <th>
+                            Month
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="collectionTableBody"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <div id="collectionNoData">
+            👥 Member Collection இல்லை
+        </div>
+
+
+    </section>
+
+
+
+    <!-- MONTHLY TOTAL -->
+
+    <section class="list-card">
+
+
+        <div class="list-header">
+
+            <div>
+
+                <h2>
+                    📅 Monthly Total Collection
+                </h2>
+
+                <div class="count">
+                    மாத வாரியாக மொத்த வசூல்
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            S.No
+                        </th>
+
+                        <th>
+                            Month
+                        </th>
+
+                        <th>
+                            Total Collection
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="monthlyCollectionBody"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <div id="monthlyCollectionNoData">
+            📅 Monthly collection இல்லை
+        </div>
+
+
+    </section>
+
+
+</section>
+
+
+</main>
+
+<!-- =====================================================
+     TOUR MANAGEMENT
+===================================================== -->
+
+<section class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            🚌 Tour Management
+        </h2>
+
+        <p>
+            சுற்றுலா விவரங்களை சேமிக்கவும் மற்றும் நிர்வகிக்கவும்
+        </p>
+
+    </div>
+
+
+
+    <div class="action-bar">
+
+        <button
+            class="add-btn"
+            id="addTourBtn"
+        >
+            ➕ Add Tour
+        </button>
+
+
+        <input
+            type="text"
+            class="search"
+            id="searchTour"
+            placeholder="🔍 Search Tour / Place..."
+        >
+
+    </div>
+
+
+
+    <!-- TOUR FORM -->
+
+    <section
+        class="form-card"
+        id="tourFormSection"
+    >
+
+        <h2 id="tourFormTitle">
+            ➕ Add Tour
+        </h2>
+
+
+        <form id="tourForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Tour Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tourName"
+                        placeholder="Example: Ooty Tour"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tourDate"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Place
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tourPlace"
+                        placeholder="Example: Ooty"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Total Expense
+                    </label>
+
+                    <input
+                        type="number"
+                        id="tourExpense"
+                        min="0"
+                        step="1"
+                        value="0"
+                        placeholder="₹0"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Note
+                </label>
+
+                <textarea
+                    id="tourNote"
+                    rows="3"
+                    placeholder="Tour Note"
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="form-buttons">
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                    id="saveTourBtn"
+                >
+                    💾 Save Tour
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelTourBtn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+        <div id="tourMessage"></div>
+
+    </section>
+
+
+
+    <!-- TOUR LIST -->
+
+    <section class="list-card">
+
+
+        <div class="list-header">
+
+            <div>
+
+                <h2>
+                    📋 Tour List
+                </h2>
+
+                <div
+                    class="count"
+                    id="tourCount"
+                >
+                    Total Tours: 0
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div id="tourLoading">
+            Loading...
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            S.No
+                        </th>
+
+                        <th>
+                            Tour Name
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Place
+                        </th>
+
+                        <th>
+                            Expense
+                        </th>
+
+                        <th>
+                            Note
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="tourTableBody"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <div id="tourNoData">
+            🚌 Tour details இல்லை
+        </div>
+
+
+    </section>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- =====================================================
+     FIREBASE + JAVASCRIPT
+===================================================== -->
+
+<script type="module">
+
+
+    /* =====================================================
+       FIREBASE
+    ===================================================== */
+
+    import {
+        db
+    } from "../firebase.js";
+
+
+    import {
+        collection,
+        addDoc,
+        getDocs,
+        updateDoc,
+        deleteDoc,
+        doc,
+        serverTimestamp
+    } from
+        "firebase/firestore";
+
+
+
+    /* =====================================================
+       TOUR ELEMENTS
+    ===================================================== */
+
+    const addTourBtn =
+        document.getElementById(
+            "addTourBtn"
+        );
+
+
+    const cancelTourBtn =
+        document.getElementById(
+            "cancelTourBtn"
+        );
+
+
+    const tourForm =
+        document.getElementById(
+            "tourForm"
+        );
+
+
+    const tourFormSection =
+        document.getElementById(
+            "tourFormSection"
+        );
+
+
+    const tourFormTitle =
+        document.getElementById(
+            "tourFormTitle"
+        );
+
+
+    const saveTourBtn =
+        document.getElementById(
+            "saveTourBtn"
+        );
+
+
+    const tourMessage =
+        document.getElementById(
+            "tourMessage"
+        );
+
+
+    const tourTableBody =
+        document.getElementById(
+            "tourTableBody"
+        );
+
+
+    const tourLoading =
+        document.getElementById(
+            "tourLoading"
+        );
+
+
+    const tourNoData =
+        document.getElementById(
+            "tourNoData"
+        );
+
+
+    const tourCount =
+        document.getElementById(
+            "tourCount"
+        );
+
+
+    const searchTour =
+        document.getElementById(
+            "searchTour"
+        );
+
+
+    const totalTours =
+        document.getElementById(
+            "totalTours"
+        );
+
+
+    const totalTourCollection =
+        document.getElementById(
+            "totalTourCollection"
+        );
+
+
+    const totalTourExpense =
+        document.getElementById(
+            "totalTourExpense"
+        );
+
+
+    const totalTourBalance =
+        document.getElementById(
+            "totalTourBalance"
+        );
+
+
+    const tourName =
+        document.getElementById(
+            "tourName"
+        );
+
+
+    const tourDate =
+        document.getElementById(
+            "tourDate"
+        );
+
+
+    const tourPlace =
+        document.getElementById(
+            "tourPlace"
+        );
+
+
+    const tourExpense =
+        document.getElementById(
+            "tourExpense"
+        );
+
+
+    const tourNote =
+        document.getElementById(
+            "tourNote"
+        );
+
+
+
+    /* =====================================================
+       COLLECTION ELEMENTS
+    ===================================================== */
+
+    const collectionMember =
+        document.getElementById(
+            "collectionMember"
+        );
+
+
+    const collectionMonth =
+        document.getElementById(
+            "collectionMonth"
+        );
+
+
+    const collectionAmount =
+        document.getElementById(
+            "collectionAmount"
+        );
+
+
+    const collectionForm =
+        document.getElementById(
+            "collectionForm"
+        );
+
+
+    const collectionFormTitle =
+        document.getElementById(
+            "collectionFormTitle"
+        );
+
+
+    const saveCollectionBtn =
+        document.getElementById(
+            "saveCollectionBtn"
+        );
+
+
+    const cancelCollectionBtn =
+        document.getElementById(
+            "cancelCollectionBtn"
+        );
+
+
+    const collectionMessage =
+        document.getElementById(
+            "collectionMessage"
+        );
+
+
+    const collectionTableBody =
+        document.getElementById(
+            "collectionTableBody"
+        );
+
+
+    const collectionLoading =
+        document.getElementById(
+            "collectionLoading"
+        );
+
+
+    const collectionNoData =
+        document.getElementById(
+            "collectionNoData"
+        );
+
+
+    const searchCollection =
+        document.getElementById(
+            "searchCollection"
+        );
+
+
+    const collectionCount =
+        document.getElementById(
+            "collectionCount"
+        );
+
+
+    const totalCollections =
+        document.getElementById(
+            "totalCollections"
+        );
+
+
+    const thisMonthCollection =
+        document.getElementById(
+            "thisMonthCollection"
+        );
+
+
+    const allCollectionAmount =
+        document.getElementById(
+            "allCollectionAmount"
+        );
+
+
+    const monthlyCollectionBody =
+        document.getElementById(
+            "monthlyCollectionBody"
+        );
+
+
+    const monthlyCollectionNoData =
+        document.getElementById(
+            "monthlyCollectionNoData"
+        );
+
+
+
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    let tours = [];
+
+    let members = [];
+
+    let memberCollections = [];
+
+    let editingTourId = null;
+
+    let editingCollectionId = null;
+
+
+
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
+
+    loadTours();
+
+    loadMembers();
+
+    loadMemberCollections();
+
+
+
+    /* =====================================================
+       ADD TOUR
+    ===================================================== */
+
+    addTourBtn.addEventListener(
+        "click",
+        () => {
+
+            editingTourId = null;
+
+            tourForm.reset();
+
+            tourExpense.value = 0;
+
+            tourFormTitle.textContent =
+                "➕ Add Tour";
+
+            saveTourBtn.textContent =
+                "💾 Save Tour";
+
+            tourFormSection.style.display =
+                "block";
+
+            clearTourMessage();
+
+            tourFormSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+
+    /* =====================================================
+       CANCEL TOUR
+    ===================================================== */
+
+    cancelTourBtn.addEventListener(
+        "click",
+        () => {
+
+            editingTourId = null;
+
+            tourForm.reset();
+
+            tourExpense.value = 0;
+
+            tourFormSection.style.display =
+                "none";
+
+            tourFormTitle.textContent =
+                "➕ Add Tour";
+
+            saveTourBtn.textContent =
+                "💾 Save Tour";
+
+            clearTourMessage();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       SAVE TOUR
+    ===================================================== */
+
+    tourForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const name =
+                tourName.value.trim();
+
+
+            const date =
+                tourDate.value;
+
+
+            const place =
+                tourPlace.value.trim();
+
+
+            const expense =
+                Number(
+                    tourExpense.value
+                ) || 0;
+
+
+            const note =
+                tourNote.value.trim();
+
+
+
+            if (!name) {
+
+                showTourMessage(
+                    "❌ Tour Name required",
+                    "error"
+                );
+
+                tourName.focus();
+
+                return;
+            }
+
+
+
+            if (!date) {
+
+                showTourMessage(
+                    "❌ Date required",
+                    "error"
+                );
+
+                tourDate.focus();
+
+                return;
+            }
+
+
+
+            if (!place) {
+
+                showTourMessage(
+                    "❌ Place required",
+                    "error"
+                );
+
+                tourPlace.focus();
+
+                return;
+            }
+
+
+
+            if (expense < 0) {
+
+                showTourMessage(
+                    "❌ Expense cannot be negative",
+                    "error"
+                );
+
+                return;
+            }
+
+
+
+            const data = {
+
+                tourName: name,
+
+                date: date,
+
+                place: place,
+
+                expense: expense,
+
+                note: note
+
+            };
+
+
+
+            try {
+
+                saveTourBtn.disabled =
+                    true;
+
+
+                if (editingTourId) {
+
+                    await updateDoc(
+
+                        doc(
+                            db,
+                            "tours",
+                            editingTourId
+                        ),
+
+                        data
+
+                    );
+
+
+                    showTourMessage(
+                        "✅ Tour Updated Successfully",
+                        "success"
+                    );
+
+                }
+
+                else {
+
+                    await addDoc(
+
+                        collection(
+                            db,
+                            "tours"
+                        ),
+
+                        {
+
+                            ...data,
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+
+                    );
+
+
+                    showTourMessage(
+                        "✅ Tour Saved Successfully",
+                        "success"
+                    );
+
+                }
+
+
+
+                setTimeout(
+                    async () => {
+
+                        resetTourForm();
+
+                        await loadTours();
+
+                    },
+                    700
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Tour Save Error:",
+                    error
+                );
+
+                saveTourBtn.disabled =
+                    false;
+
+                showTourMessage(
+                    "❌ Save failed. Check Firebase Rules / Console.",
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LOAD TOURS
+    ===================================================== */
+
+    async function loadTours() {
+
+        try {
+
+            tourLoading.style.display =
+                "block";
+
+            tourLoading.textContent =
+                "Loading tours...";
+
+            tourNoData.style.display =
+                "none";
+
+
+            const snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "tours"
+                    )
+                );
+
+
+            tours = [];
+
+
+            snapshot.forEach(
+                tourDoc => {
+
+                    tours.push({
+
+                        id:
+                            tourDoc.id,
+
+                        ...tourDoc.data()
+
+                    });
+
+                }
+            );
+
+
+            tours.sort(
+                (a, b) => {
+
+                    const aTime =
+                        a.createdAt?.seconds || 0;
+
+                    const bTime =
+                        b.createdAt?.seconds || 0;
+
+                    return bTime - aTime;
+
+                }
+            );
+
+
+            tourLoading.style.display =
+                "none";
+
+
+            displayTours(
+                tours
+            );
+
+
+            updateTourDashboard();
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Tour Load Error:",
+                error
+            );
+
+
+            tourLoading.textContent =
+                "❌ Tour loading failed";
+
+            tourLoading.style.color =
+                "#dc2626";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       DISPLAY TOURS
+    ===================================================== */
+
+    function displayTours(data) {
+
+        tourTableBody.innerHTML =
+            "";
+
+
+        tourCount.textContent =
+            `Total Tours: ${data.length}`;
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            tourNoData.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        tourNoData.style.display =
+            "none";
+
+
+        data.forEach(
+            (tour, index) => {
+
+                const expense =
+                    Number(
+                        tour.expense
+                    ) || 0;
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td class="tour-name">
+                        ${escapeHTML(
+                            tour.tourName || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            tour.date || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            tour.place || "-"
+                        )}
+                    </td>
+
+                    <td class="expense">
+                        ₹${money(expense)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            tour.note || "-"
+                        )}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="edit-btn"
+                            data-tour-id="${tour.id}"
+                        >
+                            ✏️ Edit
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            data-tour-id="${tour.id}"
+                        >
+                            🗑️ Delete
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                tourTableBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+
+        document
+            .querySelectorAll(
+                ".edit-btn[data-tour-id]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const tour =
+                                tours.find(
+                                    item =>
+                                        item.id ===
+                                        button.dataset.tourId
+                                );
+
+
+                            if (tour) {
+
+                                editTour(
+                                    tour
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        document
+            .querySelectorAll(
+                ".delete-btn[data-tour-id]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            deleteTour(
+                                button.dataset.tourId
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+
+    /* =====================================================
+       EDIT TOUR
+    ===================================================== */
+
+    function editTour(tour) {
+
+        editingTourId =
+            tour.id;
+
+
+        tourName.value =
+            tour.tourName || "";
+
+
+        tourDate.value =
+            tour.date || "";
+
+
+        tourPlace.value =
+            tour.place || "";
+
+
+        tourExpense.value =
+            tour.expense || 0;
+
+
+        tourNote.value =
+            tour.note || "";
+
+
+        tourFormTitle.textContent =
+            "✏️ Edit Tour";
+
+
+        saveTourBtn.textContent =
+            "💾 Update Tour";
+
+
+        tourFormSection.style.display =
+            "block";
+
+
+        clearTourMessage();
+
+
+        tourFormSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+
+    /* =====================================================
+       DELETE TOUR
+    ===================================================== */
+
+    async function deleteTour(id) {
+
+        const tour =
+            tours.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if (!tour)
+            return;
+
+
+        const confirmDelete =
+            confirm(
+                `Delete Tour "${tour.tourName}"?`
+            );
+
+
+        if (!confirmDelete)
+            return;
+
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "tours",
+                    id
+                )
+            );
+
+
+            alert(
+                "✅ Tour Deleted Successfully"
+            );
+
+
+            await loadTours();
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Tour Delete Error:",
+                error
+            );
+
+
+            alert(
+                "❌ Delete failed. Check Firebase Rules."
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SEARCH TOUR
+    ===================================================== */
+
+    searchTour.addEventListener(
+        "input",
+        () => {
+
+            const value =
+                searchTour.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                displayTours(
+                    tours
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                tours.filter(
+                    tour => {
+
+                        const name =
+                            String(
+                                tour.tourName || ""
+                            ).toLowerCase();
+
+
+                        const place =
+                            String(
+                                tour.place || ""
+                            ).toLowerCase();
+
+
+                        const date =
+                            String(
+                                tour.date || ""
+                            ).toLowerCase();
+
+
+                        const note =
+                            String(
+                                tour.note || ""
+                            ).toLowerCase();
+
+
+                        return (
+
+                            name.includes(value) ||
+
+                            place.includes(value) ||
+
+                            date.includes(value) ||
+
+                            note.includes(value)
+
+                        );
+
+                    }
+                );
+
+
+            displayTours(
+                filtered
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       TOUR DASHBOARD
+    ===================================================== */
+
+    function updateTourDashboard() {
+
+        let totalExpense =
+            0;
+
+
+        tours.forEach(
+            tour => {
+
+                totalExpense +=
+                    Number(
+                        tour.expense || 0
+                    );
+
+            }
+        );
+
+
+        /*
+         * Tour collection is taken
+         * from member collection.
+         */
+
+        let totalCollection =
+            0;
+
+
+        memberCollections.forEach(
+            item => {
+
+                totalCollection +=
+                    Number(
+                        item.amount || 0
+                    );
+
+            }
+        );
+
+
+        const balance =
+            totalCollection -
+            totalExpense;
+
+
+
+        /*
+         * IMPORTANT:
+         * All elements exist in HTML.
+         */
+
+        totalTours.textContent =
+            tours.length;
+
+
+        totalTourCollection.textContent =
+            `₹${money(
+                totalCollection
+            )}`;
+
+
+        totalTourExpense.textContent =
+            `₹${money(
+                totalExpense
+            )}`;
+
+
+        totalTourBalance.textContent =
+            `₹${money(
+                balance
+            )}`;
+
+    }
+
+
+
+    /* =====================================================
+       RESET TOUR FORM
+    ===================================================== */
+
+    function resetTourForm() {
+
+        tourForm.reset();
+
+        tourExpense.value =
+            0;
+
+        editingTourId =
+            null;
+
+        tourFormSection.style.display =
+            "none";
+
+        tourFormTitle.textContent =
+            "➕ Add Tour";
+
+        saveTourBtn.textContent =
+            "💾 Save Tour";
+
+        saveTourBtn.disabled =
+            false;
+
+        clearTourMessage();
+
+    }
+
+
+
+    /* =====================================================
+       LOAD MEMBERS
+    ===================================================== */
+
+    async function loadMembers() {
+
+        try {
+
+            const snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "members"
+                    )
+                );
+
+
+            members = [];
+
+
+            snapshot.forEach(
+                memberDoc => {
+
+                    members.push({
+
+                        id:
+                            memberDoc.id,
+
+                        ...memberDoc.data()
+
+                    });
+
+                }
+            );
+
+
+            members.sort(
+                (a, b) =>
+                    String(
+                        a.memberName || ""
+                    ).localeCompare(
+                        String(
+                            b.memberName || ""
+                        ),
+                        "ta"
+                    )
+            );
+
+
+            loadMemberDropdown();
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Member Load Error:",
+                error
+            );
+
+
+            collectionMember.innerHTML = `
+
+                <option value="">
+                    ❌ Member loading failed
+                </option>
+
+            `;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       MEMBER DROPDOWN
+    ===================================================== */
+
+    function loadMemberDropdown() {
+
+        collectionMember.innerHTML = `
+
+            <option value="">
+                Select Member
+            </option>
+
+        `;
+
+
+        members.forEach(
+            member => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    member.id;
+
+
+                option.textContent =
+                    member.memberName ||
+                    "Unnamed Member";
+
+
+                collectionMember.appendChild(
+                    option
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       DEFAULT MONTH
+    ===================================================== */
+
+    function setDefaultMonth() {
+
+        const now =
+            new Date();
+
+
+        const year =
+            now.getFullYear();
+
+
+        const month =
+            String(
+                now.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        collectionMonth.value =
+            `${year}-${month}`;
+
+    }
+
+
+    setDefaultMonth();
+
+
+
+    /* =====================================================
+       SAVE COLLECTION
+    ===================================================== */
+
+    collectionForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const memberId =
+                collectionMember.value;
+
+
+            const month =
+                collectionMonth.value;
+
+
+            const amount =
+                Number(
+                    collectionAmount.value
+                ) || 0;
+
+
+            if (!memberId) {
+
+                showCollectionMessage(
+                    "❌ Please select Member",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!month) {
+
+                showCollectionMessage(
+                    "❌ Please select Month",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (amount <= 0) {
+
+                showCollectionMessage(
+                    "❌ Amount must be greater than 0",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const member =
+                members.find(
+                    item =>
+                        item.id === memberId
+                );
+
+
+            if (!member) {
+
+                showCollectionMessage(
+                    "❌ Member not found",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               DUPLICATE CHECK
+            ========================= */
+
+            const duplicate =
+                memberCollections.find(
+                    item =>
+
+                        item.memberId ===
+                            memberId &&
+
+                        item.month ===
+                            month &&
+
+                        item.id !==
+                            editingCollectionId
+                );
+
+
+            if (duplicate) {
+
+                showCollectionMessage(
+                    "❌ இந்த உறுப்பினருக்கு இந்த மாத Collection ஏற்கனவே உள்ளது",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+
+            const data = {
+
+                memberId,
+
+                memberName:
+                    member.memberName || "",
+
+                month,
+
+                amount
+
+            };
+
+
+
+            try {
+
+                saveCollectionBtn.disabled =
+                    true;
+
+
+                if (
+                    editingCollectionId
+                ) {
+
+                    await updateDoc(
+
+                        doc(
+                            db,
+                            "memberCollections",
+                            editingCollectionId
+                        ),
+
+                        data
+
+                    );
+
+
+                    showCollectionMessage(
+                        "✅ Collection Updated Successfully",
+                        "success"
+                    );
+
+                }
+
+                else {
+
+                    await addDoc(
+
+                        collection(
+                            db,
+                            "memberCollections"
+                        ),
+
+                        {
+
+                            ...data,
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+
+                    );
+
+
+                    showCollectionMessage(
+                        "✅ Collection Saved Successfully",
+                        "success"
+                    );
+
+                }
+
+
+
+                setTimeout(
+                    async () => {
+
+                        resetCollectionForm();
+
+                        await loadMemberCollections();
+
+                        updateTourDashboard();
+
+                    },
+                    700
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Collection Save Error:",
+                    error
+                );
+
+
+                saveCollectionBtn.disabled =
+                    false;
+
+
+                showCollectionMessage(
+                    "❌ Save failed. Check Firebase Rules.",
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       CANCEL COLLECTION
+    ===================================================== */
+
+    cancelCollectionBtn.addEventListener(
+        "click",
+        () => {
+
+            resetCollectionForm();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       RESET COLLECTION FORM
+    ===================================================== */
+
+    function resetCollectionForm() {
+
+        editingCollectionId =
+            null;
+
+
+        collectionForm.reset();
+
+        setDefaultMonth();
+
+
+        collectionFormTitle.textContent =
+            "➕ Member Collection";
+
+
+        saveCollectionBtn.textContent =
+            "💾 Save Collection";
+
+
+        saveCollectionBtn.disabled =
+            false;
+
+
+        clearCollectionMessage();
+
+    }
+
+
+
+    /* =====================================================
+       LOAD COLLECTIONS
+    ===================================================== */
+
+    async function loadMemberCollections() {
+
+        try {
+
+            collectionLoading.style.display =
+                "block";
+
+
+            collectionLoading.textContent =
+                "Loading collections...";
+
+
+            const snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "memberCollections"
+                    )
+                );
+
+
+            memberCollections = [];
+
+
+            snapshot.forEach(
+                collectionDoc => {
+
+                    memberCollections.push({
+
+                        id:
+                            collectionDoc.id,
+
+                        ...collectionDoc.data()
+
+                    });
+
+                }
+            );
+
+
+            memberCollections.sort(
+                (a, b) => {
+
+                    const aTime =
+                        a.createdAt?.seconds || 0;
+
+
+                    const bTime =
+                        b.createdAt?.seconds || 0;
+
+
+                    return bTime - aTime;
+
+                }
+            );
+
+
+            collectionLoading.style.display =
+                "none";
+
+
+            displayMemberCollections(
+                memberCollections
+            );
+
+
+            updateCollectionDashboard();
+
+            updateMonthlyCollection();
+
+            updateTourDashboard();
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Collection Load Error:",
+                error
+            );
+
+
+            collectionLoading.textContent =
+                "❌ Collection loading failed";
+
+
+            collectionLoading.style.color =
+                "#dc2626";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       DISPLAY COLLECTIONS
+    ===================================================== */
+
+    function displayMemberCollections(
+        data
+    ) {
+
+        collectionTableBody.innerHTML =
+            "";
+
+
+        collectionCount.textContent =
+            `Total Collections: ${data.length}`;
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            collectionNoData.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        collectionNoData.style.display =
+            "none";
+
+
+        data.forEach(
+            (item, index) => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td class="member-name">
+                        ${escapeHTML(
+                            item.memberName || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${formatMonth(
+                            item.month
+                        )}
+                    </td>
+
+                    <td class="income">
+                        ₹${money(
+                            item.amount
+                        )}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="edit-btn"
+                            data-collection-id="${item.id}"
+                        >
+                            ✏️ Edit
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            data-collection-id="${item.id}"
+                        >
+                            🗑️ Delete
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                collectionTableBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+
+        document
+            .querySelectorAll(
+                ".edit-btn[data-collection-id]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const item =
+                                memberCollections.find(
+                                    collectionItem =>
+                                        collectionItem.id ===
+                                        button.dataset.collectionId
+                                );
+
+
+                            if (item) {
+
+                                editCollection(
+                                    item
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        document
+            .querySelectorAll(
+                ".delete-btn[data-collection-id]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            deleteCollection(
+                                button.dataset.collectionId
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+
+    /* =====================================================
+       EDIT COLLECTION
+    ===================================================== */
+
+    function editCollection(item) {
+
+        editingCollectionId =
+            item.id;
+
+
+        collectionMember.value =
+            item.memberId || "";
+
+
+        collectionMonth.value =
+            item.month || "";
+
+
+        collectionAmount.value =
+            item.amount || 0;
+
+
+        collectionFormTitle.textContent =
+            "✏️ Edit Member Collection";
+
+
+        saveCollectionBtn.textContent =
+            "💾 Update Collection";
+
+
+        clearCollectionMessage();
+
+
+        collectionForm.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+
+    /* =====================================================
+       DELETE COLLECTION
+    ===================================================== */
+
+    async function deleteCollection(id) {
+
+        const item =
+            memberCollections.find(
+                collectionItem =>
+                    collectionItem.id === id
+            );
+
+
+        if (!item)
+            return;
+
+
+        const confirmDelete =
+            confirm(
+                `Delete Collection "${item.memberName}" - ${formatMonth(item.month)}?`
+            );
+
+
+        if (!confirmDelete)
+            return;
+
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "memberCollections",
+                    id
+                )
+            );
+
+
+            alert(
+                "✅ Collection Deleted Successfully"
+            );
+
+
+            await loadMemberCollections();
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Collection Delete Error:",
+                error
+            );
+
+
+            alert(
+                "❌ Delete failed. Check Firebase Rules."
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SEARCH COLLECTION
+    ===================================================== */
+
+    searchCollection.addEventListener(
+        "input",
+        () => {
+
+            const value =
+                searchCollection.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                displayMemberCollections(
+                    memberCollections
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                memberCollections.filter(
+                    item => {
+
+                        const name =
+                            String(
+                                item.memberName || ""
+                            ).toLowerCase();
+
+
+                        const month =
+                            String(
+                                item.month || ""
+                            ).toLowerCase();
+
+
+                        const formattedMonth =
+                            formatMonth(
+                                item.month
+                            ).toLowerCase();
+
+
+                        return (
+
+                            name.includes(value) ||
+
+                            month.includes(value) ||
+
+                            formattedMonth.includes(value)
+
+                        );
+
+                    }
+                );
+
+
+            displayMemberCollections(
+                filtered
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       COLLECTION DASHBOARD
+    ===================================================== */
+
+    function updateCollectionDashboard() {
+
+        let totalAmount =
+            0;
+
+
+        let currentMonthAmount =
+            0;
+
+
+        const now =
+            new Date();
+
+
+        const year =
+            now.getFullYear();
+
+
+        const month =
+            String(
+                now.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const currentMonthValue =
+            `${year}-${month}`;
+
+
+        memberCollections.forEach(
+            item => {
+
+                const amount =
+                    Number(
+                        item.amount || 0
+                    );
+
+
+                totalAmount +=
+                    amount;
+
+
+                if (
+                    item.month ===
+                    currentMonthValue
+                ) {
+
+                    currentMonthAmount +=
+                        amount;
+
+                }
+
+            }
+        );
+
+
+        totalCollections.textContent =
+            memberCollections.length;
+
+
+        thisMonthCollection.textContent =
+            `₹${money(
+                currentMonthAmount
+            )}`;
+
+
+        allCollectionAmount.textContent =
+            `₹${money(
+                totalAmount
+            )}`;
+
+    }
+
+
+
+    /* =====================================================
+       MONTHLY TOTAL
+    ===================================================== */
+
+    function updateMonthlyCollection() {
+
+        const monthlyTotals =
+            {};
+
+
+        memberCollections.forEach(
+            item => {
+
+                const month =
+                    item.month;
+
+
+                const amount =
+                    Number(
+                        item.amount || 0
+                    );
+
+
+                if (!month)
+                    return;
+
+
+                if (
+                    !monthlyTotals[month]
+                ) {
+
+                    monthlyTotals[month] =
+                        0;
+
+                }
+
+
+                monthlyTotals[month] +=
+                    amount;
+
+            }
+        );
+
+
+        monthlyCollectionBody.innerHTML =
+            "";
+
+
+        const months =
+            Object.keys(
+                monthlyTotals
+            )
+            .sort()
+            .reverse();
+
+
+        if (
+            months.length === 0
+        ) {
+
+            monthlyCollectionNoData.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        monthlyCollectionNoData.style.display =
+            "none";
+
+
+        months.forEach(
+            (month, index) => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        <b>
+                            ${formatMonth(
+                                month
+                            )}
+                        </b>
+                    </td>
+
+                    <td class="monthly-total">
+                        ₹${money(
+                            monthlyTotals[month]
+                        )}
+                    </td>
+
+                `;
+
+
+                monthlyCollectionBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       MONTH FORMAT
+    ===================================================== */
+
+    function formatMonth(value) {
+
+        if (!value)
+            return "-";
+
+
+        const parts =
+            value.split("-");
+
+
+        if (
+            parts.length !== 2
+        ) {
+
+            return value;
+
+        }
+
+
+        const year =
+            parts[0];
+
+
+        const month =
+            Number(
+                parts[1]
+            );
+
+
+        const monthNames = [
+
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+
+        ];
+
+
+        return (
+
+            monthNames[month - 1] +
+
+            " " +
+
+            year
+
+        );
+
+    }
+
+
+
+    /* =====================================================
+       MONEY
+    ===================================================== */
+
+    function money(value) {
+
+        return Number(
+            value || 0
+        ).toLocaleString(
+            "en-IN"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       TOUR MESSAGE
+    ===================================================== */
+
+    function showTourMessage(
+        text,
+        type
+    ) {
+
+        tourMessage.textContent =
+            text;
+
+
+        tourMessage.className =
+            type;
+
+
+        setTimeout(
+            clearTourMessage,
+            3000
+        );
+
+    }
+
+
+    function clearTourMessage() {
+
+        tourMessage.textContent =
+            "";
+
+
+        tourMessage.className =
+            "";
+
+    }
+
+
+
+    /* =====================================================
+       COLLECTION MESSAGE
+    ===================================================== */
+
+    function showCollectionMessage(
+        text,
+        type
+    ) {
+
+        collectionMessage.textContent =
+            text;
+
+
+        collectionMessage.className =
+            type;
+
+
+        setTimeout(
+            clearCollectionMessage,
+            3000
+        );
+
+    }
+
+
+    function clearCollectionMessage() {
+
+        collectionMessage.textContent =
+            "";
+
+
+        collectionMessage.className =
+            "";
+
+    }
+
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+        return String(value)
+
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

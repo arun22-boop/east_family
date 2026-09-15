@@ -1,0 +1,16 @@
+{
+  "name": "pkv-east",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^12.18.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.6"
+  }
+}
