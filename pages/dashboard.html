@@ -1,1094 +1,946 @@
+```html
 <!DOCTYPE html>
-
 <html lang="ta">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>PKV East - Dashboard</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
+    <title>PKV East - Dashboard</title>
 
-    body {
-        margin: 0;
-        font-family: Arial, "Noto Sans Tamil", sans-serif;
-        background: #f5f3ff;
-        color: #1f2937;
-    }
 
-    /* ================= SIDEBAR ================= */
+    <style>
 
-    .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-
-        width: 250px;
-
-        background: linear-gradient(
-            180deg,
-            #581c87,
-            #6b21a8,
-            #7e22ce
-        );
-
-        color: white;
-
-        padding: 20px 14px;
-
-        overflow-y: auto;
-
-        z-index: 1000;
-    }
-
-    .logo-box {
-        text-align: center;
-        padding: 10px 5px 20px;
-        border-bottom: 1px solid rgba(255,255,255,.2);
-        margin-bottom: 15px;
-    }
-
-    .logo {
-        width: 65px;
-        height: 65px;
-
-        margin: auto;
-
-        border-radius: 50%;
-
-        background: white;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 34px;
-    }
-
-    .logo-box h2 {
-        margin: 12px 0 4px;
-
-        font-size: 17px;
-    }
-
-    .logo-box p {
-        margin: 0;
-
-        font-size: 11px;
-
-        opacity: .8;
-    }
-
-    .menu-title {
-        font-size: 11px;
-        opacity: .65;
-        margin: 15px 10px 7px;
-    }
-
-    .menu-btn {
-        width: 100%;
-
-        border: 0;
-
-        background: transparent;
-
-        color: white;
-
-        text-align: left;
-
-        padding: 12px;
-
-        margin-bottom: 4px;
-
-        border-radius: 9px;
-
-        cursor: pointer;
-
-        font-size: 14px;
-    }
-
-    .menu-btn:hover,
-    .menu-btn.active {
-        background: rgba(255,255,255,.18);
-    }
-
-    .logout-btn {
-        margin-top: 15px;
-
-        background: #dc2626 !important;
-    }
-
-    .logout-btn:hover {
-        background: #b91c1c !important;
-    }
-
-    /* ================= MAIN ================= */
-
-    .main {
-        margin-left: 250px;
-
-        min-height: 100vh;
-
-        padding: 20px;
-    }
-
-    .topbar {
-        background: white;
-
-        border-radius: 15px;
-
-        padding: 18px 20px;
-
-        box-shadow: 0 4px 18px rgba(0,0,0,.07);
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 15px;
-
-        margin-bottom: 20px;
-    }
-
-    .topbar h1 {
-        margin: 0;
-
-        font-size: 23px;
-
-        color: #581c87;
-    }
-
-    .topbar p {
-        margin: 5px 0 0;
-
-        font-size: 13px;
-
-        color: #777;
-    }
-
-    .date-box {
-        background: #faf5ff;
-
-        color: #6b21a8;
-
-        padding: 9px 13px;
-
-        border-radius: 9px;
-
-        font-size: 13px;
-
-        white-space: nowrap;
-    }
-
-    /* ================= CARDS ================= */
-
-    .cards {
-        display: grid;
-
-        grid-template-columns:
-            repeat(4, minmax(0, 1fr));
-
-        gap: 15px;
-
-        margin-bottom: 20px;
-    }
-
-    .card {
-        background: white;
-
-        border-radius: 15px;
-
-        padding: 20px;
-
-        box-shadow: 0 4px 18px rgba(0,0,0,.06);
-
-        border-left: 5px solid #7e22ce;
-    }
-
-    .card.income {
-        border-left-color: #16a34a;
-    }
-
-    .card.expense {
-        border-left-color: #dc2626;
-    }
-
-    .card.balance {
-        border-left-color: #2563eb;
-    }
-
-    .card.split {
-        border-left-color: #f59e0b;
-    }
-
-    .card-title {
-        font-size: 13px;
-
-        color: #6b7280;
-
-        margin-bottom: 9px;
-    }
-
-    .card-value {
-        font-size: 25px;
-
-        font-weight: bold;
-
-        color: #111827;
-    }
-
-    .card-icon {
-        font-size: 26px;
-
-        margin-bottom: 10px;
-    }
-
-    /* ================= CONTENT ================= */
-
-    .content-grid {
-        display: grid;
-
-        grid-template-columns:
-            2fr 1fr;
-
-        gap: 20px;
-    }
-
-    .panel {
-        background: white;
-
-        border-radius: 15px;
-
-        padding: 20px;
-
-        box-shadow: 0 4px 18px rgba(0,0,0,.06);
-
-        margin-bottom: 20px;
-    }
-
-    .panel h3 {
-        margin: 0 0 15px;
-
-        color: #581c87;
-
-        font-size: 17px;
-    }
-
-    /* ================= QUICK MENU ================= */
-
-    .quick-grid {
-        display: grid;
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 10px;
-    }
-
-    .quick-btn {
-        border: 1px solid #e5e7eb;
-
-        background: #fafafa;
-
-        padding: 14px;
-
-        border-radius: 10px;
-
-        cursor: pointer;
-
-        text-align: left;
-
-        font-size: 13px;
-    }
-
-    .quick-btn:hover {
-        background: #faf5ff;
-
-        border-color: #c084fc;
-    }
-
-    /* ================= ACTIVITY ================= */
-
-    .activity {
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        padding: 12px 0;
-
-        border-bottom: 1px solid #eee;
-
-        font-size: 13px;
-    }
-
-    .activity:last-child {
-        border-bottom: 0;
-    }
-
-    .amount {
-        font-weight: bold;
-    }
-
-    .green {
-        color: #16a34a;
-    }
-
-    .red {
-        color: #dc2626;
-    }
-
-    /* ================= MOBILE ================= */
-
-    .mobile-menu {
-        display: none;
-    }
-
-    @media(max-width: 1000px) {
-
-        .cards {
-            grid-template-columns:
-                repeat(2, 1fr);
+        * {
+            box-sizing: border-box;
         }
 
-        .content-grid {
-            grid-template-columns: 1fr;
-        }
-    }
 
-    @media(max-width: 700px) {
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Noto Sans Tamil",
+                sans-serif;
+
+            background: #f5f3ff;
+
+            color: #222;
+        }
+
+
+        /* ==========================================
+           SIDEBAR
+        ========================================== */
 
         .sidebar {
-            width: 220px;
 
-            transform: translateX(-100%);
+            position: fixed;
 
-            transition: .3s;
-        }
+            left: 0;
+            top: 0;
+            bottom: 0;
 
-        .sidebar.open {
-            transform: translateX(0);
-        }
+            width: 250px;
 
-        .main {
-            margin-left: 0;
-
-            padding: 12px;
-        }
-
-        .mobile-menu {
-            display: block;
-
-            border: 0;
-
-            background: #6b21a8;
+            background:
+                linear-gradient(
+                    180deg,
+                    #581c87,
+                    #6b21a8,
+                    #7e22ce
+                );
 
             color: white;
 
-            width: 42px;
+            padding: 20px 14px;
 
-            height: 42px;
+            overflow-y: auto;
+        }
 
-            border-radius: 8px;
 
-            font-size: 20px;
+        .brand {
+
+            text-align: center;
+
+            padding: 10px 5px 20px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.2);
+        }
+
+
+        .brand-icon {
+
+            font-size: 42px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .brand h2 {
+
+            margin: 0;
+
+            font-size: 18px;
+
+            line-height: 1.4;
+        }
+
+
+        .brand p {
+
+            margin: 6px 0 0;
+
+            font-size: 11px;
+
+            opacity: 0.85;
+        }
+
+
+        /* ==========================================
+           MENU
+        ========================================== */
+
+        .menu {
+
+            margin-top: 20px;
+        }
+
+
+        .menu-title {
+
+            font-size: 11px;
+
+            opacity: 0.65;
+
+            padding: 8px 12px;
+
+            text-transform: uppercase;
+        }
+
+
+        .menu a {
+
+            display: block;
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 12px;
+
+            margin-bottom: 5px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+
+        .menu a:hover {
+
+            background:
+                rgba(255,255,255,0.15);
+
+            transform: translateX(3px);
+        }
+
+
+        .menu a.active {
+
+            background: white;
+
+            color: #6b21a8;
+
+            font-weight: bold;
+        }
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        .logout {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border: 0;
+
+            border-radius: 9px;
+
+            background: #dc2626;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
 
             cursor: pointer;
         }
 
-        .topbar {
-            align-items: flex-start;
+
+        .logout:hover {
+
+            background: #b91c1c;
         }
+
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .main {
+
+            margin-left: 250px;
+
+            min-height: 100vh;
+
+            padding: 25px;
+        }
+
+
+        /* ==========================================
+           TOP BAR
+        ========================================== */
+
+        .topbar {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 18px 22px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.06);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .topbar h1 {
+
+            margin: 0;
+
+            color: #581c87;
+
+            font-size: 24px;
+        }
+
+
+        .topbar p {
+
+            margin: 5px 0 0;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        .date {
+
+            background: #faf5ff;
+
+            color: #6b21a8;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==========================================
+           CARDS
+        ========================================== */
 
         .cards {
-            grid-template-columns: 1fr;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(0, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-bottom: 22px;
         }
 
-        .date-box {
-            display: none;
+
+        .card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.06);
         }
-    }
-</style>
-```
+
+
+        .card-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 12px;
+
+            background: #f3e8ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .card-title {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .card-value {
+
+            color: #581c87;
+
+            font-size: 26px;
+
+            font-weight: bold;
+        }
+
+
+        .card-sub {
+
+            margin-top: 6px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+
+        /* ==========================================
+           CONTENT
+        ========================================== */
+
+        .content-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .panel {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.06);
+        }
+
+
+        .panel h2 {
+
+            margin: 0 0 15px;
+
+            color: #581c87;
+
+            font-size: 18px;
+        }
+
+
+        .quick-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .quick-btn {
+
+            display: block;
+
+            text-decoration: none;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: #faf5ff;
+
+            color: #6b21a8;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+
+        .quick-btn:hover {
+
+            background: #f3e8ff;
+        }
+
+
+        .status {
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            background: #f0fdf4;
+
+            color: #166534;
+
+            font-size: 13px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .info {
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            background: #faf5ff;
+
+            color: #6b21a8;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .content-grid {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                min-height: auto;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+
+                padding: 15px;
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .topbar {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .quick-grid {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
 
-<aside class="sidebar" id="sidebar">
+    <!-- ==========================================
+         SIDEBAR
+    ========================================== -->
 
-```
-<div class="logo-box">
+    <aside class="sidebar">
 
-    <div class="logo">
-        🛕
-    </div>
+        <div class="brand">
 
-    <h2>
-        P.K. வேலம்பாளையம்
-    </h2>
+            <div class="brand-icon">
+                🛕
+            </div>
 
-    <p>
-        கிழக்கு
-    </p>
-
-</div>
-
-<div class="menu-title">
-    MAIN MENU
-</div>
-
-<button class="menu-btn active"
-        onclick="openPage('dashboard.html')">
-    📊 Dashboard
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/member.html')">
-    👥 Member List
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/pudavai.html')">
-    👗 Pudavai
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/fund.html')">
-    💰 Fund
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/pkv-koil.html')">
-    🛕 PKV Kovil
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/amavasai.html')">
-    🌑 அமாவாசை பூஜை
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/tour.html')">
-    🚌 Tour
-</button>
-
-<button class="menu-btn"
-        onclick="openPage('pages/theerumanam.html')">
-    📜 தீர்மானம்
-</button>
-
-<div class="menu-title">
-    ACCOUNT
-</div>
-
-<button class="menu-btn"
-        onclick="refreshDashboard()">
-    🔄 Refresh
-</button>
-
-<button class="menu-btn logout-btn"
-        onclick="logout()">
-    🚪 Logout
-</button>
-```
-
-</aside>
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
-
-```
-<div class="topbar">
-
-    <div style="display:flex; gap:12px; align-items:flex-start;">
-
-        <button
-            class="mobile-menu"
-            onclick="toggleSidebar()">
-            ☰
-        </button>
-
-        <div>
-
-            <h1>
-                Dashboard
-            </h1>
+            <h2>
+                P.K. வேலம்பாளையம் கிழக்கு
+            </h2>
 
             <p>
-                வரவு • செலவு • கையிருப்பு கணக்கு
+                PKV East Accounting System
             </p>
 
         </div>
 
-    </div>
 
-    <div class="date-box"
-         id="todayDate">
-    </div>
+        <div class="menu">
 
-</div>
+            <div class="menu-title">
+                Main Menu
+            </div>
 
 
-<!-- =================================================
-     DASHBOARD CARDS
-================================================= -->
+            <a
+                href="./dashboard.html"
+                class="active"
+            >
+                🏠 Dashboard
+            </a>
 
-<section class="cards">
 
-    <div class="card income">
+            <a href="./member.html">
+                👥 Member List
+            </a>
 
-        <div class="card-icon">
-            💰
+
+            <a href="./pudavai.html">
+                👗 Pudavai
+            </a>
+
+
+            <a href="./fund.html">
+                💰 Fund
+            </a>
+
+
+            <a href="./pkv-koil.html">
+                🛕 PKV Kovil
+            </a>
+
+
+            <a href="./amavasai.html">
+                🌑 அமாவாசை பூஜை
+            </a>
+
+
+            <a href="./tour.html">
+                🚌 Tour
+            </a>
+
+
+            <a href="./theermanam.html">
+                📋 தீர்மானம்
+            </a>
+
         </div>
 
-        <div class="card-title">
-            மொத்த வரவு
-        </div>
 
-        <div class="card-value"
-             id="totalIncome">
-            ₹0
-        </div>
+        <button
+            class="logout"
+            id="logoutButton"
+        >
+            🚪 Logout
+        </button>
 
-    </div>
-
-
-    <div class="card expense">
-
-        <div class="card-icon">
-            💸
-        </div>
-
-        <div class="card-title">
-            மொத்த செலவு
-        </div>
-
-        <div class="card-value"
-             id="totalExpense">
-            ₹0
-        </div>
-
-    </div>
+    </aside>
 
 
-    <div class="card balance">
+    <!-- ==========================================
+         MAIN
+    ========================================== -->
 
-        <div class="card-icon">
-            🏦
-        </div>
-
-        <div class="card-title">
-            கையிருப்பு
-        </div>
-
-        <div class="card-value"
-             id="totalBalance">
-            ₹0
-        </div>
-
-    </div>
+    <main class="main">
 
 
-    <div class="card split">
+        <!-- TOPBAR -->
 
-        <div class="card-icon">
-            👥
-        </div>
+        <div class="topbar">
 
-        <div class="card-title">
-            Member Split
-        </div>
+            <div>
 
-        <div class="card-value"
-             id="totalSplit">
-            ₹0
-        </div>
+                <h1>
+                    Dashboard
+                </h1>
 
-    </div>
+                <p>
+                    வரவு • செலவு • கையிருப்பு கணக்கு
+                </p>
 
-</section>
+            </div>
 
 
-<!-- =================================================
-     CONTENT
-================================================= -->
-
-<div class="content-grid">
-
-    <div>
-
-        <div class="panel">
-
-            <h3>
-                ⚡ Quick Access
-            </h3>
-
-            <div class="quick-grid">
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/member.html')">
-                    👥 Member List
-                    <br>
-                    <small>
-                        உறுப்பினர் விவரங்கள்
-                    </small>
-                </button>
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/pudavai.html')">
-                    👗 Pudavai
-                    <br>
-                    <small>
-                        புடவை கணக்கு
-                    </small>
-                </button>
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/fund.html')">
-                    💰 Fund
-                    <br>
-                    <small>
-                        நிதி கணக்கு
-                    </small>
-                </button>
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/pkv-koil.html')">
-                    🛕 PKV Kovil
-                    <br>
-                    <small>
-                        கோவில் கணக்கு
-                    </small>
-                </button>
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/amavasai.html')">
-                    🌑 அமாவாசை பூஜை
-                    <br>
-                    <small>
-                        பூஜை கணக்கு
-                    </small>
-                </button>
-
-                <button class="quick-btn"
-                        onclick="openPage('pages/tour.html')">
-                    🚌 Tour
-                    <br>
-                    <small>
-                        சுற்றுலா கணக்கு
-                    </small>
-                </button>
-
+            <div
+                class="date"
+                id="currentDate"
+            >
+                Loading...
             </div>
 
         </div>
 
 
-        <div class="panel">
+        <!-- ==========================================
+             DASHBOARD CARDS
+        ========================================== -->
 
-            <h3>
-                📋 Recent Activity
-            </h3>
+        <div class="cards">
 
-            <div id="activityList">
 
-                <div class="activity">
+            <div class="card">
 
-                    <span>
-                        Dashboard loaded
-                    </span>
-
-                    <span class="amount green">
-                        ✓
-                    </span>
-
+                <div class="card-icon">
+                    📥
                 </div>
 
-                <div class="activity">
+                <div class="card-title">
+                    மொத்த வரவு
+                </div>
 
-                    <span>
-                        Firebase connection
-                    </span>
+                <div
+                    class="card-value"
+                    id="totalIncome"
+                >
+                    ₹0
+                </div>
 
-                    <span class="amount green"
-                          id="firebaseStatus">
-                        Checking...
-                    </span>
-
+                <div class="card-sub">
+                    Total Income
                 </div>
 
             </div>
 
-        </div>
 
-    </div>
+            <div class="card">
 
+                <div class="card-icon">
+                    📤
+                </div>
 
-    <!-- RIGHT SIDE -->
+                <div class="card-title">
+                    மொத்த செலவு
+                </div>
 
-    <div>
-
-        <div class="panel">
-
-            <h3>
-                📊 Account Summary
-            </h3>
-
-            <div class="activity">
-
-                <span>
-                    வரவு
-                </span>
-
-                <span class="amount green"
-                      id="summaryIncome">
+                <div
+                    class="card-value"
+                    id="totalExpense"
+                >
                     ₹0
-                </span>
+                </div>
+
+                <div class="card-sub">
+                    Total Expense
+                </div>
 
             </div>
 
-            <div class="activity">
 
-                <span>
-                    செலவு
-                </span>
+            <div class="card">
 
-                <span class="amount red"
-                      id="summaryExpense">
-                    ₹0
-                </span>
+                <div class="card-icon">
+                    💰
+                </div>
 
-            </div>
-
-            <div class="activity">
-
-                <span>
+                <div class="card-title">
                     கையிருப்பு
-                </span>
+                </div>
 
-                <span class="amount"
-                      id="summaryBalance">
+                <div
+                    class="card-value"
+                    id="balance"
+                >
                     ₹0
-                </span>
+                </div>
+
+                <div class="card-sub">
+                    Balance
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <div class="card-title">
+                    Members
+                </div>
+
+                <div
+                    class="card-value"
+                    id="memberCount"
+                >
+                    0
+                </div>
+
+                <div class="card-sub">
+                    Total Members
+                </div>
 
             </div>
 
         </div>
 
 
-        <div class="panel">
 
-            <h3>
-                ℹ️ System
-            </h3>
+            <div class="panel">
 
-            <div class="activity">
+                <h2>
+                    📊 System Status
+                </h2>
 
-                <span>
-                    Login
-                </span>
 
-                <span class="green">
-                    ✓ Active
-                </span>
+                <div class="status">
+                    ✅ Dashboard Active
+                </div>
 
-            </div>
 
-            <div class="activity">
+                <div class="info">
 
-                <span>
+                    <b>Login:</b>
+                    Admin
+
+                    <br>
+
+                    <b>System:</b>
+                    PKV East
+
+                    <br>
+
+                    <b>Database:</b>
                     Firebase
-                </span>
 
-                <span id="firebaseText">
-                    Checking...
-                </span>
+                    <br>
 
-            </div>
+                    <b>Status:</b>
+                    Connected
 
-            <div class="activity">
-
-                <span>
-                    Version
-                </span>
-
-                <span>
-                    1.0
-                </span>
+                </div>
 
             </div>
 
         </div>
 
-    </div>
-
-</div>
-```
-
-</main>
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script type="module">
-
-    /*
-    =====================================================
-    LOGIN CHECK
-    =====================================================
-    */
-
-    const loggedIn =
-        localStorage.getItem("pkvEastLoggedIn");
-
-    if (loggedIn !== "true") {
-
-        window.location.href = "index.html";
-
-    }
+    </main>
 
 
-    /*
-    =====================================================
-    TODAY DATE
-    =====================================================
-    */
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
 
-    const today =
-        new Date();
+    <script>
 
-    document.getElementById(
-        "todayDate"
-    ).textContent =
-        today.toLocaleDateString(
-            "en-IN",
-            {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            }
-        );
+        "use strict";
 
 
-    /*
-    =====================================================
-    PAGE OPEN
-    =====================================================
-    */
+        /* ==========================================
+           LOGIN CHECK
+        ========================================== */
 
-    window.openPage =
-        function(page) {
-
-            window.location.href = page;
-
-        };
+        const LOGIN_KEY =
+            "pkvEastLoggedIn";
 
 
-    /*
-    =====================================================
-    SIDEBAR
-    =====================================================
-    */
-
-    window.toggleSidebar =
-        function() {
-
-            document
-                .getElementById("sidebar")
-                .classList
-                .toggle("open");
-
-        };
-
-
-    /*
-    =====================================================
-    LOGOUT
-    =====================================================
-    */
-
-    window.logout =
-        function() {
-
-            localStorage.removeItem(
-                "pkvEastLoggedIn"
+        const sessionLogin =
+            sessionStorage.getItem(
+                LOGIN_KEY
             );
 
-            sessionStorage.removeItem(
-                "pkvEastLoggedIn"
+
+        const localLogin =
+            localStorage.getItem(
+                LOGIN_KEY
             );
-
-            window.location.href =
-                "index.html";
-
-        };
-
-
-    /*
-    =====================================================
-    REFRESH
-    =====================================================
-    */
-
-    window.refreshDashboard =
-        function() {
-
-            loadDashboard();
-
-        };
-
-
-    /*
-    =====================================================
-    DASHBOARD DATA
-    =====================================================
-    */
-
-    async function loadDashboard() {
-
-        try {
-
-            /*
-            Try Firebase.
-
-            Your existing firebase.js can remain
-            unchanged.
-
-            If Firebase import is unavailable,
-            dashboard will still open.
-            */
-
-            const firebaseModule =
-                await import("./firebase.js");
-
-            if (firebaseModule.db) {
-
-                document.getElementById(
-                    "firebaseStatus"
-                ).textContent =
-                    "✓ Connected";
-
-                document.getElementById(
-                    "firebaseText"
-                ).textContent =
-                    "✓ Connected";
-
-            }
-
-        } catch(error) {
-
-            console.log(
-                "Firebase check:",
-                error
-            );
-
-            document.getElementById(
-                "firebaseStatus"
-            ).textContent =
-                "Local";
-
-            document.getElementById(
-                "firebaseText"
-            ).textContent =
-                "Local Mode";
-
-        }
 
 
         /*
-        Current default values.
+         * If user is not logged in,
+         * return to root index.html.
+         */
 
-        Later these can be connected
-        directly to Firestore collections.
-        */
+        if (
+            sessionLogin !== "true" &&
+            localLogin !== "true"
+        ) {
 
-        const income = 0;
+            window.location.replace(
+                "../index.html"
+            );
+        }
 
-        const expense = 0;
 
-        const split = 0;
+        /* ==========================================
+           CURRENT DATE
+        ========================================== */
 
-        const balance =
-            income - expense;
+        const currentDate =
+            document.getElementById(
+                "currentDate"
+            );
 
+
+        const now =
+            new Date();
+
+
+        currentDate.textContent =
+            now.toLocaleDateString(
+                "ta-IN",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        document
+            .getElementById("logoutButton")
+            .addEventListener(
+                "click",
+                function() {
+
+                    sessionStorage.removeItem(
+                        LOGIN_KEY
+                    );
+
+                    localStorage.removeItem(
+                        LOGIN_KEY
+                    );
+
+
+                    window.location.replace(
+                        "../index.html"
+                    );
+
+                }
+            );
+
+
+        /* ==========================================
+           DEMO DASHBOARD DATA
+        ========================================== */
+
+        /*
+         * These values are placeholders for now.
+         * Firebase realtime calculation can be connected
+         * next without changing the login system.
+         */
 
         document.getElementById(
             "totalIncome"
-        ).textContent =
-            "₹" +
-            income.toLocaleString("en-IN");
+        ).textContent = "₹0";
 
 
         document.getElementById(
             "totalExpense"
-        ).textContent =
-            "₹" +
-            expense.toLocaleString("en-IN");
+        ).textContent = "₹0";
 
 
         document.getElementById(
-            "totalBalance"
-        ).textContent =
-            "₹" +
-            balance.toLocaleString("en-IN");
+            "balance"
+        ).textContent = "₹0";
 
 
         document.getElementById(
-            "totalSplit"
-        ).textContent =
-            "₹" +
-            split.toLocaleString("en-IN");
+            "memberCount"
+        ).textContent = "0";
 
 
-        document.getElementById(
-            "summaryIncome"
-        ).textContent =
-            "₹" +
-            income.toLocaleString("en-IN");
+        console.log(
+            "PKV East Dashboard Loaded"
+        );
 
-
-        document.getElementById(
-            "summaryExpense"
-        ).textContent =
-            "₹" +
-            expense.toLocaleString("en-IN");
-
-
-        document.getElementById(
-            "summaryBalance"
-        ).textContent =
-            "₹" +
-            balance.toLocaleString("en-IN");
-
-    }
-
-
-    /*
-    =====================================================
-    START
-    =====================================================
-    */
-
-    loadDashboard();
-
-</script>
+    </script>
 
 </body>
+
 </html>
+```

@@ -1,16 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="ta">
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PKV East - Login</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -18,23 +16,18 @@
         body {
             margin: 0;
             min-height: 100vh;
-
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-family:
-                Arial,
-                "Noto Sans Tamil",
-                sans-serif;
+            font-family: Arial, "Noto Sans Tamil", sans-serif;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #581c87,
-                    #7e22ce,
-                    #9333ea
-                );
+            background: linear-gradient(
+                135deg,
+                #581c87,
+                #7e22ce,
+                #9333ea
+            );
         }
 
         .login-container {
@@ -45,14 +38,10 @@
 
         .login-box {
             background: white;
-
             border-radius: 20px;
-
             padding: 30px;
 
-            box-shadow:
-                0 20px 50px
-                rgba(0,0,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 
             text-align: center;
         }
@@ -94,7 +83,6 @@
 
         .form-group {
             text-align: left;
-
             margin-bottom: 16px;
         }
 
@@ -115,24 +103,19 @@
 
             padding: 13px;
 
-            border:
-                1px solid #ddd;
+            border: 1px solid #ddd;
 
             border-radius: 10px;
 
             font-size: 16px;
 
             outline: none;
-
-            transition: 0.2s;
         }
 
         input:focus {
             border-color: #7e22ce;
 
-            box-shadow:
-                0 0 0 3px
-                #7e22ce22;
+            box-shadow: 0 0 0 3px #7e22ce22;
         }
 
         .login-button {
@@ -155,16 +138,10 @@
             font-weight: bold;
 
             cursor: pointer;
-
-            transition: 0.2s;
         }
 
         .login-button:hover {
             background: #581c87;
-        }
-
-        .login-button:active {
-            transform: scale(0.99);
         }
 
         .login-button:disabled {
@@ -173,26 +150,7 @@
             cursor: not-allowed;
         }
 
-        .error {
-            display: none;
-
-            margin-top: 15px;
-
-            padding: 11px;
-
-            border-radius: 9px;
-
-            background: #fee2e2;
-
-            color: #991b1b;
-
-            font-size: 13px;
-
-            text-align: left;
-
-            line-height: 1.5;
-        }
-
+        .error,
         .success {
             display: none;
 
@@ -202,15 +160,21 @@
 
             border-radius: 9px;
 
-            background: #dcfce7;
-
-            color: #166534;
-
             font-size: 13px;
 
             text-align: left;
 
             line-height: 1.5;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
         }
 
         .login-info {
@@ -250,50 +214,29 @@
             h1 {
                 font-size: 20px;
             }
-
         }
-
     </style>
-
 </head>
 
-
 <body>
-
 
     <div class="login-container">
 
         <div class="login-box">
 
-
-            <!-- LOGO -->
-
             <div class="logo">
                 🛕
             </div>
-
-
-            <!-- TITLE -->
 
             <h1>
                 P.K. வேலம்பாளையம் கிழக்கு
             </h1>
 
-
             <div class="subtitle">
                 வரவு • செலவு • கையிருப்பு கணக்கு
             </div>
 
-
-            <!-- LOGIN FORM -->
-
-            <form
-                id="loginForm"
-                autocomplete="on"
-            >
-
-
-                <!-- USERNAME -->
+            <form id="loginForm">
 
                 <div class="form-group">
 
@@ -313,9 +256,6 @@
 
                 </div>
 
-
-                <!-- PASSWORD -->
-
                 <div class="form-group">
 
                     <label for="password">
@@ -333,9 +273,6 @@
 
                 </div>
 
-
-                <!-- LOGIN BUTTON -->
-
                 <button
                     id="loginButton"
                     class="login-button"
@@ -344,27 +281,17 @@
                     🔐 Login
                 </button>
 
-
-                <!-- ERROR -->
-
                 <div
                     id="errorMessage"
                     class="error"
                 ></div>
-
-
-                <!-- SUCCESS -->
 
                 <div
                     id="successMessage"
                     class="success"
                 ></div>
 
-
             </form>
-
-
-            <!-- DEMO LOGIN -->
 
             <div class="login-info">
 
@@ -382,127 +309,94 @@
 
             </div>
 
-
-            <!-- FOOTER -->
-
             <div class="footer">
-
                 PKV East Accounting System
-
             </div>
-
 
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         LOGIN JAVASCRIPT
-    ===================================================== -->
-
     <script>
 
         "use strict";
 
 
-        console.log(
-            "PKV East Login Page Loaded"
-        );
+        /* ============================================
+           SETTINGS
+        ============================================ */
+
+        const LOGIN_KEY = "pkvEastLoggedIn";
+
+        /*
+         * IMPORTANT:
+         * dashboard.html is inside pages folder.
+         */
+
+        const DASHBOARD_PATH = "./pages/dashboard.html";
 
 
-        /* =====================================================
+        /* ============================================
            ELEMENTS
-        ===================================================== */
+        ============================================ */
 
         const loginForm =
-            document.getElementById(
-                "loginForm"
-            );
+            document.getElementById("loginForm");
 
         const usernameInput =
-            document.getElementById(
-                "username"
-            );
+            document.getElementById("username");
 
         const passwordInput =
-            document.getElementById(
-                "password"
-            );
+            document.getElementById("password");
 
         const loginButton =
-            document.getElementById(
-                "loginButton"
-            );
+            document.getElementById("loginButton");
 
         const errorMessage =
-            document.getElementById(
-                "errorMessage"
-            );
+            document.getElementById("errorMessage");
 
         const successMessage =
-            document.getElementById(
-                "successMessage"
-            );
+            document.getElementById("successMessage");
 
 
-        /* =====================================================
-           STORAGE KEY
-        ===================================================== */
-
-        const LOGIN_KEY =
-            "pkvEastLoggedIn";
-
-
-        /* =====================================================
-           SHOW ERROR
-        ===================================================== */
+        /* ============================================
+           ERROR
+        ============================================ */
 
         function showError(message) {
 
-            errorMessage.textContent =
-                message;
+            errorMessage.textContent = message;
 
-            errorMessage.style.display =
-                "block";
+            errorMessage.style.display = "block";
 
-            successMessage.style.display =
-                "none";
-
+            successMessage.style.display = "none";
         }
 
 
-        /* =====================================================
-           SHOW SUCCESS
-        ===================================================== */
+        /* ============================================
+           SUCCESS
+        ============================================ */
 
         function showSuccess(message) {
 
-            successMessage.textContent =
-                message;
+            successMessage.textContent = message;
 
-            successMessage.style.display =
-                "block";
+            successMessage.style.display = "block";
 
-            errorMessage.style.display =
-                "none";
-
+            errorMessage.style.display = "none";
         }
 
 
-        /* =====================================================
+        /* ============================================
            LOGIN
-        ===================================================== */
+        ============================================ */
 
         loginForm.addEventListener(
             "submit",
             function(event) {
 
                 event.preventDefault();
-
-                console.log(
-                    "Login button clicked"
-                );
 
 
                 const username =
@@ -511,241 +405,150 @@
                         .toLowerCase();
 
                 const password =
-                    passwordInput.value
-                        .trim();
+                    passwordInput.value.trim();
 
 
-                console.log(
-                    "Username:",
-                    username
-                );
+                errorMessage.style.display = "none";
+
+                successMessage.style.display = "none";
 
 
-                /* CLEAR MESSAGES */
+                /* CHECK USERNAME */
 
-                errorMessage.style.display =
-                    "none";
-
-                successMessage.style.display =
-                    "none";
-
-
-                /* =================================================
-                   VALIDATION
-                ================================================= */
-
-                if (!username) {
+                if (username !== "admin") {
 
                     showError(
-                        "❌ Username உள்ளிடவும்."
+                        "❌ Username தவறாக உள்ளது."
                     );
 
                     usernameInput.focus();
 
                     return;
-
                 }
 
 
-                if (!password) {
+                /* CHECK PASSWORD */
+
+                if (password !== "admin123") {
 
                     showError(
-                        "❌ Password உள்ளிடவும்."
+                        "❌ Password தவறாக உள்ளது."
                     );
-
-                    passwordInput.focus();
-
-                    return;
-
-                }
-
-
-                /* =================================================
-                   LOGIN CHECK
-                ================================================= */
-
-                if (
-                    username === "admin" &&
-                    password === "admin123"
-                ) {
-
-
-                    console.log(
-                        "LOGIN SUCCESS"
-                    );
-
-
-                    /* =============================================
-                       SAVE LOGIN
-                    ============================================= */
-
-                    sessionStorage.setItem(
-                        LOGIN_KEY,
-                        "true"
-                    );
-
-                    localStorage.setItem(
-                        LOGIN_KEY,
-                        "true"
-                    );
-
-
-                    /* =============================================
-                       SUCCESS MESSAGE
-                    ============================================= */
-
-                    showSuccess(
-                        "✅ Login successful. Dashboard திறக்கப்படுகிறது..."
-                    );
-
-
-                    /* =============================================
-                       DISABLE BUTTON
-                    ============================================= */
-
-                    loginButton.disabled =
-                        true;
-
-                    loginButton.textContent =
-                        "⏳ Opening Dashboard...";
-
-
-                    /* =============================================
-                       OPEN DASHBOARD
-                       
-                       IMPORTANT:
-                       dashboard.html is in the SAME ROOT
-                       folder as index.html.
-                    ============================================= */
-
-                    setTimeout(
-                        function() {
-
-                            console.log(
-                                "Opening dashboard.html"
-                            );
-
-                            window.location.assign(
-                                "./dashboard.html"
-                            );
-
-                        },
-                        700
-                    );
-
-                }
-
-                else {
-
-
-                    console.log(
-                        "LOGIN FAILED"
-                    );
-
-
-                    showError(
-                        "❌ Username அல்லது Password தவறாக உள்ளது."
-                    );
-
 
                     passwordInput.value = "";
 
                     passwordInput.focus();
 
+                    return;
                 }
+
+
+                /* ========================================
+                   LOGIN SUCCESS
+                ======================================== */
+
+                console.log("LOGIN SUCCESS");
+
+
+                /*
+                 * Save login session
+                 */
+
+                sessionStorage.setItem(
+                    LOGIN_KEY,
+                    "true"
+                );
+
+                localStorage.setItem(
+                    LOGIN_KEY,
+                    "true"
+                );
+
+
+                showSuccess(
+                    "✅ Login successful. Dashboard திறக்கப்படுகிறது..."
+                );
+
+
+                loginButton.disabled = true;
+
+                loginButton.textContent =
+                    "⏳ Opening Dashboard...";
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * index.html
+                 *      ↓
+                 * pages/dashboard.html
+                 */
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            DASHBOARD_PATH;
+
+                    },
+                    500
+                );
 
             }
         );
 
 
-        /* =====================================================
-           PASSWORD ENTER KEY
-        ===================================================== */
+        /* ============================================
+           ENTER KEY
+        ============================================ */
 
         passwordInput.addEventListener(
             "keydown",
             function(event) {
 
-                if (
-                    event.key === "Enter"
-                ) {
+                if (event.key === "Enter") {
 
                     event.preventDefault();
 
                     loginForm.requestSubmit();
-
                 }
 
             }
         );
 
 
-        /* =====================================================
-           CHECK EXISTING LOGIN
-           
-           IMPORTANT:
-           If already logged in, automatically open
-           dashboard.html.
-        ===================================================== */
+        /* ============================================
+           IF ALREADY LOGGED IN
+        ============================================ */
 
-        const existingSession =
-            sessionStorage.getItem(
-                LOGIN_KEY
-            );
+        const sessionLogin =
+            sessionStorage.getItem(LOGIN_KEY);
 
+        const localLogin =
+            localStorage.getItem(LOGIN_KEY);
 
-        const existingLocal =
-            localStorage.getItem(
-                LOGIN_KEY
-            );
-
-
-        console.log(
-            "Session Login:",
-            existingSession
-        );
-
-        console.log(
-            "Local Login:",
-            existingLocal
-        );
-
-
-        /* =====================================================
-           AUTO OPEN DASHBOARD
-        ===================================================== */
 
         if (
-            existingSession === "true" ||
-            existingLocal === "true"
+            sessionLogin === "true" ||
+            localLogin === "true"
         ) {
 
             console.log(
                 "Existing login found."
             );
 
-
-            /*
-             * Small delay prevents browser navigation
-             * issues while Vite is loading.
-             */
-
             setTimeout(
                 function() {
 
-                    window.location.assign(
-                        "./dashboard.html"
-                    );
+                    window.location.href =
+                        DASHBOARD_PATH;
 
                 },
-                100
+                300
             );
-
         }
 
-
     </script>
-
 
 </body>
 
