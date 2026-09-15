@@ -21,27 +21,36 @@
 
 
         body {
+
             margin: 0;
+
             font-family:
                 Arial,
                 "Noto Sans Tamil",
                 sans-serif;
+
             background: #f5f7fb;
+
             color: #1f2937;
         }
 
 
-        /* =========================
+        /* =====================================================
            HEADER
-        ========================= */
+        ===================================================== */
 
         .header {
+
             background: #1e3a8a;
+
             color: white;
+
             padding: 18px 25px;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             gap: 15px;
@@ -49,20 +58,27 @@
 
 
         .header h1 {
+
             margin: 0;
+
             font-size: 25px;
         }
 
 
         .header p {
+
             margin: 5px 0 0;
+
             opacity: .9;
         }
 
 
         .home-btn {
+
             color: white;
+
             text-decoration: none;
+
             background: #2563eb;
 
             padding: 10px 18px;
@@ -76,26 +92,65 @@
 
 
         .home-btn:hover {
+
             background: #1d4ed8;
         }
 
 
-        /* =========================
-           CONTAINER
-        ========================= */
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
 
         .container {
+
             max-width: 1450px;
+
             margin: auto;
+
             padding: 25px;
         }
 
 
-        /* =========================
-           DASHBOARD
-        ========================= */
+        /* =====================================================
+           DASHBOARD TITLE
+        ===================================================== */
+
+        .dashboard-heading {
+
+            background: #1e3a8a;
+
+            color: white;
+
+            padding: 16px 20px;
+
+            border-radius: 10px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .dashboard-heading h2 {
+
+            margin: 0;
+
+            font-size: 21px;
+        }
+
+
+        .dashboard-heading p {
+
+            margin: 5px 0 0;
+
+            opacity: .9;
+        }
+
+
+        /* =====================================================
+           DASHBOARD CARDS
+        ===================================================== */
 
         .dashboard {
+
             display: grid;
 
             grid-template-columns:
@@ -103,11 +158,12 @@
 
             gap: 15px;
 
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
 
         .card {
+
             background: white;
 
             padding: 20px;
@@ -120,35 +176,47 @@
 
 
         .card-icon {
+
             font-size: 30px;
         }
 
 
         .card-title {
+
             color: #6b7280;
+
             font-size: 14px;
+
             margin-top: 8px;
         }
 
 
         .card-value {
+
             font-size: 24px;
+
             font-weight: bold;
+
             margin-top: 5px;
         }
 
 
-        /* =========================
+        /* =====================================================
            SECTION
-        ========================= */
+        ===================================================== */
 
         .section {
+
             margin-top: 30px;
+
+            margin-bottom: 30px;
         }
 
 
         .section-title {
+
             background: #1e3a8a;
+
             color: white;
 
             padding: 15px 20px;
@@ -159,28 +227,35 @@
 
 
         .section-title h2 {
+
             margin: 0;
+
             font-size: 21px;
         }
 
 
         .section-title p {
+
             margin: 5px 0 0;
+
             opacity: .9;
         }
 
 
-        /* =========================
+        /* =====================================================
            ACTION BAR
-        ========================= */
+        ===================================================== */
 
         .action-bar {
+
             background: white;
 
             padding: 18px;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             gap: 15px;
@@ -194,9 +269,11 @@
 
 
         .add-btn {
+
             border: none;
 
             background: #16a34a;
+
             color: white;
 
             padding: 12px 20px;
@@ -204,6 +281,7 @@
             border-radius: 8px;
 
             font-size: 15px;
+
             font-weight: bold;
 
             cursor: pointer;
@@ -211,11 +289,13 @@
 
 
         .add-btn:hover {
+
             background: #15803d;
         }
 
 
         .search {
+
             width: 330px;
 
             padding: 12px;
@@ -229,11 +309,169 @@
         }
 
 
-        /* =========================
+        /* =====================================================
+           FILTER BAR
+        ===================================================== */
+
+        .filter-card {
+
+            background: white;
+
+            padding: 18px;
+
+            margin-top: 15px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .filter-title {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            color: #1e3a8a;
+
+            margin-bottom: 12px;
+        }
+
+
+        .filter-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr auto;
+
+            gap: 15px;
+
+            align-items: end;
+        }
+
+
+        .filter-group label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+
+        .filter-group select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            background: white;
+        }
+
+
+        .clear-filter-btn {
+
+            border: none;
+
+            background: #6b7280;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .clear-filter-btn:hover {
+
+            background: #4b5563;
+        }
+
+
+        .filter-status {
+
+            margin-top: 12px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           COLLECTION DASHBOARD
+        ===================================================== */
+
+        .collection-dashboard {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+
+        .collection-card {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, .08);
+        }
+
+
+        .collection-card-title {
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        .collection-card-value {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-top: 6px;
+
+            color: #15803d;
+        }
+
+
+        /* =====================================================
            FORM
-        ========================= */
+        ===================================================== */
 
         .form-card {
+
             display: none;
 
             background: white;
@@ -250,12 +488,15 @@
 
 
         .form-card h2 {
+
             margin-top: 0;
+
             color: #1e3a8a;
         }
 
 
         .form-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -266,11 +507,13 @@
 
 
         .form-group {
+
             margin-bottom: 18px;
         }
 
 
         label {
+
             display: block;
 
             font-weight: bold;
@@ -299,17 +542,21 @@
 
 
         textarea {
+
             resize: vertical;
         }
 
 
         .form-buttons {
+
             display: flex;
+
             gap: 10px;
         }
 
 
         .save-btn {
+
             border: none;
 
             background: #2563eb;
@@ -327,17 +574,21 @@
 
 
         .save-btn:hover {
+
             background: #1d4ed8;
         }
 
 
         .save-btn:disabled {
+
             opacity: .6;
+
             cursor: not-allowed;
         }
 
 
         .cancel-btn {
+
             border: none;
 
             background: #6b7280;
@@ -353,22 +604,25 @@
 
 
         .cancel-btn:hover {
+
             background: #4b5563;
         }
 
 
         .success {
+
             color: #15803d;
         }
 
 
         .error {
+
             color: #dc2626;
         }
 
 
-        #tourMessage,
-        #collectionMessage {
+        #tourMessage {
+
             margin-top: 15px;
 
             font-weight: bold;
@@ -377,11 +631,12 @@
         }
 
 
-        /* =========================
-           LIST
-        ========================= */
+        /* =====================================================
+           LIST CARD
+        ===================================================== */
 
         .list-card {
+
             background: white;
 
             padding: 20px;
@@ -396,6 +651,7 @@
 
 
         .list-header {
+
             display: flex;
 
             justify-content: space-between;
@@ -409,6 +665,7 @@
 
 
         .list-header h2 {
+
             margin: 0;
 
             color: #1e3a8a;
@@ -416,6 +673,7 @@
 
 
         .count {
+
             color: #6b7280;
 
             margin-top: 5px;
@@ -423,11 +681,13 @@
 
 
         .table-wrapper {
+
             overflow-x: auto;
         }
 
 
         table {
+
             width: 100%;
 
             border-collapse: collapse;
@@ -438,6 +698,7 @@
 
         th,
         td {
+
             padding: 12px 10px;
 
             border-bottom:
@@ -448,6 +709,7 @@
 
 
         th {
+
             background: #eff6ff;
 
             color: #1e3a8a;
@@ -457,31 +719,49 @@
 
 
         td {
+
             vertical-align: middle;
         }
 
 
         .tour-name,
         .member-name {
+
             font-weight: bold;
         }
 
 
         .income {
+
             color: #15803d;
+
             font-weight: bold;
         }
 
 
         .expense {
+
             color: #dc2626;
+
             font-weight: bold;
         }
 
 
         .balance {
+
             color: #2563eb;
+
             font-weight: bold;
+        }
+
+
+        .monthly-total {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #15803d;
         }
 
 
@@ -501,27 +781,117 @@
 
 
         .edit-btn {
+
             background: #dbeafe;
         }
 
 
         .delete-btn {
+
             background: #fee2e2;
         }
 
 
         .edit-btn:hover {
+
             background: #bfdbfe;
         }
 
 
         .delete-btn:hover {
+
             background: #fecaca;
         }
 
 
+        /* =====================================================
+           PAYMENT INPUT
+        ===================================================== */
+
+        .payment-input {
+
+            width: 150px;
+
+            padding: 10px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+
+        .payment-month {
+
+            width: 160px;
+
+            padding: 10px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+
+        .paid-btn {
+
+            border: none;
+
+            background: #16a34a;
+
+            color: white;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .paid-btn:hover {
+
+            background: #15803d;
+        }
+
+
+        .paid-btn:disabled {
+
+            opacity: .6;
+
+            cursor: not-allowed;
+        }
+
+
+        .paid {
+
+            color: #15803d;
+
+            font-weight: bold;
+        }
+
+
+        .not-paid {
+
+            color: #dc2626;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           LOADING / NO DATA
+        ===================================================== */
+
         #tourLoading,
-        #collectionLoading {
+        #memberPaymentLoading {
 
             text-align: center;
 
@@ -532,7 +902,7 @@
 
 
         #tourNoData,
-        #collectionNoData,
+        #memberPaymentNoData,
         #monthlyCollectionNoData {
 
             display: none;
@@ -545,81 +915,51 @@
         }
 
 
-        /* =========================
-           COLLECTION DASHBOARD
-        ========================= */
+        /* =====================================================
+           SEPARATOR
+        ===================================================== */
 
-        .collection-dashboard {
+        .dashboard-separator {
 
-            display: grid;
+            margin: 35px 0;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+            border: 0;
 
-            gap: 15px;
-
-            margin-top: 20px;
+            border-top:
+                2px solid #e5e7eb;
         }
 
 
-        .collection-card {
-
-            background: white;
-
-            padding: 18px;
-
-            border-radius: 12px;
-
-            box-shadow:
-                0 3px 12px rgba(0, 0, 0, .08);
-        }
-
-
-        .collection-card-title {
-
-            color: #6b7280;
-
-            font-size: 14px;
-        }
-
-
-        .collection-card-value {
-
-            font-size: 24px;
-
-            font-weight: bold;
-
-            margin-top: 5px;
-
-            color: #15803d;
-        }
-
-
-        .monthly-total {
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            color: #15803d;
-        }
-
-
-        /* =========================
+        /* =====================================================
            MOBILE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 1100px) {
 
             .dashboard {
+
                 grid-template-columns:
                     repeat(2, 1fr);
             }
 
 
             .form-grid {
+
                 grid-template-columns:
                     repeat(2, 1fr);
+            }
+
+
+            .filter-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .clear-filter-btn {
+
+                width: 100%;
             }
 
         }
@@ -636,21 +976,31 @@
 
 
             .container {
+
                 padding: 15px;
             }
 
 
             .dashboard {
+
                 grid-template-columns: 1fr;
             }
 
 
             .collection-dashboard {
+
                 grid-template-columns: 1fr;
             }
 
 
             .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .filter-grid {
+
                 grid-template-columns: 1fr;
             }
 
@@ -664,6 +1014,7 @@
 
 
             .search {
+
                 width: 100%;
             }
 
@@ -686,6 +1037,18 @@
             .cancel-btn {
 
                 width: 100%;
+            }
+
+
+            .payment-input {
+
+                width: 120px;
+            }
+
+
+            .payment-month {
+
+                width: 145px;
             }
 
         }
@@ -711,7 +1074,7 @@
         </h1>
 
         <p>
-            சுற்றுலா வரவு • செலவு • கையிருப்பு
+            சுற்றுலா வரவு • செலவு • கையிருப்பு கணக்கு
         </p>
 
     </div>
@@ -820,8 +1183,14 @@
 
 </section>
 
+
+
+<hr class="dashboard-separator">
+
+
+
 <!-- =====================================================
-     MEMBER COLLECTION
+     MEMBER COLLECTION SEPARATE DASHBOARD
 ===================================================== -->
 
 <section class="section">
@@ -830,18 +1199,145 @@
     <div class="section-title">
 
         <h2>
-            👥 Member Collection
+            👥 Member Collection Dashboard
         </h2>
 
         <p>
-            உறுப்பினர் மாதாந்திர தொகை வசூல்
+            உறுப்பினர் வசூல் தனி கணக்கு
         </p>
 
     </div>
 
 
 
-    <!-- COLLECTION DASHBOARD -->
+    <!-- =================================================
+         FILTER
+    ================================================= -->
+
+    <div class="filter-card">
+
+        <div class="filter-title">
+            🔎 Monthly / Year Filter
+        </div>
+
+
+        <div class="filter-grid">
+
+
+            <div class="filter-group">
+
+                <label for="collectionMonthFilter">
+                    Month
+                </label>
+
+                <select
+                    id="collectionMonthFilter"
+                >
+
+                    <option value="">
+                        All Months
+                    </option>
+
+                    <option value="01">
+                        January
+                    </option>
+
+                    <option value="02">
+                        February
+                    </option>
+
+                    <option value="03">
+                        March
+                    </option>
+
+                    <option value="04">
+                        April
+                    </option>
+
+                    <option value="05">
+                        May
+                    </option>
+
+                    <option value="06">
+                        June
+                    </option>
+
+                    <option value="07">
+                        July
+                    </option>
+
+                    <option value="08">
+                        August
+                    </option>
+
+                    <option value="09">
+                        September
+                    </option>
+
+                    <option value="10">
+                        October
+                    </option>
+
+                    <option value="11">
+                        November
+                    </option>
+
+                    <option value="12">
+                        December
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filter-group">
+
+                <label for="collectionYearFilter">
+                    Year
+                </label>
+
+                <select
+                    id="collectionYearFilter"
+                >
+
+                    <option value="">
+                        All Years
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="clear-filter-btn"
+                id="clearCollectionFilter"
+            >
+                🔄 Clear Filter
+            </button>
+
+
+        </div>
+
+
+        <div
+            class="filter-status"
+            id="collectionFilterStatus"
+        >
+            Showing All Collections
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         COLLECTION CARDS
+    ================================================= -->
 
     <div class="collection-dashboard">
 
@@ -866,7 +1362,7 @@
         <div class="collection-card">
 
             <div class="collection-card-title">
-                This Month Collection
+                Selected Month / Year Collection
             </div>
 
             <div
@@ -900,116 +1396,9 @@
 
 
 
-    <!-- COLLECTION FORM -->
-
-    <section
-        class="form-card"
-        id="collectionFormSection"
-        style="display:block;"
-    >
-
-        <h2 id="collectionFormTitle">
-            ➕ Member Collection
-        </h2>
-
-
-        <form id="collectionForm">
-
-
-            <div class="form-grid">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Member Name
-                    </label>
-
-                    <select
-                        id="collectionMember"
-                        required
-                    >
-
-                        <option value="">
-                            Select Member
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label>
-                        Month
-                    </label>
-
-                    <input
-                        type="month"
-                        id="collectionMonth"
-                        required
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label>
-                        Amount
-                    </label>
-
-                    <input
-                        type="number"
-                        id="collectionAmount"
-                        min="1"
-                        step="1"
-                        placeholder="₹500"
-                        required
-                    >
-
-                </div>
-
-
-            </div>
-
-
-
-            <div class="form-buttons">
-
-                <button
-                    type="submit"
-                    class="save-btn"
-                    id="saveCollectionBtn"
-                >
-                    💾 Save Collection
-                </button>
-
-
-                <button
-                    type="button"
-                    class="cancel-btn"
-                    id="cancelCollectionBtn"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
-
-        </form>
-
-
-        <div id="collectionMessage"></div>
-
-    </section>
-
-
-
-    <!-- COLLECTION LIST -->
+    <!-- =================================================
+         MEMBER PAYMENT
+    ================================================= -->
 
     <section class="list-card">
 
@@ -1019,14 +1408,14 @@
             <div>
 
                 <h2>
-                    📋 Member Collection List
+                    📋 Member Payment
                 </h2>
 
                 <div
                     class="count"
-                    id="collectionCount"
+                    id="memberPaymentCount"
                 >
-                    Total Collections: 0
+                    Total Members: 0
                 </div>
 
             </div>
@@ -1035,16 +1424,16 @@
             <input
                 type="text"
                 class="search"
-                id="searchCollection"
-                placeholder="🔍 Search Member / Month..."
+                id="searchMemberPayment"
+                placeholder="🔍 Search Member..."
             >
 
         </div>
 
 
 
-        <div id="collectionLoading">
-            Loading...
+        <div id="memberPaymentLoading">
+            Loading Members...
         </div>
 
 
@@ -1066,11 +1455,11 @@
                         </th>
 
                         <th>
-                            Month
+                            Amount Paid
                         </th>
 
                         <th>
-                            Amount
+                            Month
                         </th>
 
                         <th>
@@ -1083,7 +1472,7 @@
 
 
                 <tbody
-                    id="collectionTableBody"
+                    id="memberPaymentTableBody"
                 ></tbody>
 
             </table>
@@ -1092,8 +1481,8 @@
 
 
 
-        <div id="collectionNoData">
-            👥 Member Collection இல்லை
+        <div id="memberPaymentNoData">
+            👥 Member இல்லை
         </div>
 
 
@@ -1101,7 +1490,9 @@
 
 
 
-    <!-- MONTHLY TOTAL -->
+    <!-- =================================================
+         MONTHLY TOTAL COLLECTION
+    ================================================= -->
 
     <section class="list-card">
 
@@ -1115,7 +1506,7 @@
                 </h2>
 
                 <div class="count">
-                    மாத வாரியாக மொத்த வசூல்
+                    மாத / வருட வாரியாக மொத்த வசூல்
                 </div>
 
             </div>
@@ -1138,6 +1529,10 @@
 
                         <th>
                             Month
+                        </th>
+
+                        <th>
+                            Year
                         </th>
 
                         <th>
@@ -1170,10 +1565,13 @@
 </section>
 
 
-</main>
+
+<hr class="dashboard-separator">
+
+
 
 <!-- =====================================================
-     TOUR MANAGEMENT
+     TOUR MANAGEMENT SEPARATE
 ===================================================== -->
 
 <section class="section">
@@ -1186,14 +1584,19 @@
         </h2>
 
         <p>
-            சுற்றுலா விவரங்களை சேமிக்கவும் மற்றும் நிர்வகிக்கவும்
+            சுற்றுலா விவரங்களை தனியாக சேமித்து நிர்வகிக்கவும்
         </p>
 
     </div>
 
 
 
+    <!-- =================================================
+         ACTION BAR
+    ================================================= -->
+
     <div class="action-bar">
+
 
         <button
             class="add-btn"
@@ -1210,16 +1613,20 @@
             placeholder="🔍 Search Tour / Place..."
         >
 
+
     </div>
 
 
 
-    <!-- TOUR FORM -->
+    <!-- =================================================
+         TOUR FORM
+    ================================================= -->
 
     <section
         class="form-card"
         id="tourFormSection"
     >
+
 
         <h2 id="tourFormTitle">
             ➕ Add Tour
@@ -1322,6 +1729,7 @@
 
             <div class="form-buttons">
 
+
                 <button
                     type="submit"
                     class="save-btn"
@@ -1339,6 +1747,7 @@
                     Cancel
                 </button>
 
+
             </div>
 
 
@@ -1347,11 +1756,14 @@
 
         <div id="tourMessage"></div>
 
+
     </section>
 
 
 
-    <!-- TOUR LIST -->
+    <!-- =================================================
+         TOUR LIST
+    ================================================= -->
 
     <section class="list-card">
 
@@ -1445,8 +1857,7 @@
 </section>
 
 
-
-
+</main>
 
 
 
@@ -1474,7 +1885,8 @@
         deleteDoc,
         doc,
         serverTimestamp
-    } from
+    }
+    from
         "firebase/firestore";
 
 
@@ -1611,84 +2023,36 @@
 
 
     /* =====================================================
-       COLLECTION ELEMENTS
+       MEMBER PAYMENT ELEMENTS
     ===================================================== */
 
-    const collectionMember =
+    const memberPaymentTableBody =
         document.getElementById(
-            "collectionMember"
+            "memberPaymentTableBody"
         );
 
 
-    const collectionMonth =
+    const memberPaymentLoading =
         document.getElementById(
-            "collectionMonth"
+            "memberPaymentLoading"
         );
 
 
-    const collectionAmount =
+    const memberPaymentNoData =
         document.getElementById(
-            "collectionAmount"
+            "memberPaymentNoData"
         );
 
 
-    const collectionForm =
+    const memberPaymentCount =
         document.getElementById(
-            "collectionForm"
+            "memberPaymentCount"
         );
 
 
-    const collectionFormTitle =
+    const searchMemberPayment =
         document.getElementById(
-            "collectionFormTitle"
-        );
-
-
-    const saveCollectionBtn =
-        document.getElementById(
-            "saveCollectionBtn"
-        );
-
-
-    const cancelCollectionBtn =
-        document.getElementById(
-            "cancelCollectionBtn"
-        );
-
-
-    const collectionMessage =
-        document.getElementById(
-            "collectionMessage"
-        );
-
-
-    const collectionTableBody =
-        document.getElementById(
-            "collectionTableBody"
-        );
-
-
-    const collectionLoading =
-        document.getElementById(
-            "collectionLoading"
-        );
-
-
-    const collectionNoData =
-        document.getElementById(
-            "collectionNoData"
-        );
-
-
-    const searchCollection =
-        document.getElementById(
-            "searchCollection"
-        );
-
-
-    const collectionCount =
-        document.getElementById(
-            "collectionCount"
+            "searchMemberPayment"
         );
 
 
@@ -1722,6 +2086,34 @@
         );
 
 
+    /* =====================================================
+       FILTER ELEMENTS
+    ===================================================== */
+
+    const collectionMonthFilter =
+        document.getElementById(
+            "collectionMonthFilter"
+        );
+
+
+    const collectionYearFilter =
+        document.getElementById(
+            "collectionYearFilter"
+        );
+
+
+    const clearCollectionFilter =
+        document.getElementById(
+            "clearCollectionFilter"
+        );
+
+
+    const collectionFilterStatus =
+        document.getElementById(
+            "collectionFilterStatus"
+        );
+
+
 
     /* =====================================================
        VARIABLES
@@ -1734,8 +2126,6 @@
     let memberCollections = [];
 
     let editingTourId = null;
-
-    let editingCollectionId = null;
 
 
 
@@ -1793,22 +2183,7 @@
         "click",
         () => {
 
-            editingTourId = null;
-
-            tourForm.reset();
-
-            tourExpense.value = 0;
-
-            tourFormSection.style.display =
-                "none";
-
-            tourFormTitle.textContent =
-                "➕ Add Tour";
-
-            saveTourBtn.textContent =
-                "💾 Save Tour";
-
-            clearTourMessage();
+            resetTourForm();
 
         }
     );
@@ -1821,7 +2196,7 @@
 
     tourForm.addEventListener(
         "submit",
-        async (event) => {
+        async event => {
 
             event.preventDefault();
 
@@ -1905,15 +2280,20 @@
 
             const data = {
 
-                tourName: name,
+                tourName:
+                    name,
 
-                date: date,
+                date:
+                    date,
 
-                place: place,
+                place:
+                    place,
 
-                expense: expense,
+                expense:
+                    expense,
 
-                note: note
+                note:
+                    note
 
             };
 
@@ -1946,6 +2326,7 @@
                     );
 
                 }
+
 
                 else {
 
@@ -2033,10 +2414,12 @@
 
             const snapshot =
                 await getDocs(
+
                     collection(
                         db,
                         "tours"
                     )
+
                 );
 
 
@@ -2361,11 +2744,13 @@
         try {
 
             await deleteDoc(
+
                 doc(
                     db,
                     "tours",
                     id
                 )
+
             );
 
 
@@ -2497,11 +2882,6 @@
         );
 
 
-        /*
-         * Tour collection is taken
-         * from member collection.
-         */
-
         let totalCollection =
             0;
 
@@ -2523,11 +2903,6 @@
             totalExpense;
 
 
-
-        /*
-         * IMPORTANT:
-         * All elements exist in HTML.
-         */
 
         totalTours.textContent =
             tours.length;
@@ -2596,10 +2971,12 @@
 
             const snapshot =
                 await getDocs(
+
                     collection(
                         db,
                         "members"
                     )
+
                 );
 
 
@@ -2635,7 +3012,13 @@
             );
 
 
-            loadMemberDropdown();
+            memberPaymentLoading.style.display =
+                "none";
+
+
+            displayMemberPaymentTable(
+                members
+            );
 
         }
 
@@ -2648,13 +3031,11 @@
             );
 
 
-            collectionMember.innerHTML = `
+            memberPaymentLoading.textContent =
+                "❌ Member loading failed";
 
-                <option value="">
-                    ❌ Member loading failed
-                </option>
-
-            `;
+            memberPaymentLoading.style.color =
+                "#dc2626";
 
         }
 
@@ -2663,54 +3044,10 @@
 
 
     /* =====================================================
-       MEMBER DROPDOWN
+       CURRENT MONTH
     ===================================================== */
 
-    function loadMemberDropdown() {
-
-        collectionMember.innerHTML = `
-
-            <option value="">
-                Select Member
-            </option>
-
-        `;
-
-
-        members.forEach(
-            member => {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    member.id;
-
-
-                option.textContent =
-                    member.memberName ||
-                    "Unnamed Member";
-
-
-                collectionMember.appendChild(
-                    option
-                );
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       DEFAULT MONTH
-    ===================================================== */
-
-    function setDefaultMonth() {
+    function getCurrentMonth() {
 
         const now =
             new Date();
@@ -2729,287 +3066,501 @@
             );
 
 
-        collectionMonth.value =
-            `${year}-${month}`;
+        return `${year}-${month}`;
 
     }
 
 
-    setDefaultMonth();
-
-
 
     /* =====================================================
-       SAVE COLLECTION
+       DISPLAY MEMBER PAYMENT TABLE
     ===================================================== */
 
-    collectionForm.addEventListener(
-        "submit",
-        async event => {
+    function displayMemberPaymentTable(data) {
 
-            event.preventDefault();
-
-
-            const memberId =
-                collectionMember.value;
+        memberPaymentTableBody.innerHTML =
+            "";
 
 
-            const month =
-                collectionMonth.value;
+        memberPaymentCount.textContent =
+            `Total Members: ${data.length}`;
 
 
-            const amount =
-                Number(
-                    collectionAmount.value
-                ) || 0;
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            memberPaymentNoData.style.display =
+                "block";
+
+            return;
+
+        }
 
 
-            if (!memberId) {
-
-                showCollectionMessage(
-                    "❌ Please select Member",
-                    "error"
-                );
-
-                return;
-
-            }
+        memberPaymentNoData.style.display =
+            "none";
 
 
-            if (!month) {
+        data.forEach(
+            (member, index) => {
 
-                showCollectionMessage(
-                    "❌ Please select Month",
-                    "error"
-                );
-
-                return;
-
-            }
+                const currentMonth =
+                    getCurrentMonth();
 
 
-            if (amount <= 0) {
+                const existingPayment =
+                    memberCollections.find(
+                        item =>
 
-                showCollectionMessage(
-                    "❌ Amount must be greater than 0",
-                    "error"
-                );
+                            item.memberId ===
+                                member.id &&
 
-                return;
-
-            }
-
-
-            const member =
-                members.find(
-                    item =>
-                        item.id === memberId
-                );
-
-
-            if (!member) {
-
-                showCollectionMessage(
-                    "❌ Member not found",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-
-            /* =========================
-               DUPLICATE CHECK
-            ========================= */
-
-            const duplicate =
-                memberCollections.find(
-                    item =>
-
-                        item.memberId ===
-                            memberId &&
-
-                        item.month ===
-                            month &&
-
-                        item.id !==
-                            editingCollectionId
-                );
-
-
-            if (duplicate) {
-
-                showCollectionMessage(
-                    "❌ இந்த உறுப்பினருக்கு இந்த மாத Collection ஏற்கனவே உள்ளது",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-
-            const data = {
-
-                memberId,
-
-                memberName:
-                    member.memberName || "",
-
-                month,
-
-                amount
-
-            };
-
-
-
-            try {
-
-                saveCollectionBtn.disabled =
-                    true;
-
-
-                if (
-                    editingCollectionId
-                ) {
-
-                    await updateDoc(
-
-                        doc(
-                            db,
-                            "memberCollections",
-                            editingCollectionId
-                        ),
-
-                        data
-
+                            item.month ===
+                                currentMonth
                     );
 
 
-                    showCollectionMessage(
-                        "✅ Collection Updated Successfully",
-                        "success"
+                const row =
+                    document.createElement(
+                        "tr"
                     );
 
-                }
 
-                else {
+                row.innerHTML = `
 
-                    await addDoc(
+                    <td>
+                        ${index + 1}
+                    </td>
 
-                        collection(
-                            db,
-                            "memberCollections"
-                        ),
+                    <td class="member-name">
+                        ${escapeHTML(
+                            member.memberName || "-"
+                        )}
+                    </td>
 
-                        {
+                    <td>
 
-                            ...data,
+                        <input
+                            type="number"
+                            class="payment-input"
+                            id="payment-${member.id}"
+                            min="1"
+                            step="1"
+                            placeholder="₹ Amount"
+                            value="${
+                                existingPayment
+                                    ? existingPayment.amount
+                                    : ""
+                            }"
+                        >
 
-                            createdAt:
-                                serverTimestamp()
+                    </td>
 
+                    <td>
+
+                        <input
+                            type="month"
+                            class="payment-month"
+                            id="month-${member.id}"
+                            value="${currentMonth}"
+                        >
+
+                    </td>
+
+                    <td>
+
+                        ${
+                            existingPayment
+
+                            ?
+
+                            `
+                            <button
+                                class="edit-btn"
+                                data-payment-id="${existingPayment.id}"
+                                data-member-id="${member.id}"
+                            >
+                                ✏️ Update
+                            </button>
+
+                            <span class="paid">
+                                ✅ Paid
+                            </span>
+                            `
+
+                            :
+
+                            `
+                            <button
+                                class="paid-btn"
+                                data-member-id="${member.id}"
+                            >
+                                💰 Amount Paid
+                            </button>
+                            `
                         }
 
-                    );
+                    </td>
+
+                `;
 
 
-                    showCollectionMessage(
-                        "✅ Collection Saved Successfully",
-                        "success"
+                memberPaymentTableBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+
+        document
+            .querySelectorAll(
+                ".paid-btn[data-member-id]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            saveMemberPayment(
+                                button.dataset.memberId
+                            );
+
+                        }
                     );
 
                 }
+            );
 
 
 
-                setTimeout(
-                    async () => {
+        document
+            .querySelectorAll(
+                ".edit-btn[data-payment-id]"
+            )
+            .forEach(
+                button => {
 
-                        resetCollectionForm();
+                    button.addEventListener(
+                        "click",
+                        () => {
 
-                        await loadMemberCollections();
+                            updateMemberPayment(
+                                button.dataset.paymentId,
+                                button.dataset.memberId
+                            );
 
-                        updateTourDashboard();
+                        }
+                    );
 
-                    },
-                    700
-                );
+                }
+            );
 
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Collection Save Error:",
-                    error
-                );
-
-
-                saveCollectionBtn.disabled =
-                    false;
-
-
-                showCollectionMessage(
-                    "❌ Save failed. Check Firebase Rules.",
-                    "error"
-                );
-
-            }
-
-        }
-    );
+    }
 
 
 
     /* =====================================================
-       CANCEL COLLECTION
+       SAVE MEMBER PAYMENT
     ===================================================== */
 
-    cancelCollectionBtn.addEventListener(
-        "click",
-        () => {
+    async function saveMemberPayment(
+        memberId
+    ) {
 
-            resetCollectionForm();
+        const member =
+            members.find(
+                item =>
+                    item.id === memberId
+            );
+
+
+        if (!member) {
+
+            alert(
+                "❌ Member not found"
+            );
+
+            return;
 
         }
-    );
+
+
+        const amountInput =
+            document.getElementById(
+                `payment-${memberId}`
+            );
+
+
+        const monthInput =
+            document.getElementById(
+                `month-${memberId}`
+            );
+
+
+        const amount =
+            Number(
+                amountInput.value
+            ) || 0;
+
+
+        const month =
+            monthInput.value;
+
+
+        if (amount <= 0) {
+
+            alert(
+                "❌ Amount Paid enter செய்யவும்"
+            );
+
+            amountInput.focus();
+
+            return;
+
+        }
+
+
+        if (!month) {
+
+            alert(
+                "❌ Month select செய்யவும்"
+            );
+
+            monthInput.focus();
+
+            return;
+
+        }
+
+
+        const existing =
+            memberCollections.find(
+                item =>
+
+                    item.memberId ===
+                        memberId &&
+
+                    item.month ===
+                        month
+            );
+
+
+        if (existing) {
+
+            alert(
+                "❌ இந்த Member-க்கு இந்த Month payment ஏற்கனவே உள்ளது"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "memberCollections"
+                ),
+
+                {
+
+                    memberId:
+
+                        memberId,
+
+                    memberName:
+
+                        member.memberName || "",
+
+                    month:
+
+                        month,
+
+                    amount:
+
+                        amount,
+
+                    createdAt:
+
+                        serverTimestamp()
+
+                }
+
+            );
+
+
+            alert(
+                "✅ Amount Paid Saved Successfully"
+            );
+
+
+            await loadMemberCollections();
+
+
+            displayMemberPaymentTable(
+                members
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Member Payment Error:",
+                error
+            );
+
+
+            alert(
+                "❌ Save failed. Check Firebase Rules."
+            );
+
+        }
+
+    }
 
 
 
     /* =====================================================
-       RESET COLLECTION FORM
+       UPDATE MEMBER PAYMENT
     ===================================================== */
 
-    function resetCollectionForm() {
+    async function updateMemberPayment(
+        paymentId,
+        memberId
+    ) {
 
-        editingCollectionId =
-            null;
-
-
-        collectionForm.reset();
-
-        setDefaultMonth();
-
-
-        collectionFormTitle.textContent =
-            "➕ Member Collection";
+        const amountInput =
+            document.getElementById(
+                `payment-${memberId}`
+            );
 
 
-        saveCollectionBtn.textContent =
-            "💾 Save Collection";
+        const monthInput =
+            document.getElementById(
+                `month-${memberId}`
+            );
 
 
-        saveCollectionBtn.disabled =
-            false;
+        const amount =
+            Number(
+                amountInput.value
+            ) || 0;
 
 
-        clearCollectionMessage();
+        const month =
+            monthInput.value;
+
+
+        if (amount <= 0) {
+
+            alert(
+                "❌ Amount must be greater than 0"
+            );
+
+            return;
+
+        }
+
+
+        if (!month) {
+
+            alert(
+                "❌ Month select செய்யவும்"
+            );
+
+            return;
+
+        }
+
+
+        const duplicate =
+            memberCollections.find(
+                item =>
+
+                    item.memberId ===
+                        memberId &&
+
+                    item.month ===
+                        month &&
+
+                    item.id !==
+                        paymentId
+            );
+
+
+        if (duplicate) {
+
+            alert(
+                "❌ இந்த Member-க்கு இந்த Month payment ஏற்கனவே உள்ளது"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "memberCollections",
+                    paymentId
+                ),
+
+                {
+
+                    amount:
+                        amount,
+
+                    month:
+                        month
+
+                }
+
+            );
+
+
+            alert(
+                "✅ Amount Paid Updated Successfully"
+            );
+
+
+            await loadMemberCollections();
+
+
+            displayMemberPaymentTable(
+                members
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Payment Update Error:",
+                error
+            );
+
+
+            alert(
+                "❌ Update failed. Check Firebase Rules."
+            );
+
+        }
 
     }
 
@@ -3023,20 +3574,14 @@
 
         try {
 
-            collectionLoading.style.display =
-                "block";
-
-
-            collectionLoading.textContent =
-                "Loading collections...";
-
-
             const snapshot =
                 await getDocs(
+
                     collection(
                         db,
                         "memberCollections"
                     )
+
                 );
 
 
@@ -3076,20 +3621,25 @@
             );
 
 
-            collectionLoading.style.display =
-                "none";
-
-
-            displayMemberCollections(
-                memberCollections
-            );
+            createYearFilterOptions();
 
 
             updateCollectionDashboard();
 
+
             updateMonthlyCollection();
 
+
             updateTourDashboard();
+
+
+            if (members.length > 0) {
+
+                displayMemberPaymentTable(
+                    members
+                );
+
+            }
 
         }
 
@@ -3101,14 +3651,6 @@
                 error
             );
 
-
-            collectionLoading.textContent =
-                "❌ Collection loading failed";
-
-
-            collectionLoading.style.color =
-                "#dc2626";
-
         }
 
     }
@@ -3116,335 +3658,201 @@
 
 
     /* =====================================================
-       DISPLAY COLLECTIONS
+       CREATE YEAR FILTER
     ===================================================== */
 
-    function displayMemberCollections(
-        data
-    ) {
+    function createYearFilterOptions() {
 
-        collectionTableBody.innerHTML =
-            "";
+        const currentYear =
+            new Date().getFullYear();
 
 
-        collectionCount.textContent =
-            `Total Collections: ${data.length}`;
+        const years = new Set();
 
 
-        if (
-            !data ||
-            data.length === 0
-        ) {
+        memberCollections.forEach(
+            item => {
 
-            collectionNoData.style.display =
-                "block";
-
-            return;
-
-        }
+                if (!item.month)
+                    return;
 
 
-        collectionNoData.style.display =
-            "none";
+                const parts =
+                    item.month.split("-");
 
 
-        data.forEach(
-            (item, index) => {
+                if (
+                    parts.length === 2
+                ) {
 
-                const row =
-                    document.createElement(
-                        "tr"
+                    years.add(
+                        parts[0]
                     );
 
-
-                row.innerHTML = `
-
-                    <td>
-                        ${index + 1}
-                    </td>
-
-                    <td class="member-name">
-                        ${escapeHTML(
-                            item.memberName || "-"
-                        )}
-                    </td>
-
-                    <td>
-                        ${formatMonth(
-                            item.month
-                        )}
-                    </td>
-
-                    <td class="income">
-                        ₹${money(
-                            item.amount
-                        )}
-                    </td>
-
-                    <td>
-
-                        <button
-                            class="edit-btn"
-                            data-collection-id="${item.id}"
-                        >
-                            ✏️ Edit
-                        </button>
-
-                        <button
-                            class="delete-btn"
-                            data-collection-id="${item.id}"
-                        >
-                            🗑️ Delete
-                        </button>
-
-                    </td>
-
-                `;
-
-
-                collectionTableBody.appendChild(
-                    row
-                );
+                }
 
             }
         );
 
 
-
-        document
-            .querySelectorAll(
-                ".edit-btn[data-collection-id]"
-            )
-            .forEach(
-                button => {
-
-                    button.addEventListener(
-                        "click",
-                        () => {
-
-                            const item =
-                                memberCollections.find(
-                                    collectionItem =>
-                                        collectionItem.id ===
-                                        button.dataset.collectionId
-                                );
-
-
-                            if (item) {
-
-                                editCollection(
-                                    item
-                                );
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-
-
-        document
-            .querySelectorAll(
-                ".delete-btn[data-collection-id]"
-            )
-            .forEach(
-                button => {
-
-                    button.addEventListener(
-                        "click",
-                        () => {
-
-                            deleteCollection(
-                                button.dataset.collectionId
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-    }
-
-
-
-    /* =====================================================
-       EDIT COLLECTION
-    ===================================================== */
-
-    function editCollection(item) {
-
-        editingCollectionId =
-            item.id;
-
-
-        collectionMember.value =
-            item.memberId || "";
-
-
-        collectionMonth.value =
-            item.month || "";
-
-
-        collectionAmount.value =
-            item.amount || 0;
-
-
-        collectionFormTitle.textContent =
-            "✏️ Edit Member Collection";
-
-
-        saveCollectionBtn.textContent =
-            "💾 Update Collection";
-
-
-        clearCollectionMessage();
-
-
-        collectionForm.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-
-
-
-    /* =====================================================
-       DELETE COLLECTION
-    ===================================================== */
-
-    async function deleteCollection(id) {
-
-        const item =
-            memberCollections.find(
-                collectionItem =>
-                    collectionItem.id === id
-            );
-
-
-        if (!item)
-            return;
-
-
-        const confirmDelete =
-            confirm(
-                `Delete Collection "${item.memberName}" - ${formatMonth(item.month)}?`
-            );
-
-
-        if (!confirmDelete)
-            return;
-
-
-        try {
-
-            await deleteDoc(
-                doc(
-                    db,
-                    "memberCollections",
-                    id
-                )
-            );
-
-
-            alert(
-                "✅ Collection Deleted Successfully"
-            );
-
-
-            await loadMemberCollections();
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "Collection Delete Error:",
-                error
-            );
-
-
-            alert(
-                "❌ Delete failed. Check Firebase Rules."
-            );
-
-        }
-
-    }
-
-
-
-    /* =====================================================
-       SEARCH COLLECTION
-    ===================================================== */
-
-    searchCollection.addEventListener(
-        "input",
-        () => {
-
-            const value =
-                searchCollection.value
-                    .trim()
-                    .toLowerCase();
-
-
-            if (!value) {
-
-                displayMemberCollections(
-                    memberCollections
+        years.add(
+            String(currentYear)
+        );
+
+
+        const sortedYears =
+            Array.from(years)
+                .sort(
+                    (a, b) =>
+                        Number(b) -
+                        Number(a)
                 );
 
-                return;
+
+        collectionYearFilter.innerHTML =
+            `
+                <option value="">
+                    All Years
+                </option>
+            `;
+
+
+        sortedYears.forEach(
+            year => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    year;
+
+
+                option.textContent =
+                    year;
+
+
+                collectionYearFilter.appendChild(
+                    option
+                );
 
             }
+        );
+
+    }
 
 
-            const filtered =
-                memberCollections.filter(
-                    item => {
 
-                        const name =
-                            String(
-                                item.memberName || ""
-                            ).toLowerCase();
+    /* =====================================================
+       FILTER EVENTS
+    ===================================================== */
 
+    collectionMonthFilter.addEventListener(
+        "change",
+        () => {
 
-                        const month =
-                            String(
-                                item.month || ""
-                            ).toLowerCase();
+            updateCollectionDashboard();
 
-
-                        const formattedMonth =
-                            formatMonth(
-                                item.month
-                            ).toLowerCase();
-
-
-                        return (
-
-                            name.includes(value) ||
-
-                            month.includes(value) ||
-
-                            formattedMonth.includes(value)
-
-                        );
-
-                    }
-                );
-
-
-            displayMemberCollections(
-                filtered
-            );
+            updateMonthlyCollection();
 
         }
     );
+
+
+    collectionYearFilter.addEventListener(
+        "change",
+        () => {
+
+            updateCollectionDashboard();
+
+            updateMonthlyCollection();
+
+        }
+    );
+
+
+    clearCollectionFilter.addEventListener(
+        "click",
+        () => {
+
+            collectionMonthFilter.value =
+                "";
+
+            collectionYearFilter.value =
+                "";
+
+            updateCollectionDashboard();
+
+            updateMonthlyCollection();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       GET FILTERED COLLECTIONS
+    ===================================================== */
+
+    function getFilteredCollections() {
+
+        const selectedMonth =
+            collectionMonthFilter.value;
+
+
+        const selectedYear =
+            collectionYearFilter.value;
+
+
+        return memberCollections.filter(
+            item => {
+
+                if (!item.month)
+                    return false;
+
+
+                const parts =
+                    item.month.split("-");
+
+
+                if (
+                    parts.length !== 2
+                ) {
+
+                    return false;
+
+                }
+
+
+                const year =
+                    parts[0];
+
+
+                const month =
+                    parts[1];
+
+
+                const monthMatch =
+                    !selectedMonth ||
+                    month === selectedMonth;
+
+
+                const yearMatch =
+                    !selectedYear ||
+                    year === selectedYear;
+
+
+                return (
+                    monthMatch &&
+                    yearMatch
+                );
+
+            }
+        );
+
+    }
 
 
 
@@ -3454,69 +3862,98 @@
 
     function updateCollectionDashboard() {
 
+        const filteredCollections =
+            getFilteredCollections();
+
+
         let totalAmount =
             0;
 
 
-        let currentMonthAmount =
-            0;
-
-
-        const now =
-            new Date();
-
-
-        const year =
-            now.getFullYear();
-
-
-        const month =
-            String(
-                now.getMonth() + 1
-            ).padStart(
-                2,
-                "0"
-            );
-
-
-        const currentMonthValue =
-            `${year}-${month}`;
-
-
-        memberCollections.forEach(
+        filteredCollections.forEach(
             item => {
 
-                const amount =
+                totalAmount +=
                     Number(
                         item.amount || 0
                     );
-
-
-                totalAmount +=
-                    amount;
-
-
-                if (
-                    item.month ===
-                    currentMonthValue
-                ) {
-
-                    currentMonthAmount +=
-                        amount;
-
-                }
 
             }
         );
 
 
+        const selectedMonth =
+            collectionMonthFilter.value;
+
+
+        const selectedYear =
+            collectionYearFilter.value;
+
+
+        let status =
+            "Showing All Collections";
+
+
+        if (
+            selectedMonth &&
+            selectedYear
+        ) {
+
+            status =
+                `Showing ${formatMonth(
+                    `${selectedYear}-${selectedMonth}`
+                )} Collections`;
+
+        }
+
+
+        else if (selectedYear) {
+
+            status =
+                `Showing ${selectedYear} Collections`;
+
+        }
+
+
+        else if (selectedMonth) {
+
+            const monthNames = [
+
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+
+            ];
+
+
+            status =
+                `Showing ${monthNames[
+                    Number(selectedMonth) - 1
+                ]} Collections`;
+
+        }
+
+
+        collectionFilterStatus.textContent =
+            status;
+
+
         totalCollections.textContent =
-            memberCollections.length;
+            filteredCollections.length;
 
 
         thisMonthCollection.textContent =
             `₹${money(
-                currentMonthAmount
+                totalAmount
             )}`;
 
 
@@ -3530,16 +3967,20 @@
 
 
     /* =====================================================
-       MONTHLY TOTAL
+       MONTHLY TOTAL COLLECTION
     ===================================================== */
 
     function updateMonthlyCollection() {
+
+        const filteredCollections =
+            getFilteredCollections();
+
 
         const monthlyTotals =
             {};
 
 
-        memberCollections.forEach(
+        filteredCollections.forEach(
             item => {
 
                 const month =
@@ -3604,6 +4045,14 @@
         months.forEach(
             (month, index) => {
 
+                const parts =
+                    month.split("-");
+
+
+                const year =
+                    parts[0];
+
+
                 const row =
                     document.createElement(
                         "tr"
@@ -3624,6 +4073,12 @@
                         </b>
                     </td>
 
+                    <td>
+                        <b>
+                            ${year}
+                        </b>
+                    </td>
+
                     <td class="monthly-total">
                         ₹${money(
                             monthlyTotals[month]
@@ -3641,6 +4096,68 @@
         );
 
     }
+
+
+
+    /* =====================================================
+       SEARCH MEMBER
+    ===================================================== */
+
+    searchMemberPayment.addEventListener(
+        "input",
+        () => {
+
+            const value =
+                searchMemberPayment.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                displayMemberPaymentTable(
+                    members
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                members.filter(
+                    member => {
+
+                        const name =
+                            String(
+                                member.memberName || ""
+                            ).toLowerCase();
+
+
+                        const phone =
+                            String(
+                                member.phone || ""
+                            ).toLowerCase();
+
+
+                        return (
+
+                            name.includes(value) ||
+
+                            phone.includes(value)
+
+                        );
+
+                    }
+                );
+
+
+            displayMemberPaymentTable(
+                filtered
+            );
+
+        }
+    );
 
 
 
@@ -3680,16 +4197,27 @@
         const monthNames = [
 
             "January",
+
             "February",
+
             "March",
+
             "April",
+
             "May",
+
             "June",
+
             "July",
+
             "August",
+
             "September",
+
             "October",
+
             "November",
+
             "December"
 
         ];
@@ -3755,46 +4283,7 @@
         tourMessage.textContent =
             "";
 
-
         tourMessage.className =
-            "";
-
-    }
-
-
-
-    /* =====================================================
-       COLLECTION MESSAGE
-    ===================================================== */
-
-    function showCollectionMessage(
-        text,
-        type
-    ) {
-
-        collectionMessage.textContent =
-            text;
-
-
-        collectionMessage.className =
-            type;
-
-
-        setTimeout(
-            clearCollectionMessage,
-            3000
-        );
-
-    }
-
-
-    function clearCollectionMessage() {
-
-        collectionMessage.textContent =
-            "";
-
-
-        collectionMessage.className =
             "";
 
     }

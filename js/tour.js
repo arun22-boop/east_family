@@ -83,19 +83,6 @@ const totalTourExpense =
     document.getElementById("totalTourExpense");
 
 
-// Optional old dashboard elements
-// These will simply be ignored if they don't exist.
-
-const totalTourMembers =
-    document.getElementById("totalTourMembers");
-
-const totalTourCollection =
-    document.getElementById("totalTourCollection");
-
-const totalTourBalance =
-    document.getElementById("totalTourBalance");
-
-
 // =====================================================
 // VARIABLES
 // =====================================================
@@ -127,20 +114,27 @@ if (addTourBtn) {
         }
 
         if (tourFormTitle) {
+
             tourFormTitle.textContent =
                 "➕ Add Tour";
+
         }
 
         if (saveTourBtn) {
+
             saveTourBtn.textContent =
                 "💾 Save Tour";
 
-            saveTourBtn.disabled = false;
+            saveTourBtn.disabled =
+                false;
+
         }
 
         if (tourFormSection) {
+
             tourFormSection.style.display =
                 "block";
+
         }
 
         clearTourMessage();
@@ -177,25 +171,35 @@ if (cancelTourBtn) {
 function hideTourForm() {
 
     if (tourFormSection) {
+
         tourFormSection.style.display =
             "none";
+
     }
 
     editingTourId = null;
 
     if (tourForm) {
+
         tourForm.reset();
+
     }
 
     if (saveTourBtn) {
-        saveTourBtn.disabled = false;
+
+        saveTourBtn.disabled =
+            false;
+
         saveTourBtn.textContent =
             "💾 Save Tour";
+
     }
 
     if (tourFormTitle) {
+
         tourFormTitle.textContent =
             "➕ Add Tour";
+
     }
 
     clearTourMessage();
@@ -216,9 +220,9 @@ if (tourForm) {
             event.preventDefault();
 
 
-            // -------------------------------------------------
+            // =================================================
             // GET FORM VALUES
-            // -------------------------------------------------
+            // =================================================
 
             const tourName =
                 document
@@ -240,12 +244,14 @@ if (tourForm) {
                     .trim() || "";
 
 
+            const expenseValue =
+                document
+                    .getElementById("tourExpense")
+                    ?.value;
+
+
             const expense =
-                Number(
-                    document
-                        .getElementById("tourExpense")
-                        ?.value
-                ) || 0;
+                Number(expenseValue) || 0;
 
 
             const note =
@@ -255,9 +261,9 @@ if (tourForm) {
                     .trim() || "";
 
 
-            // -------------------------------------------------
+            // =================================================
             // VALIDATION
-            // -------------------------------------------------
+            // =================================================
 
             if (!tourName) {
 
@@ -267,6 +273,7 @@ if (tourForm) {
                 );
 
                 return;
+
             }
 
 
@@ -278,6 +285,7 @@ if (tourForm) {
                 );
 
                 return;
+
             }
 
 
@@ -289,6 +297,7 @@ if (tourForm) {
                 );
 
                 return;
+
             }
 
 
@@ -300,24 +309,30 @@ if (tourForm) {
                 );
 
                 return;
+
             }
 
 
-            // -------------------------------------------------
+            // =================================================
             // FIREBASE DATA
-            // -------------------------------------------------
+            // =================================================
 
             const tourData = {
 
-                tourName: tourName,
+                tourName:
+                    tourName,
 
-                date: date,
+                date:
+                    date,
 
-                place: place,
+                place:
+                    place,
 
-                expense: expense,
+                expense:
+                    expense,
 
-                note: note
+                note:
+                    note
 
             };
 
@@ -325,7 +340,10 @@ if (tourForm) {
             try {
 
                 if (saveTourBtn) {
-                    saveTourBtn.disabled = true;
+
+                    saveTourBtn.disabled =
+                        true;
+
                 }
 
 
@@ -336,12 +354,15 @@ if (tourForm) {
                 if (editingTourId) {
 
                     await updateDoc(
+
                         doc(
                             db,
                             "tours",
                             editingTourId
                         ),
+
                         tourData
+
                     );
 
 
@@ -360,10 +381,12 @@ if (tourForm) {
                 else {
 
                     await addDoc(
+
                         collection(
                             db,
                             "tours"
                         ),
+
                         {
 
                             ...tourData,
@@ -372,6 +395,7 @@ if (tourForm) {
                                 serverTimestamp()
 
                         }
+
                     );
 
 
@@ -383,9 +407,9 @@ if (tourForm) {
                 }
 
 
-                // -------------------------------------------------
+                // =================================================
                 // RELOAD
-                // -------------------------------------------------
+                // =================================================
 
                 setTimeout(
                     async () => {
@@ -410,7 +434,10 @@ if (tourForm) {
 
 
                 if (saveTourBtn) {
-                    saveTourBtn.disabled = false;
+
+                    saveTourBtn.disabled =
+                        false;
+
                 }
 
 
@@ -435,6 +462,10 @@ async function loadTours() {
 
     try {
 
+        // =================================================
+        // LOADING
+        // =================================================
+
         if (tourLoading) {
 
             tourLoading.style.display =
@@ -450,22 +481,34 @@ async function loadTours() {
 
 
         if (tourNoData) {
+
             tourNoData.style.display =
                 "none";
+
         }
 
 
+        // =================================================
+        // FIRESTORE
+        // =================================================
+
         const snapshot =
             await getDocs(
+
                 collection(
                     db,
                     "tours"
                 )
+
             );
 
 
         tours = [];
 
+
+        // =================================================
+        // READ DATA
+        // =================================================
 
         snapshot.forEach(
             (tourDoc) => {
@@ -491,10 +534,10 @@ async function loadTours() {
             (a, b) => {
 
                 const aTime =
-                    a.createdAt?.seconds || 0;
+                    getCreatedTime(a);
 
                 const bTime =
-                    b.createdAt?.seconds || 0;
+                    getCreatedTime(b);
 
                 return bTime - aTime;
 
@@ -502,15 +545,34 @@ async function loadTours() {
         );
 
 
+        // =================================================
+        // HIDE LOADING
+        // =================================================
+
         if (tourLoading) {
+
             tourLoading.style.display =
                 "none";
+
         }
 
 
-        displayTours(tours);
+        // =================================================
+        // DISPLAY
+        // =================================================
 
-        updateTourDashboard(tours);
+        displayTours(
+            tours
+        );
+
+
+        // =================================================
+        // DASHBOARD
+        // =================================================
+
+        updateTourDashboard(
+            tours
+        );
 
     }
 
@@ -542,6 +604,59 @@ async function loadTours() {
 
 
 // =====================================================
+// GET CREATED TIME
+// =====================================================
+
+function getCreatedTime(tour) {
+
+    if (!tour || !tour.createdAt) {
+
+        return 0;
+
+    }
+
+
+    // Firebase Timestamp
+
+    if (
+        typeof tour.createdAt.toMillis ===
+        "function"
+    ) {
+
+        return tour.createdAt.toMillis();
+
+    }
+
+
+    // Firebase Timestamp seconds
+
+    if (
+        typeof tour.createdAt.seconds ===
+        "number"
+    ) {
+
+        return tour.createdAt.seconds * 1000;
+
+    }
+
+
+    // JavaScript Date
+
+    if (
+        tour.createdAt instanceof Date
+    ) {
+
+        return tour.createdAt.getTime();
+
+    }
+
+
+    return 0;
+
+}
+
+
+// =====================================================
 // DISPLAY TOURS
 // =====================================================
 
@@ -554,12 +669,17 @@ function displayTours(data) {
         );
 
         return;
+
     }
 
 
     tourTableBody.innerHTML =
         "";
 
+
+    // =================================================
+    // COUNT
+    // =================================================
 
     if (tourCount) {
 
@@ -569,22 +689,38 @@ function displayTours(data) {
     }
 
 
-    if (!data || data.length === 0) {
+    // =================================================
+    // NO DATA
+    // =================================================
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
 
         if (tourNoData) {
+
             tourNoData.style.display =
                 "block";
+
         }
 
         return;
+
     }
 
 
     if (tourNoData) {
+
         tourNoData.style.display =
             "none";
+
     }
 
+
+    // =================================================
+    // TABLE
+    // =================================================
 
     data.forEach(
         (tour, index) => {
@@ -596,7 +732,9 @@ function displayTours(data) {
 
 
             const row =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             row.innerHTML = `
@@ -613,7 +751,9 @@ function displayTours(data) {
 
                 <td>
                     ${escapeHTML(
-                        tour.date || "-"
+                        formatDate(
+                            tour.date
+                        )
                     )}
                 </td>
 
@@ -632,7 +772,7 @@ function displayTours(data) {
                     <button
                         type="button"
                         class="edit-btn"
-                        data-tour-id="${tour.id}"
+                        data-tour-id="${escapeHTML(tour.id)}"
                         title="Edit Tour"
                     >
                         ✏️
@@ -641,7 +781,7 @@ function displayTours(data) {
                     <button
                         type="button"
                         class="delete-btn"
-                        data-tour-id="${tour.id}"
+                        data-tour-id="${escapeHTML(tour.id)}"
                         title="Delete Tour"
                     >
                         🗑️
@@ -652,70 +792,76 @@ function displayTours(data) {
             `;
 
 
-            tourTableBody.appendChild(row);
+            tourTableBody.appendChild(
+                row
+            );
 
         }
     );
 
 
     // =================================================
-    // EDIT BUTTONS
+    // BUTTON EVENTS
     // =================================================
 
-    document
+    tourTableBody
         .querySelectorAll(
-            "[data-tour-id]"
+            ".edit-btn"
         )
         .forEach(
             (button) => {
 
-                const id =
-                    button.dataset.tourId;
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const id =
+                            button.dataset.tourId;
 
 
-                if (
-                    button.classList.contains(
-                        "edit-btn"
-                    )
-                ) {
-
-                    button.addEventListener(
-                        "click",
-                        () => {
-
-                            const tour =
-                                tours.find(
-                                    item =>
-                                        item.id === id
-                                );
+                        const tour =
+                            tours.find(
+                                item =>
+                                    item.id === id
+                            );
 
 
-                            if (tour) {
-                                editTour(tour);
-                            }
+                        if (tour) {
+
+                            editTour(
+                                tour
+                            );
 
                         }
-                    );
 
-                }
+                    }
+                );
+
+            }
+        );
 
 
-                if (
-                    button.classList.contains(
-                        "delete-btn"
-                    )
-                ) {
+    tourTableBody
+        .querySelectorAll(
+            ".delete-btn"
+        )
+        .forEach(
+            (button) => {
 
-                    button.addEventListener(
-                        "click",
-                        () => {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                            deleteTour(id);
+                        const id =
+                            button.dataset.tourId;
 
-                        }
-                    );
 
-                }
+                        deleteTour(
+                            id
+                        );
+
+                    }
+                );
 
             }
         );
@@ -738,20 +884,24 @@ function editTour(tour) {
             "tourName"
         );
 
+
     const dateInput =
         document.getElementById(
             "tourDate"
         );
+
 
     const placeInput =
         document.getElementById(
             "tourPlace"
         );
 
+
     const expenseInput =
         document.getElementById(
             "tourExpense"
         );
+
 
     const noteInput =
         document.getElementById(
@@ -759,35 +909,53 @@ function editTour(tour) {
         );
 
 
+    // =================================================
+    // SET VALUES
+    // =================================================
+
     if (nameInput) {
+
         nameInput.value =
             tour.tourName || "";
+
     }
 
 
     if (dateInput) {
+
         dateInput.value =
             tour.date || "";
+
     }
 
 
     if (placeInput) {
+
         placeInput.value =
             tour.place || "";
+
     }
 
 
     if (expenseInput) {
+
         expenseInput.value =
             tour.expense ?? 0;
+
     }
 
 
     if (noteInput) {
+
         noteInput.value =
             tour.note || "";
+
     }
 
+
+    // =================================================
+    // FORM TITLE
+    // =================================================
 
     if (tourFormTitle) {
 
@@ -796,6 +964,10 @@ function editTour(tour) {
 
     }
 
+
+    // =================================================
+    // SAVE BUTTON
+    // =================================================
 
     if (saveTourBtn) {
 
@@ -808,6 +980,10 @@ function editTour(tour) {
     }
 
 
+    // =================================================
+    // SHOW FORM
+    // =================================================
+
     if (tourFormSection) {
 
         tourFormSection.style.display =
@@ -819,9 +995,18 @@ function editTour(tour) {
     clearTourMessage();
 
 
+    // =================================================
+    // SCROLL
+    // =================================================
+
     tourFormSection?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+
+        behavior:
+            "smooth",
+
+        block:
+            "start"
+
     });
 
 }
@@ -847,6 +1032,7 @@ async function deleteTour(id) {
         );
 
         return;
+
     }
 
 
@@ -857,18 +1043,22 @@ async function deleteTour(id) {
 
 
     if (!confirmDelete) {
+
         return;
+
     }
 
 
     try {
 
         await deleteDoc(
+
             doc(
                 db,
                 "tours",
                 id
             )
+
         );
 
 
@@ -915,6 +1105,10 @@ if (searchTour) {
                     .toLowerCase();
 
 
+            // =================================================
+            // SHOW ALL
+            // =================================================
+
             if (!search) {
 
                 displayTours(
@@ -922,8 +1116,13 @@ if (searchTour) {
                 );
 
                 return;
+
             }
 
+
+            // =================================================
+            // FILTER
+            // =================================================
 
             const filtered =
                 tours.filter(
@@ -959,13 +1158,21 @@ if (searchTour) {
 
                         return (
 
-                            name.includes(search) ||
+                            name.includes(
+                                search
+                            ) ||
 
-                            place.includes(search) ||
+                            place.includes(
+                                search
+                            ) ||
 
-                            date.includes(search) ||
+                            date.includes(
+                                search
+                            ) ||
 
-                            note.includes(search)
+                            note.includes(
+                                search
+                            )
 
                         );
 
@@ -989,8 +1196,13 @@ if (searchTour) {
 
 function updateTourDashboard(data) {
 
-    let expenseTotal = 0;
+    let expenseTotal =
+        0;
 
+
+    // =================================================
+    // CALCULATE TOTAL EXPENSE
+    // =================================================
 
     data.forEach(
         (tour) => {
@@ -1004,9 +1216,9 @@ function updateTourDashboard(data) {
     );
 
 
-    // -------------------------------------------------
+    // =================================================
     // TOTAL TOURS
-    // -------------------------------------------------
+    // =================================================
 
     if (totalTours) {
 
@@ -1016,9 +1228,9 @@ function updateTourDashboard(data) {
     }
 
 
-    // -------------------------------------------------
-    // TOTAL EXPENSE
-    // -------------------------------------------------
+    // =================================================
+    // TOTAL TOUR EXPENSE
+    // =================================================
 
     if (totalTourExpense) {
 
@@ -1027,36 +1239,36 @@ function updateTourDashboard(data) {
 
     }
 
-
-    // -------------------------------------------------
-    // OLD MEMBER/COLLECTION CARDS
-    //
-    // Set to 0 so old HTML does not show incorrect data.
-    // Better: remove these cards from HTML.
-    // -------------------------------------------------
-
-    if (totalTourMembers) {
-
-        totalTourMembers.textContent =
-            "0";
-
-    }
+}
 
 
-    if (totalTourCollection) {
+// =====================================================
+// FORMAT DATE
+// =====================================================
 
-        totalTourCollection.textContent =
-            `₹${money(collectionTotal)}`;
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+
+        return "-";
 
     }
 
 
-    if (totalTourBalance) {
+    // Input normally comes as YYYY-MM-DD
 
-        totalTourBalance.textContent =
-            `₹${money(-expenseTotal)}`;
+    const parts =
+        String(dateValue).split("-");
+
+
+    if (parts.length === 3) {
+
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
 
     }
+
+
+    return String(dateValue);
 
 }
 
@@ -1086,7 +1298,9 @@ function showTourMessage(
 ) {
 
     if (!tourMessage) {
+
         return;
+
     }
 
 
@@ -1113,7 +1327,9 @@ function showTourMessage(
 function clearTourMessage() {
 
     if (!tourMessage) {
+
         return;
+
     }
 
 

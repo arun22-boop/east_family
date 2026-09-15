@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>புடவை கணக்கு - P.K. வேலம்பாளையம் கிழக்கு</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Tamil",sans-serif;
+    background:#f5f6fa;
+    color:#222;
+}
+header{
+    background:#6b21a8;
+    color:#fff;
+    padding:16px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+header h1{margin:0;font-size:22px}
+header p{margin:5px 0 0;font-size:13px}
+
+.app{
+    display:flex;
+    min-height:calc(100vh - 85px);
+}
+.sidebar{
+    width:260px;
+    min-width:260px;
+    background:#fff;
+    border-right:1px solid #ddd;
+    padding:14px 10px;
+    position:sticky;
+    top:85px;
+    height:calc(100vh - 85px);
+    overflow-y:auto;
+}
+.brand{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    margin-bottom:10px;
+}
+.brand b{font-size:17px}
+.brand small{display:block;color:#777;margin-top:4px}
+
+.nav{
+    width:100%;
+    border:0;
+    background:transparent;
+    padding:12px;
+    margin:3px 0;
+    border-radius:10px;
+    text-align:left;
+    cursor:pointer;
+    font-size:14px;
+}
+.nav:hover,.nav.active{
+    background:#f3e8ff;
+    color:#6b21a8;
+}
+.nav span{margin-right:8px}
+
+.main{
+    flex:1;
+    padding:20px;
+    min-width:0;
+}
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+.page{display:none}
+.page.active{display:block}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+}
+.title h2{margin:0;font-size:22px}
+.title small{color:#777}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+.card{
+    background:#fff;
+    padding:17px;
+    border-radius:13px;
+    box-shadow:0 2px 8px #0001;
+}
+.card small{color:#666}
+.amount{
+    margin-top:7px;
+    font-size:23px;
+    font-weight:bold;
+}
+.green{color:#16803c}
+.red{color:#c62828}
+.purple{color:#6b21a8}
+.blue{color:#0369a1}
+
+.panel{
+    background:#fff;
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 2px 8px #0001;
+    margin-bottom:15px;
+}
+.panel h3{margin:0 0 14px}
+
+.grid2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+.grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:5px;
+}
+input,select,textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:14px;
+    font-family:Arial,"Noto Sans Tamil",sans-serif;
+}
+textarea{min-height:100px;resize:vertical}
+
+.btn{
+    border:0;
+    padding:11px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+}
+.primary{background:#6b21a8;color:#fff}
+.primary:hover{background:#581c87}
+.success{background:#16a34a;color:#fff}
+.danger{background:#dc2626;color:#fff}
+.warning{background:#f59e0b;color:#fff}
+.secondary{background:#e5e7eb;color:#222}
+
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:14px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+}
+th,td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+    font-size:13px;
+}
+th{
+    background:#f8f5ff;
+    color:#5b1685;
+}
+td.amount-cell{
+    text-align:right;
+    font-weight:bold;
+}
+.income{color:#16803c}
+.expense{color:#c62828}
+
+.search{
+    margin-bottom:12px;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:11px;
+}
+.badge-income{
+    background:#dcfce7;
+    color:#166534;
+}
+.badge-expense{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.stat{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+.stat:last-child{border-bottom:0}
+
+.message{
+    display:none;
+    padding:10px;
+    border-radius:8px;
+    margin-top:12px;
+    font-size:13px;
+}
+.message.show{display:block}
+.message.success-msg{background:#dcfce7;color:#166534}
+.message.error-msg{background:#fee2e2;color:#991b1b}
+
+.loading{text-align:center;padding:25px;color:#777}
+.empty{
+    padding:25px;
+    text-align:center;
+    color:#777;
+}
+.error-box{
+    background:#fff1f2;
+    color:#9f1239;
+    border:1px solid #fecdd3;
+    padding:15px;
+    border-radius:9px;
+    word-break:break-word;
+}
+
+.import-list{
+    max-height:300px;
+    overflow:auto;
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:8px;
+    padding:10px;
+    font-size:12px;
+}
+.import-row{
+    padding:6px 0;
+    border-bottom:1px solid #eee;
+}
+
+.summary-box{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+.summary-item{
+    padding:15px;
+    background:#fafafa;
+    border-radius:10px;
+}
+.summary-item small{display:block;color:#777}
+.summary-item b{display:block;font-size:20px;margin-top:5px}
+
+@media(max-width:900px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .grid3{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+    .app{display:block}
+    .sidebar{
+        width:100%;
+        min-width:100%;
+        height:auto;
+        position:static;
+        border-right:0;
+        border-bottom:1px solid #ddd;
+    }
+    .nav{
+        display:inline-block;
+        width:auto;
+        margin:2px;
+    }
+    .main{padding:12px}
+    .grid2{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+    .cards{grid-template-columns:repeat(2,1fr);gap:8px}
+    .card{padding:12px}
+    .amount{font-size:18px}
+    header h1{font-size:18px}
+    .title{display:block}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛕 P.K. வேலம்பாளையம் கிழக்கு</h1>
+    <p>📒 புடவை வரவு • செலவு • இருப்பு • கையிருப்பு</p>
+</header>
+
+<div class="app">
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+
+    <div class="brand">
+        <b>📒 புடவை கணக்கு</b>
+        <small>Pudavai Account</small>
+    </div>
+
+    <button class="nav active" onclick="showPage('dashboard',this)">
+        <span>📊</span> Dashboard
+    </button>
+
+    <button class="nav" onclick="showPage('income',this)">
+        <span>📥</span> வரவு பதிவு
+    </button>
+
+    <button class="nav" onclick="showPage('expense',this)">
+        <span>📤</span> செலவு பதிவு
+    </button>
+
+    <button class="nav" onclick="showPage('deposit',this)">
+        <span>🏦</span> வைப்பு இருப்பு
+    </button>
+
+    <button class="nav" onclick="showPage('split',this)">
+        <span>👥</span> உறுப்பினருக்கு Split
+    </button>
+
+    <button class="nav" onclick="showPage('collection',this)">
+        <span>💳</span> உறுப்பினரிடமிருந்து வசூல்
+    </button>
+
+    <button class="nav" onclick="showPage('report',this)">
+        <span>📊</span> முழு Report
+    </button>
+
+    <button class="nav" onclick="showPage('import',this)">
+        <span>📦</span> 2026 Initial Import
+    </button>
+
+</aside>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
+<div class="container">
+
+<!-- ================= DASHBOARD ================= -->
+<section id="dashboard" class="page active">
+
+    <div class="title">
+        <div>
+            <h2>📊 Pudavai Dashboard</h2>
+            <small>புடவை கணக்கின் தற்போதைய நிலை</small>
+        </div>
+
+        <button class="btn primary" onclick="loadAll()">
+            🔄 Refresh
+        </button>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <small>மொத்த வரவு</small>
+            <div id="dashIncome" class="amount green">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>மொத்த செலவு</small>
+            <div id="dashExpense" class="amount red">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>இருப்பு</small>
+            <div id="dashBalance" class="amount purple">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>கையிருப்பு</small>
+            <div id="dashCash" class="amount blue">₹0</div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3>📌 2026 புடவை கணக்கு சுருக்கம்</h3>
+
+        <div class="summary-box">
+
+            <div class="summary-item">
+                <small>வரவு பதிவுகள்</small>
+                <b id="incomeCount">0</b>
+            </div>
+
+            <div class="summary-item">
+                <small>செலவு பதிவுகள்</small>
+                <b id="expenseCount">0</b>
+            </div>
+
+            <div class="summary-item">
+                <small>Split / வசூல்</small>
+                <b id="splitCount">0</b>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>🕘 சமீபத்திய பதிவுகள்</h3>
+        <div id="recentRecords">
+            <div class="loading">Loading...</div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= INCOME ================= -->
+<section id="income" class="page">
+
+    <div class="title">
+        <div>
+            <h2>📥 வரவு பதிவு</h2>
+            <small>புடவை கணக்கில் வரும் அனைத்து வரவுகளும்</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <form id="incomeForm">
+
+            <div class="grid2">
+
+                <div>
+                    <label>தேதி</label>
+                    <input id="incomeDate" type="date" required>
+                </div>
+
+                <div>
+                    <label>பெயர் / விவரம்</label>
+                    <input id="incomePerson" type="text" required>
+                </div>
+
+                <div>
+                    <label>வரவு வகை</label>
+                    <select id="incomeCategory">
+                        <option>நன்கொடை</option>
+                        <option>பொது புடவை நிதி</option>
+                        <option>வட்டி வரவு</option>
+                        <option>கோயில் சீட்டு</option>
+                        <option>சந்தா நிதி</option>
+                        <option>ஏலம்</option>
+                        <option>உபயம்</option>
+                        <option>மற்றவை</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>தொகை</label>
+                    <input id="incomeAmount" type="number" min="0" step="0.01" required>
+                </div>
+
+            </div>
+
+            <label style="margin-top:12px">குறிப்பு</label>
+            <textarea id="incomeNote"></textarea>
+
+            <div class="actions">
+                <button class="btn success" type="submit">
+                    💾 வரவு சேமிக்கவும்
+                </button>
+            </div>
+
+        </form>
+
+        <div id="incomeMessage" class="message"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 வரவு பதிவுகள்</h3>
+        <input class="search" id="incomeSearch" placeholder="🔍 பெயர் / விவரம் தேடவும்">
+        <div id="incomeTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= EXPENSE ================= -->
+<section id="expense" class="page">
+
+    <div class="title">
+        <div>
+            <h2>📤 செலவு பதிவு</h2>
+            <small>புடவை விழா மற்றும் தொடர்புடைய செலவுகள்</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <form id="expenseForm">
+
+            <div class="grid2">
+
+                <div>
+                    <label>தேதி</label>
+                    <input id="expenseDate" type="date" required>
+                </div>
+
+                <div>
+                    <label>செலவு விவரம்</label>
+                    <input id="expensePerson" type="text" required>
+                </div>
+
+                <div>
+                    <label>செலவு வகை</label>
+                    <select id="expenseCategory">
+                        <option>பூஜை சாமான்கள்</option>
+                        <option>உணவு</option>
+                        <option>காய்கறி</option>
+                        <option>மளிகை</option>
+                        <option>பூ / மாலை</option>
+                        <option>தண்ணீர்</option>
+                        <option>கேஸ்</option>
+                        <option>சமையல் கூலி</option>
+                        <option>பாத்திரம் வாடகை</option>
+                        <option>பயணம்</option>
+                        <option>மற்றவை</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>தொகை</label>
+                    <input id="expenseAmount" type="number" min="0" step="0.01" required>
+                </div>
+
+            </div>
+
+            <label style="margin-top:12px">குறிப்பு</label>
+            <textarea id="expenseNote"></textarea>
+
+            <div class="actions">
+                <button class="btn danger" type="submit">
+                    💾 செலவு சேமிக்கவும்
+                </button>
+            </div>
+
+        </form>
+
+        <div id="expenseMessage" class="message"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 செலவு பதிவுகள்</h3>
+        <input class="search" id="expenseSearch" placeholder="🔍 செலவு விவரம் தேடவும்">
+        <div id="expenseTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= DEPOSIT ================= -->
+<section id="deposit" class="page">
+
+    <div class="title">
+        <div>
+            <h2>🏦 புடவை வைப்பு இருப்பு</h2>
+            <small>வைப்பு நிதி பெற்றவர்கள் மற்றும் திருப்பிச் செலுத்தல்</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <form id="depositForm">
+
+            <div class="grid2">
+
+                <div>
+                    <label>தேதி</label>
+                    <input id="depositDate" type="date" required>
+                </div>
+
+                <div>
+                    <label>பெயர்</label>
+                    <input id="depositPerson" type="text" required>
+                </div>
+
+                <div>
+                    <label>பெற்ற தொகை</label>
+                    <input id="depositGiven" type="number" min="0" step="0.01" required>
+                </div>
+
+                <div>
+                    <label>திருப்பி செலுத்திய தொகை</label>
+                    <input id="depositReturned" type="number" min="0" step="0.01" value="0">
+                </div>
+
+            </div>
+
+            <label style="margin-top:12px">குறிப்பு</label>
+            <textarea id="depositNote"></textarea>
+
+            <div class="actions">
+                <button class="btn primary" type="submit">
+                    💾 வைப்பு பதிவு சேமிக்கவும்
+                </button>
+            </div>
+
+        </form>
+
+        <div id="depositMessage" class="message"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 வைப்பு பதிவுகள்</h3>
+        <div id="depositTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= SPLIT ================= -->
+<section id="split" class="page">
+
+    <div class="title">
+        <div>
+            <h2>👥 உறுப்பினருக்கு Split</h2>
+            <small>உறுப்பினருக்கு வழங்கிய தொகை</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <form id="splitForm">
+
+            <div class="grid2">
+
+                <div>
+                    <label>தேதி</label>
+                    <input id="splitDate" type="date" required>
+                </div>
+
+                <div>
+                    <label>உறுப்பினர் பெயர்</label>
+                    <input id="splitPerson" type="text" required>
+                </div>
+
+                <div>
+                    <label>Split தொகை</label>
+                    <input id="splitAmount" type="number" min="0" step="0.01" required>
+                </div>
+
+                <div>
+                    <label>வகை</label>
+                    <select id="splitCategory">
+                        <option>புடவை செலவு</option>
+                        <option>பொருள் வாங்க</option>
+                        <option>அவசர செலவு</option>
+                        <option>மற்றவை</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <label style="margin-top:12px">குறிப்பு</label>
+            <textarea id="splitNote"></textarea>
+
+            <div class="actions">
+                <button class="btn warning" type="submit">
+                    💾 Split சேமிக்கவும்
+                </button>
+            </div>
+
+        </form>
+
+        <div id="splitMessage" class="message"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 Split பதிவுகள்</h3>
+        <div id="splitTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= COLLECTION ================= -->
+<section id="collection" class="page">
+
+    <div class="title">
+        <div>
+            <h2>💳 உறுப்பினரிடமிருந்து வசூல்</h2>
+            <small>Split தொகை திரும்பப் பெற்ற பதிவுகள்</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <form id="collectionForm">
+
+            <div class="grid2">
+
+                <div>
+                    <label>தேதி</label>
+                    <input id="collectionDate" type="date" required>
+                </div>
+
+                <div>
+                    <label>உறுப்பினர் பெயர்</label>
+                    <input id="collectionPerson" type="text" required>
+                </div>
+
+                <div>
+                    <label>வசூல் தொகை</label>
+                    <input id="collectionAmount" type="number" min="0" step="0.01" required>
+                </div>
+
+                <div>
+                    <label>வகை</label>
+                    <select id="collectionCategory">
+                        <option>Split திருப்பிச் செலுத்தல்</option>
+                        <option>கூடுதல் வசூல்</option>
+                        <option>மற்றவை</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <label style="margin-top:12px">குறிப்பு</label>
+            <textarea id="collectionNote"></textarea>
+
+            <div class="actions">
+                <button class="btn success" type="submit">
+                    💾 வசூல் சேமிக்கவும்
+                </button>
+            </div>
+
+        </form>
+
+        <div id="collectionMessage" class="message"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 வசூல் பதிவுகள்</h3>
+        <div id="collectionTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= REPORT ================= -->
+<section id="report" class="page">
+
+    <div class="title">
+        <div>
+            <h2>📊 முழு Pudavai Report</h2>
+            <small>வரவு • செலவு • Split • வசூல்</small>
+        </div>
+
+        <button class="btn primary" onclick="loadAll()">
+            🔄 Refresh
+        </button>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <small>மொத்த வரவு</small>
+            <div id="reportIncome" class="amount green">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>மொத்த செலவு</small>
+            <div id="reportExpense" class="amount red">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>மொத்த Split</small>
+            <div id="reportSplit" class="amount purple">₹0</div>
+        </div>
+
+        <div class="card">
+            <small>மொத்த வசூல்</small>
+            <div id="reportCollection" class="amount blue">₹0</div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3>💰 கணக்கு நிலை</h3>
+
+        <div class="stat">
+            <span>மொத்த வரவு</span>
+            <b id="rIncome">₹0</b>
+        </div>
+
+        <div class="stat">
+            <span>மொத்த செலவு</span>
+            <b id="rExpense">₹0</b>
+        </div>
+
+        <div class="stat">
+            <span>Split வழங்கியது</span>
+            <b id="rSplit">₹0</b>
+        </div>
+
+        <div class="stat">
+            <span>உறுப்பினரிடமிருந்து வசூல்</span>
+            <b id="rCollection">₹0</b>
+        </div>
+
+        <div class="stat">
+            <span>மீதமுள்ள Split</span>
+            <b id="rPending">₹0</b>
+        </div>
+
+        <div class="stat">
+            <span>கையிருப்பு</span>
+            <b id="rBalance">₹0</b>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3>📋 அனைத்து பதிவுகள்</h3>
+        <div id="allTable"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= IMPORT ================= -->
+<section id="import" class="page">
+
+    <div class="title">
+        <div>
+            <h2>📦 2026 Initial Data Import</h2>
+            <small>19 செலவு + 18 வரவு பதிவுகளை Firebase-ல் ஒரே button மூலம் சேர்க்கவும்</small>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <div class="error-box" style="background:#fff7ed;color:#9a3412;border-color:#fed7aa">
+            ⚠️ இந்த button-ஐ <b>ஒரு முறை மட்டும்</b> அழுத்தவும்.
+            மீண்டும் அழுத்தினால் duplicate records உருவாகலாம்.
+        </div>
+
+        <br>
+
+        <button class="btn primary" onclick="importInitialData()">
+            📥 2026 Initial Data Import
+        </button>
+
+        <div id="importStatus" class="message"></div>
+
+    </div>
+
+    <div class="panel">
+        <h3>📋 Import செய்யப்படும் செலவுகள்</h3>
+        <div id="expenseImportList" class="import-list"></div>
+    </div>
+
+    <div class="panel">
+        <h3>📋 Import செய்யப்படும் வரவுகள்</h3>
+        <div id="incomeImportList" class="import-list"></div>
+    </div>
+
+</section>
+
+</div>
+</main>
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+   உங்கள் தற்போதைய firebase.js-ஐ மாற்ற வேண்டாம்.
+   db மற்றும் Firestore functions ஒரே firebase.js-ல் இருந்து.
+========================================================= */
+
+import {
+    db,
+    collection,
+    addDoc,
+    getDocs,
+    updateDoc,
+    deleteDoc,
+    doc,
+    serverTimestamp
+} from "./firebase.js";
+
+
+/* =========================================================
+   COLLECTION
+========================================================= */
+
+const PUDAVAI_COLLECTION = "pudavai_accounts";
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let allData = [];
+
+
+/* =========================================================
+   INITIAL 2026 EXPENSES
+========================================================= */
+
+const initialExpenses = [
+
+    ["பூஜை சாமான்கள்",360],
+    ["இலை",450],
+    ["வாழைப்பழம்",630],
+    ["தேங்காய் 30",700],
+    ["எலுமிச்சைபழம்",130],
+    ["வெற்றிலை",100],
+    ["பழவகைகள்",260],
+    ["பூ மாலை 8 கதம்பம் 4",1280],
+    ["தண்ணிர் 7 கேன்",245],
+    ["கேஸ்",1000],
+    ["சமையல் கூளி",2500],
+    ["கோயில் பாத்திரம் வாடகை",500],
+    ["மளிகை",6780],
+    ["காய்கறி",1745],
+    ["பால் 4.5L & தயிர் 2.5L",280],
+    ["ஆடு 7kg = 7kg X 800",5600],
+    ["நாட்டுக்கோழி 2.800",1540],
+    ["பிராய்லர் 8 kg",2000],
+    ["இளநீர் பாளை",250]
+
+];
+
+
+/* =========================================================
+   INITIAL 2026 INCOME
+========================================================= */
+
+const initialIncome = [
+
+    ["கோயில் புடவை பொது இருப்பு",20000,"பொது புடவை நிதி"],
+
+    ["பேச்சியம்மாள் சின்னசாமி நினைவாக இருப்பு",25000,"பொது புடவை நிதி"],
+
+    ["கோயில் புடவை பொது நிதி வட்டி வரவு",2300,"வட்டி வரவு"],
+
+    ["பேச்சியம்மாள் சின்னச்சாமி நினைவாக வட்டி வரவு",2700,"வட்டி வரவு"],
+
+    ["குழந்தைவேல் பத்மாவதி அறக்கட்டளை",4000,"நன்கொடை"],
+
+    ["C முருகன் வேலூர்",500,"நன்கொடை"],
+
+    ["தர்மராஜ் புஷ்பவதி நினைவாக",500,"நன்கொடை"],
+
+    ["பழனியப்பன் லட்சுமி நினைவாக",500,"நன்கொடை"],
+
+    ["பரணிதரன்",500,"நன்கொடை"],
+
+    ["கார்த்தி பிரவீன்",500,"நன்கொடை"],
+
+    ["தனபாக்கியம் சோளிபாளையம்",200,"நன்கொடை"],
+
+    ["தெய்வானை RMS",200,"நன்கொடை"],
+
+    ["மாரிமுத்து அம்மாள்",200,"நன்கொடை"],
+
+    ["பெரியசாமி செல்லம்மாள் நினைவாக",500,"நன்கொடை"],
+
+    ["கணபதி மீனாட்சி",500,"நன்கொடை"],
+
+    ["நல்லசாமி பழனியம்மாள் நினைவாக",500,"நன்கொடை"],
+
+    ["கோதை PKV",100,"நன்கொடை"],
+
+    ["கோயில் சீட்டு சார்பாக",5000,"கோயில் சீட்டு"],
+
+    ["சந்தா நிதி மூலம் வரவு",7650,"சந்தா நிதி"],
+
+    ["வினோத் குமார் சவிதா நன்கொடை",101,"நன்கொடை"],
+
+    ["மல்லிகை ஏலம் விட்ட வகையில்",900,"ஏலம்"],
+
+    ["பழவகைகள் ஏலம் விட்ட வகையில்",200,"ஏலம்"]
+
+];
+
+
+/*
+IMPORTANT:
+User table contains 22 income rows, although earlier wording
+mentioned 18. We import all supplied income rows.
+*/
+
+
+/* =========================================================
+   FORMAT
+========================================================= */
+
+function money(value){
+
+    return "₹" + Number(value || 0).toLocaleString("en-IN",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+
+}
+
+
+/* =========================================================
+   TODAY
+========================================================= */
+
+function today(){
+
+    const d = new Date();
+
+    return d.toISOString().split("T")[0];
+
+}
+
+
+/* =========================================================
+   SHOW PAGE
+========================================================= */
+
+window.showPage = function(id,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    document
+        .getElementById(id)
+        ?.classList.add("active");
+
+    document
+        .querySelectorAll(".nav")
+        .forEach(n => n.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    if(id === "dashboard" || id === "report"){
+        loadAll();
+    }
+
+    if(id === "income"){
+        renderIncome();
+    }
+
+    if(id === "expense"){
+        renderExpense();
+    }
+
+    if(id === "deposit"){
+        renderDeposit();
+    }
+
+    if(id === "split"){
+        renderSplit();
+    }
+
+    if(id === "collection"){
+        renderCollection();
+    }
+
+};
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function message(id,text,type="success-msg"){
+
+    const el = document.getElementById(id);
+
+    if(!el) return;
+
+    el.textContent = text;
+
+    el.className = "message show " + type;
+
+    setTimeout(() => {
+        el.className = "message";
+    },4000);
+
+}
+
+
+/* =========================================================
+   SAVE COMMON
+========================================================= */
+
+async function saveData(data,messageId){
+
+    try{
+
+        await addDoc(
+            collection(db,PUDAVAI_COLLECTION),
+            {
+                ...data,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        message(
+            messageId,
+            "✅ பதிவு வெற்றிகரமாக சேமிக்கப்பட்டது"
+        );
+
+        await loadAll();
+
+        return true;
+
+    }catch(error){
+
+        console.error(error);
+
+        message(
+            messageId,
+            "❌ Firebase Error: " + error.message,
+            "error-msg"
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   INCOME FORM
+========================================================= */
+
+document
+.getElementById("incomeForm")
+.addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const data = {
+
+        recordType:"income",
+
+        date:
+            document.getElementById("incomeDate").value,
+
+        person:
+            document.getElementById("incomePerson").value.trim(),
+
+        category:
+            document.getElementById("incomeCategory").value,
+
+        amount:
+            Number(document.getElementById("incomeAmount").value),
+
+        note:
+            document.getElementById("incomeNote").value.trim()
+
+    };
+
+    if(!data.person || data.amount <= 0){
+
+        message(
+            "incomeMessage",
+            "❌ பெயர் மற்றும் சரியான தொகை உள்ளிடவும்",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(await saveData(data,"incomeMessage")){
+
+        e.target.reset();
+
+        document.getElementById("incomeDate").value=today();
+
+    }
+
+});
+
+
+/* =========================================================
+   EXPENSE FORM
+========================================================= */
+
+document
+.getElementById("expenseForm")
+.addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const data = {
+
+        recordType:"expense",
+
+        date:
+            document.getElementById("expenseDate").value,
+
+        person:
+            document.getElementById("expensePerson").value.trim(),
+
+        category:
+            document.getElementById("expenseCategory").value,
+
+        amount:
+            Number(document.getElementById("expenseAmount").value),
+
+        note:
+            document.getElementById("expenseNote").value.trim()
+
+    };
+
+    if(!data.person || data.amount <= 0){
+
+        message(
+            "expenseMessage",
+            "❌ விவரம் மற்றும் சரியான தொகை உள்ளிடவும்",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(await saveData(data,"expenseMessage")){
+
+        e.target.reset();
+
+        document.getElementById("expenseDate").value=today();
+
+    }
+
+});
+
+
+/* =========================================================
+   DEPOSIT FORM
+========================================================= */
+
+document
+.getElementById("depositForm")
+.addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const given =
+        Number(
+            document.getElementById("depositGiven").value
+        );
+
+    const returned =
+        Number(
+            document.getElementById("depositReturned").value || 0
+        );
+
+    const data = {
+
+        recordType:"deposit",
+
+        date:
+            document.getElementById("depositDate").value,
+
+        person:
+            document.getElementById("depositPerson").value.trim(),
+
+        given:given,
+
+        returned:returned,
+
+        pending:
+            Math.max(0,given-returned),
+
+        amount:given,
+
+        category:"வைப்பு இருப்பு",
+
+        note:
+            document.getElementById("depositNote").value.trim()
+
+    };
+
+    if(!data.person || given <= 0){
+
+        message(
+            "depositMessage",
+            "❌ பெயர் மற்றும் பெற்ற தொகை சரியாக உள்ளிடவும்",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(returned > given){
+
+        message(
+            "depositMessage",
+            "❌ திருப்பி செலுத்திய தொகை பெற்ற தொகையை விட அதிகமாக இருக்கக்கூடாது",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(await saveData(data,"depositMessage")){
+
+        e.target.reset();
+
+        document.getElementById("depositDate").value=today();
+
+        document.getElementById("depositReturned").value="0";
+
+    }
+
+});
+
+
+/* =========================================================
+   SPLIT FORM
+========================================================= */
+
+document
+.getElementById("splitForm")
+.addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const data = {
+
+        recordType:"split",
+
+        date:
+            document.getElementById("splitDate").value,
+
+        person:
+            document.getElementById("splitPerson").value.trim(),
+
+        amount:
+            Number(document.getElementById("splitAmount").value),
+
+        category:
+            document.getElementById("splitCategory").value,
+
+        note:
+            document.getElementById("splitNote").value.trim()
+
+    };
+
+    if(!data.person || data.amount <= 0){
+
+        message(
+            "splitMessage",
+            "❌ உறுப்பினர் பெயர் மற்றும் தொகை சரியாக உள்ளிடவும்",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(await saveData(data,"splitMessage")){
+
+        e.target.reset();
+
+        document.getElementById("splitDate").value=today();
+
+    }
+
+});
+
+
+/* =========================================================
+   COLLECTION FORM
+========================================================= */
+
+document
+.getElementById("collectionForm")
+.addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const data = {
+
+        recordType:"collection",
+
+        date:
+            document.getElementById("collectionDate").value,
+
+        person:
+            document.getElementById("collectionPerson").value.trim(),
+
+        amount:
+            Number(document.getElementById("collectionAmount").value),
+
+        category:
+            document.getElementById("collectionCategory").value,
+
+        note:
+            document.getElementById("collectionNote").value.trim()
+
+    };
+
+    if(!data.person || data.amount <= 0){
+
+        message(
+            "collectionMessage",
+            "❌ உறுப்பினர் பெயர் மற்றும் தொகை சரியாக உள்ளிடவும்",
+            "error-msg"
+        );
+
+        return;
+    }
+
+    if(await saveData(data,"collectionMessage")){
+
+        e.target.reset();
+
+        document.getElementById("collectionDate").value=today();
+
+    }
+
+});
+
+
+/* =========================================================
+   LOAD FIREBASE
+========================================================= */
+
+async function loadAll(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    PUDAVAI_COLLECTION
+                )
+            );
+
+        allData=[];
+
+        snapshot.forEach(d=>{
+
+            allData.push({
+                id:d.id,
+                ...d.data()
+            });
+
+        });
+
+        allData.sort(
+            (a,b)=>
+                String(b.date || "")
+                .localeCompare(
+                    String(a.date || "")
+                )
+        );
+
+        updateDashboard();
+
+        renderIncome();
+
+        renderExpense();
+
+        renderDeposit();
+
+        renderSplit();
+
+        renderCollection();
+
+        renderReport();
+
+    }catch(error){
+
+        console.error(
+            "Pudavai Firebase Load Error:",
+            error
+        );
+
+        const html =
+            `<div class="error-box">
+                ❌ Firebase data load error
+                <br><br>
+                ${escapeHTML(error.message)}
+            </div>`;
+
+        document.getElementById("recentRecords").innerHTML=html;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOTALS
+========================================================= */
+
+function calculate(){
+
+    let income=0;
+    let expense=0;
+    let split=0;
+    let collectionTotal=0;
+
+    let incomeCount=0;
+    let expenseCount=0;
+    let splitCount=0;
+
+    allData.forEach(x=>{
+
+        const amount=Number(x.amount || 0);
+
+        if(x.recordType==="income"){
+
+            income += amount;
+            incomeCount++;
+
+        }
+
+        else if(x.recordType==="expense"){
+
+            expense += amount;
+            expenseCount++;
+
+        }
+
+        else if(x.recordType==="split"){
+
+            split += amount;
+            splitCount++;
+
+        }
+
+        else if(x.recordType==="collection"){
+
+            collectionTotal += amount;
+
+        }
+
+    });
+
+    /*
+       Split is treated as money given out.
+       Collection is money received back.
+    */
+
+    const balance =
+        income - expense - split + collectionTotal;
+
+    const pendingSplit =
+        Math.max(
+            0,
+            split - collectionTotal
+        );
+
+    return {
+        income,
+        expense,
+        split,
+        collectionTotal,
+        balance,
+        pendingSplit,
+        incomeCount,
+        expenseCount,
+        splitCount
+    };
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+    const t=calculate();
+
+    document.getElementById("dashIncome").textContent=money(t.income);
+
+    document.getElementById("dashExpense").textContent=money(t.expense);
+
+    document.getElementById("dashBalance").textContent=money(t.balance);
+
+    document.getElementById("dashCash").textContent=money(t.balance);
+
+    document.getElementById("incomeCount").textContent=t.incomeCount;
+
+    document.getElementById("expenseCount").textContent=t.expenseCount;
+
+    document.getElementById("splitCount").textContent=t.splitCount;
+
+
+    const recent =
+        document.getElementById("recentRecords");
+
+    const rows =
+        allData.slice(0,8);
+
+
+    if(rows.length===0){
+
+        recent.innerHTML=
+            `<div class="empty">
+                இன்னும் பதிவுகள் இல்லை
+            </div>`;
+
+        return;
+
+    }
+
+
+    recent.innerHTML=`
+
+        <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>தேதி</th>
+                    <th>வகை</th>
+                    <th>விவரம்</th>
+                    <th>தொகை</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${
+                    rows.map(x=>`
+
+                        <tr>
+
+                            <td>${escapeHTML(x.date || "")}</td>
+
+                            <td>
+                                ${typeBadge(x.recordType)}
+                            </td>
+
+                            <td>
+                                ${escapeHTML(x.person || "")}
+                            </td>
+
+                            <td class="amount-cell">
+                                ${money(x.amount)}
+                            </td>
+
+                        </tr>
+
+                    `).join("")
+                }
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TYPE BADGE
+========================================================= */
+
+function typeBadge(type){
+
+    if(type==="income")
+        return `<span class="badge badge-income">வரவு</span>`;
+
+    if(type==="expense")
+        return `<span class="badge badge-expense">செலவு</span>`;
+
+    if(type==="split")
+        return `<span class="badge badge-expense">Split</span>`;
+
+    if(type==="collection")
+        return `<span class="badge badge-income">வசூல்</span>`;
+
+    if(type==="deposit")
+        return `<span class="badge">வைப்பு</span>`;
+
+    return "-";
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+function tableHTML(rows,showDelete=true){
+
+    if(!rows.length){
+
+        return `
+            <div class="empty">
+                பதிவுகள் இல்லை
+            </div>
+        `;
+
+    }
+
+    return `
+
+        <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>தேதி</th>
+                    <th>வகை</th>
+                    <th>பெயர் / விவரம்</th>
+                    <th>Category</th>
+                    <th>தொகை</th>
+                    ${
+                        showDelete
+                        ? "<th>Action</th>"
+                        : ""
+                    }
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${
+                    rows.map(x=>`
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(x.date || "")}
+                        </td>
+
+                        <td>
+                            ${typeBadge(x.recordType)}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(x.person || "")}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(x.category || "")}
+                        </td>
+
+                        <td class="amount-cell">
+                            ${money(x.amount)}
+                        </td>
+
+                        ${
+                            showDelete
+                            ? `
+
+                            <td>
+
+                                <button
+                                    class="btn danger"
+                                    style="padding:6px 9px;font-size:11px"
+                                    onclick="deleteRecord('${x.id}')"
+                                >
+                                    🗑 Delete
+                                </button>
+
+                            </td>
+
+                            `
+                            : ""
+                        }
+
+                    </tr>
+
+                    `).join("")
+                }
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   INCOME TABLE
+========================================================= */
+
+function renderIncome(){
+
+    const search =
+        document.getElementById("incomeSearch")
+        ?.value
+        .trim()
+        .toLowerCase() || "";
+
+    const rows =
+        allData.filter(x=>
+            x.recordType==="income" &&
+            (
+                !search ||
+                String(x.person||"")
+                    .toLowerCase()
+                    .includes(search) ||
+                String(x.category||"")
+                    .toLowerCase()
+                    .includes(search)
+            )
+        );
+
+    const el =
+        document.getElementById("incomeTable");
+
+    if(el)
+        el.innerHTML=tableHTML(rows);
+
+}
+
+
+/* =========================================================
+   EXPENSE TABLE
+========================================================= */
+
+function renderExpense(){
+
+    const search =
+        document.getElementById("expenseSearch")
+        ?.value
+        .trim()
+        .toLowerCase() || "";
+
+    const rows =
+        allData.filter(x=>
+            x.recordType==="expense" &&
+            (
+                !search ||
+                String(x.person||"")
+                    .toLowerCase()
+                    .includes(search) ||
+                String(x.category||"")
+                    .toLowerCase()
+                    .includes(search)
+            )
+        );
+
+    const el =
+        document.getElementById("expenseTable");
+
+    if(el)
+        el.innerHTML=tableHTML(rows);
+
+}
+
+
+/* =========================================================
+   DEPOSIT TABLE
+========================================================= */
+
+function renderDeposit(){
+
+    const rows =
+        allData.filter(
+            x=>x.recordType==="deposit"
+        );
+
+    const el =
+        document.getElementById("depositTable");
+
+    if(!el)return;
+
+    if(!rows.length){
+
+        el.innerHTML=
+            `<div class="empty">
+                வைப்பு பதிவுகள் இல்லை
+            </div>`;
+
+        return;
+
+    }
+
+    el.innerHTML=`
+
+        <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>தேதி</th>
+                    <th>பெயர்</th>
+                    <th>பெற்றது</th>
+                    <th>திருப்பியது</th>
+                    <th>நிலுவை</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${
+                    rows.map(x=>`
+
+                    <tr>
+
+                        <td>${escapeHTML(x.date||"")}</td>
+
+                        <td>${escapeHTML(x.person||"")}</td>
+
+                        <td class="amount-cell">
+                            ${money(x.given)}
+                        </td>
+
+                        <td class="amount-cell">
+                            ${money(x.returned)}
+                        </td>
+
+                        <td class="amount-cell red">
+                            ${money(x.pending)}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn danger"
+                                style="padding:6px 9px;font-size:11px"
+                                onclick="deleteRecord('${x.id}')"
+                            >
+                                🗑
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    `).join("")
+                }
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SPLIT TABLE
+========================================================= */
+
+function renderSplit(){
+
+    const rows =
+        allData.filter(
+            x=>x.recordType==="split"
+        );
+
+    const el =
+        document.getElementById("splitTable");
+
+    if(el)
+        el.innerHTML=tableHTML(rows);
+
+}
+
+
+/* =========================================================
+   COLLECTION TABLE
+========================================================= */
+
+function renderCollection(){
+
+    const rows =
+        allData.filter(
+            x=>x.recordType==="collection"
+        );
+
+    const el =
+        document.getElementById("collectionTable");
+
+    if(el)
+        el.innerHTML=tableHTML(rows);
+
+}
+
+
+/* =========================================================
+   REPORT
+========================================================= */
+
+function renderReport(){
+
+    const t=calculate();
+
+    document.getElementById("reportIncome").textContent=money(t.income);
+
+    document.getElementById("reportExpense").textContent=money(t.expense);
+
+    document.getElementById("reportSplit").textContent=money(t.split);
+
+    document.getElementById("reportCollection").textContent=money(t.collectionTotal);
+
+    document.getElementById("rIncome").textContent=money(t.income);
+
+    document.getElementById("rExpense").textContent=money(t.expense);
+
+    document.getElementById("rSplit").textContent=money(t.split);
+
+    document.getElementById("rCollection").textContent=money(t.collectionTotal);
+
+    document.getElementById("rPending").textContent=money(t.pendingSplit);
+
+    document.getElementById("rBalance").textContent=money(t.balance);
+
+
+    const all =
+        document.getElementById("allTable");
+
+    if(all)
+        all.innerHTML=tableHTML(allData);
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+window.deleteRecord=async function(id){
+
+    const confirmed =
+        confirm(
+            "இந்த பதிவை Delete செய்ய வேண்டுமா?"
+        );
+
+    if(!confirmed)return;
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                PUDAVAI_COLLECTION,
+                id
+            )
+        );
+
+        alert("✅ பதிவு Delete செய்யப்பட்டது");
+
+        await loadAll();
+
+    }catch(error){
+
+        alert(
+            "❌ Delete Error:\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+.getElementById("incomeSearch")
+.addEventListener(
+    "input",
+    renderIncome
+);
+
+document
+.getElementById("expenseSearch")
+.addEventListener(
+    "input",
+    renderExpense
+);
+
+
+/* =========================================================
+   INITIAL IMPORT LIST
+========================================================= */
+
+function renderImportLists(){
+
+    document.getElementById("expenseImportList").innerHTML =
+
+        initialExpenses
+        .map((x,i)=>`
+
+            <div class="import-row">
+                ${i+1}. ${escapeHTML(x[0])}
+                — ${money(x[1])}
+            </div>
+
+        `)
+        .join("");
+
+
+    document.getElementById("incomeImportList").innerHTML =
+
+        initialIncome
+        .map((x,i)=>`
+
+            <div class="import-row">
+                ${i+1}. ${escapeHTML(x[0])}
+                — ${money(x[1])}
+            </div>
+
+        `)
+        .join("");
+
+}
+
+
+/* =========================================================
+   INITIAL IMPORT
+========================================================= */
+
+window.importInitialData=async function(){
+
+    const confirmed =
+        confirm(
+            "2026 ஆரம்ப புடவை கணக்கை Firebase-ல் Import செய்ய வேண்டுமா?\n\n" +
+            "19 செலவு + அனைத்து வழங்கப்பட்ட வரவு பதிவுகளும் சேர்க்கப்படும்.\n\n" +
+            "இந்த button-ஐ duplicate ஆக அழுத்த வேண்டாம்."
+        );
+
+    if(!confirmed)return;
+
+
+    const status =
+        document.getElementById("importStatus");
+
+    status.textContent =
+        "⏳ Firebase-ல் Import செய்கிறது...";
+
+    status.className =
+        "message show";
+
+
+    try{
+
+        /*
+          Duplicate prevention:
+          Check a special import marker.
+        */
+
+        const existing =
+            await getDocs(
+                collection(
+                    db,
+                    PUDAVAI_COLLECTION
+                )
+            );
+
+
+        let alreadyImported=false;
+
+        existing.forEach(d=>{
+
+            const x=d.data();
+
+            if(
+                x.recordType==="import_marker" &&
+                x.importKey==="PUDAVAI_2026_INITIAL"
+            ){
+
+                alreadyImported=true;
+
+            }
+
+        });
+
+
+        if(alreadyImported){
+
+            status.textContent =
+                "⚠️ 2026 Initial Data ஏற்கனவே Import செய்யப்பட்டுள்ளது.";
+
+            status.className =
+                "message show error-msg";
+
+            return;
+
+        }
+
+
+        let count=0;
+
+
+        /* EXPENSE */
+
+        for(
+            const item
+            of initialExpenses
+        ){
+
+            await addDoc(
+
+                collection(
+                    db,
+                    PUDAVAI_COLLECTION
+                ),
+
+                {
+
+                    recordType:"expense",
+
+                    date:"2026-07-19",
+
+                    person:item[0],
+
+                    category:item[0],
+
+                    amount:item[1],
+
+                    note:"2026 புடவை ஆரம்ப கணக்கு",
+
+                    importKey:
+                        "PUDAVAI_2026_INITIAL",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+            count++;
+
+        }
+
+
+        /* INCOME */
+
+        for(
+            const item
+            of initialIncome
+        ){
+
+            await addDoc(
+
+                collection(
+                    db,
+                    PUDAVAI_COLLECTION
+                ),
+
+                {
+
+                    recordType:"income",
+
+                    date:"2026-07-19",
+
+                    person:item[0],
+
+                    category:item[2],
+
+                    amount:item[1],
+
+                    note:"2026 புடவை ஆரம்ப கணக்கு",
+
+                    importKey:
+                        "PUDAVAI_2026_INITIAL",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+            count++;
+
+        }
+
+
+        /* MARKER */
+
+        await addDoc(
+
+            collection(
+                db,
+                PUDAVAI_COLLECTION
+            ),
+
+            {
+
+                recordType:"import_marker",
+
+                importKey:
+                    "PUDAVAI_2026_INITIAL",
+
+                importedCount:
+                    count,
+
+                importedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        status.textContent =
+            `✅ Import completed — ${count} records added`;
+
+        status.className =
+            "message show success-msg";
+
+
+        await loadAll();
+
+
+    }catch(error){
+
+        console.error(
+            "Initial Import Error:",
+            error
+        );
+
+        status.textContent =
+            "❌ Import Error: " +
+            error.message;
+
+        status.className =
+            "message show error-msg";
+
+    }
+
+};
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   DEFAULT DATES
+========================================================= */
+
+function setDefaultDates(){
+
+    const ids=[
+        "incomeDate",
+        "expenseDate",
+        "depositDate",
+        "splitDate",
+        "collectionDate"
+    ];
+
+    ids.forEach(id=>{
+
+        const el=document.getElementById(id);
+
+        if(el)el.value=today();
+
+    });
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+renderImportLists();
+
+setDefaultDates();
+
+loadAll();
+
+</script>
+
+</body>
+</html>

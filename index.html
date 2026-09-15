@@ -2,18 +2,12 @@
 <html lang="ta">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>
-        P.K. வேலம்பாளையம் கிழக்கு
-    </title>
-
+    <title>PKV East - Login</title>
 
     <style>
 
@@ -21,1181 +15,240 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             font-family:
                 Arial,
                 "Noto Sans Tamil",
                 sans-serif;
 
-            background: #f5f6fa;
-
-            color: #222;
-
+            background:
+                linear-gradient(
+                    135deg,
+                    #581c87,
+                    #7e22ce,
+                    #9333ea
+                );
         }
 
-
-        /* ==================================================
-           HEADER
-        ================================================== */
-
-        header {
-
-            background: #6b21a8;
-
-            color: white;
-
-            padding: 18px;
-
-            text-align: center;
-
-            position: sticky;
-
-            top: 0;
-
-            z-index: 100;
-
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
         }
 
-
-        header h1 {
-
-            margin: 0;
-
-            font-size: 22px;
-
-        }
-
-
-        header p {
-
-            margin: 6px 0 0;
-
-            font-size: 13px;
-
-        }
-
-
-        /* ==================================================
-           APP LAYOUT
-        ================================================== */
-
-        .app-layout {
-
-            display: flex;
-
-            min-height:
-                calc(100vh - 94px);
-
-        }
-
-
-        /* ==================================================
-           SIDEBAR
-        ================================================== */
-
-        .sidebar {
-
-            width: 270px;
-
-            min-width: 270px;
-
+        .login-box {
             background: white;
 
-            border-right:
-                1px solid #e5e7eb;
+            border-radius: 20px;
 
-            padding: 18px 12px;
+            padding: 30px;
 
             box-shadow:
-                2px 0 8px #0000000d;
+                0 20px 50px
+                rgba(0,0,0,0.25);
 
-            position: sticky;
-
-            top: 94px;
-
-            height:
-                calc(100vh - 94px);
-
-            overflow-y: auto;
-
+            text-align: center;
         }
 
+        .logo {
+            width: 75px;
+            height: 75px;
 
-        .sidebar-title {
+            margin: 0 auto 15px;
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            padding:
-                8px 10px 16px;
-
-            border-bottom:
-                1px solid #eeeeee;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .sidebar-title-icon {
-
-            font-size: 25px;
-
-        }
-
-
-        .sidebar-title h2 {
-
-            margin: 0;
-
-            font-size: 18px;
-
-        }
-
-
-        .sidebar-title p {
-
-            margin:
-                3px 0 0;
-
-            color: #777;
-
-            font-size: 11px;
-
-        }
-
-
-        .sidebar-menu {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 6px;
-
-        }
-
-
-        .side-menu {
-
-            width: 100%;
-
-            border: 0;
-
-            background: transparent;
-
-            border-radius: 11px;
-
-            padding: 12px 10px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 11px;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-
-            color: #222;
-
-        }
-
-
-        .side-menu:hover {
-
-            background: #faf5ff;
-
-            transform:
-                translateX(2px);
-
-        }
-
-
-        .side-menu.active {
+            border-radius: 50%;
 
             background: #f3e8ff;
 
-            box-shadow:
-                inset 3px 0 0 #6b21a8;
-
-        }
-
-
-        .side-icon {
-
-            width: 38px;
-
-            min-width: 38px;
-
-            height: 38px;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            font-size: 21px;
-
-            background: #f8f8f8;
-
-            border-radius: 9px;
-
+            font-size: 38px;
         }
 
+        h1 {
+            margin: 0;
 
-        .side-menu-text {
-
-            flex: 1;
-
-            min-width: 0;
-
-        }
-
-
-        .side-menu b {
-
-            display: block;
-
-            font-size: 15px;
-
-            line-height: 1.3;
-
-        }
-
-
-        .side-menu small {
-
-            display: block;
-
-            margin-top: 3px;
-
-            color: #777;
-
-            font-size: 10px;
-
-            line-height: 1.3;
-
-        }
-
-
-        /* ==================================================
-           MAIN CONTENT
-        ================================================== */
-
-        .main-content {
-
-            flex: 1;
-
-            min-width: 0;
-
-            padding: 22px;
-
-        }
-
-
-        #home {
-
-            max-width: 1100px;
-
-            margin: auto;
-
-        }
-
-
-        .dashboard-title {
-
-            margin:
-                0 0 16px;
-
-            font-size: 22px;
-
-        }
-
-
-        /* ==================================================
-           DASHBOARD CARDS
-        ================================================== */
-
-        .cards {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 12px;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .card {
-
-            background: white;
-
-            padding: 17px;
-
-            border-radius: 14px;
-
-            box-shadow:
-                0 2px 8px #0001;
-
-        }
-
-
-        .card small {
-
-            color: #666;
-
-            font-size: 13px;
-
-        }
-
-
-        .amount {
-
-            margin-top: 7px;
+            color: #581c87;
 
             font-size: 23px;
 
-            font-weight: bold;
-
+            line-height: 1.4;
         }
 
-
-        .green {
-
-            color: #16803c;
-
-        }
-
-
-        .red {
-
-            color: #c62828;
-
-        }
-
-
-        .purple {
-
-            color: #6b21a8;
-
-        }
-
-
-        .black {
-
-            color: #111827;
-
-        }
-
-
-        .section-title {
-
-            margin:
-                0 0 15px;
-
-            font-size: 21px;
-
-        }
-
-
-        /* ==================================================
-           HOME INFO
-        ================================================== */
-
-        .home-info {
-
-            background: white;
-
-            border-radius: 14px;
-
-            padding: 18px;
-
-            box-shadow:
-                0 2px 8px #0001;
-
-        }
-
-
-        .home-info h3 {
-
-            margin:
-                0 0 8px;
-
-            font-size: 17px;
-
-        }
-
-
-        .home-info p {
-
-            margin: 0;
-
-            color: #666;
-
-            font-size: 13px;
-
-        }
-
-
-        /* ==================================================
-           PAGE
-        ================================================== */
-
-        .page {
-
-            display: none;
-
-            max-width: 1100px;
-
-            margin: auto;
-
-        }
-
-
-        /* ==================================================
-           BACK BUTTON
-        ================================================== */
-
-        .back {
-
-            border: 0;
-
-            padding:
-                10px 15px;
-
-            border-radius: 9px;
-
-            cursor: pointer;
-
-            margin-bottom: 14px;
-
-            background: white;
-
-            box-shadow:
-                0 2px 6px #0001;
-
-            font-size: 14px;
-
-        }
-
-
-        .back:hover {
-
-            background: #faf5ff;
-
-        }
-
-
-        /* ==================================================
-           MODULE HEADER
-        ================================================== */
-
-        .module-header {
-
-            background: white;
-
-            padding: 17px;
-
-            border-radius: 14px;
-
-            box-shadow:
-                0 2px 8px #0001;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .module-header h2 {
-
-            margin: 0;
-
-            font-size: 21px;
-
-        }
-
-
-        .module-header p {
-
-            margin:
-                5px 0 0;
+        .subtitle {
+            margin: 7px 0 25px;
 
             color: #777;
 
             font-size: 13px;
-
         }
 
-
-        /* ==================================================
-           MENU GRID
-        ================================================== */
-
-        .menu-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 12px;
-
-        }
-
-
-        .menu {
-
-            border: 0;
-
-            background: white;
-
-            padding: 18px;
-
-            border-radius: 14px;
-
+        .form-group {
             text-align: left;
 
-            box-shadow:
-                0 2px 8px #0001;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-
+            margin-bottom: 16px;
         }
-
-
-        .menu:hover {
-
-            background: #faf5ff;
-
-            transform:
-                translateY(-2px);
-
-        }
-
-
-        .menu b {
-
-            display: block;
-
-            font-size: 16px;
-
-            margin-bottom: 6px;
-
-        }
-
-
-        .menu span {
-
-            color: #666;
-
-            font-size: 12px;
-
-        }
-
-
-        /* ==================================================
-           FORM
-        ================================================== */
-
-        .form {
-
-            background: white;
-
-            padding: 18px;
-
-            border-radius: 14px;
-
-            box-shadow:
-                0 2px 8px #0001;
-
-        }
-
-
-        .form-title {
-
-            margin:
-                0 0 15px;
-
-            font-size: 19px;
-
-        }
-
 
         label {
-
             display: block;
 
-            margin-top: 11px;
+            margin-bottom: 6px;
 
             font-weight: bold;
 
             font-size: 14px;
 
+            color: #333;
         }
 
-
-        input,
-        select,
-        textarea {
-
+        input {
             width: 100%;
 
-            padding: 11px;
-
-            margin-top: 5px;
+            padding: 13px;
 
             border:
                 1px solid #ddd;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
-            font-size: 15px;
+            font-size: 16px;
 
             outline: none;
 
-            font-family:
-                Arial,
-                "Noto Sans Tamil",
-                sans-serif;
-
+            transition: 0.2s;
         }
 
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-
-            border-color:
-                #6b21a8;
+        input:focus {
+            border-color: #7e22ce;
 
             box-shadow:
-                0 0 0 2px #6b21a822;
-
+                0 0 0 3px
+                #7e22ce22;
         }
 
+        .login-button {
+            width: 100%;
 
-        textarea {
+            border: 0;
 
-            min-height: 140px;
+            padding: 14px;
 
-            resize: vertical;
+            margin-top: 8px;
 
-        }
-
-
-        .save {
-
-            margin-top: 15px;
+            border-radius: 10px;
 
             background: #6b21a8;
 
             color: white;
 
-            border: 0;
-
-            padding:
-                12px 20px;
-
-            border-radius: 9px;
-
-            cursor: pointer;
-
-            font-size: 14px;
-
-        }
-
-
-        .save:hover {
-
-            background: #581c87;
-
-        }
-
-
-        .cancel {
-
-            margin-top: 15px;
-
-            margin-left: 8px;
-
-            background: #eeeeee;
-
-            color: #333;
-
-            border: 0;
-
-            padding:
-                12px 20px;
-
-            border-radius: 9px;
-
-            cursor: pointer;
-
-            font-size: 14px;
-
-        }
-
-
-        .cancel:hover {
-
-            background: #ddd;
-
-        }
-
-
-        /* ==================================================
-           DECISION LIST
-        ================================================== */
-
-        .decision-list {
-
-            margin-top: 22px;
-
-        }
-
-
-        .decision-list-header {
-
-            background: white;
-
-            padding: 16px;
-
-            border-radius: 14px;
-
-            box-shadow:
-                0 2px 8px #0001;
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .decision-list-header h3 {
-
-            margin:
-                0 0 12px;
-
-            font-size: 18px;
-
-        }
-
-
-        .decision-search {
-
-            width: 100%;
-
-        }
-
-
-        .decision-card {
-
-            background: white;
-
-            padding: 16px;
-
-            margin-bottom: 10px;
-
-            border-radius: 13px;
-
-            box-shadow:
-                0 2px 7px #0001;
-
-        }
-
-
-        .decision-top {
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items: center;
-
-            gap: 10px;
-
-        }
-
-
-        .decision-number {
+            font-size: 16px;
 
             font-weight: bold;
 
-            color: #6b21a8;
-
-            font-size: 16px;
-
-        }
-
-
-        .decision-date {
-
-            color: #777;
-
-            font-size: 12px;
-
-        }
-
-
-        .decision-description {
-
-            margin-top: 10px;
-
-            line-height: 1.6;
-
-            white-space: pre-wrap;
-
-            font-size: 14px;
-
-        }
-
-
-        .status {
-
-            display: inline-block;
-
-            margin-top: 10px;
-
-            padding:
-                5px 10px;
-
-            border-radius: 20px;
-
-            font-size: 11px;
-
-            background: #f3e8ff;
-
-            color: #6b21a8;
-
-        }
-
-
-        .decision-actions {
-
-            display: flex;
-
-            gap: 7px;
-
-            margin-top: 13px;
-
-        }
-
-
-        .edit-btn {
-
-            border: 0;
-
-            background: #e0f2fe;
-
-            color: #0369a1;
-
-            padding:
-                8px 12px;
-
-            border-radius: 7px;
-
             cursor: pointer;
 
+            transition: 0.2s;
         }
 
-
-        .delete-btn {
-
-            border: 0;
-
-            background: #fee2e2;
-
-            color: #dc2626;
-
-            padding:
-                8px 12px;
-
-            border-radius: 7px;
-
-            cursor: pointer;
-
+        .login-button:hover {
+            background: #581c87;
         }
 
-
-        .edit-btn:hover {
-
-            background: #bae6fd;
-
+        .login-button:active {
+            transform: scale(0.99);
         }
 
+        .login-button:disabled {
+            opacity: 0.7;
 
-        .delete-btn:hover {
-
-            background: #fecaca;
-
+            cursor: not-allowed;
         }
 
-
-        .empty {
-
-            background: white;
-
-            padding: 25px;
-
-            text-align: center;
-
-            color: #777;
-
-            border-radius: 12px;
-
-        }
-
-
-        .loading {
-
-            padding: 15px;
-
-            text-align: center;
-
-            color: #666;
-
-        }
-
-
-        /* ==================================================
-           MESSAGE
-        ================================================== */
-
-        .message {
-
-            margin-top: 12px;
-
-            padding: 10px;
-
-            border-radius: 8px;
-
-            font-size: 13px;
-
+        .error {
             display: none;
 
-        }
+            margin-top: 15px;
 
+            padding: 11px;
 
-        .message.success {
-
-            display: block;
-
-            background: #dcfce7;
-
-            color: #166534;
-
-        }
-
-
-        .message.error {
-
-            display: block;
+            border-radius: 9px;
 
             background: #fee2e2;
 
             color: #991b1b;
 
+            font-size: 13px;
+
+            text-align: left;
+
+            line-height: 1.5;
         }
 
+        .success {
+            display: none;
 
-        /* ==================================================
-           MOBILE
-        ================================================== */
+            margin-top: 15px;
 
-        @media (max-width: 800px) {
+            padding: 11px;
 
-            .app-layout {
+            border-radius: 9px;
 
-                flex-direction: column;
+            background: #dcfce7;
 
-            }
+            color: #166534;
 
+            font-size: 13px;
 
-            .sidebar {
+            text-align: left;
 
-                width: 100%;
-
-                min-width: 100%;
-
-                height: auto;
-
-                position: static;
-
-                border-right: 0;
-
-                border-bottom:
-                    1px solid #e5e7eb;
-
-                padding: 10px;
-
-            }
-
-
-            .sidebar-title {
-
-                padding:
-                    6px 8px 10px;
-
-            }
-
-
-            .sidebar-menu {
-
-                display: grid;
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 6px;
-
-            }
-
-
-            .side-menu {
-
-                padding: 9px;
-
-            }
-
-
-            .side-menu b {
-
-                font-size: 13px;
-
-            }
-
-
-            .side-menu small {
-
-                font-size: 9px;
-
-            }
-
-
-            .main-content {
-
-                padding: 15px;
-
-            }
-
+            line-height: 1.5;
         }
 
+        .login-info {
+            margin-top: 20px;
 
-        /* ==================================================
-           SMALL MOBILE
-        ================================================== */
+            padding: 12px;
+
+            background: #faf5ff;
+
+            border-radius: 10px;
+
+            color: #6b21a8;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .footer {
+            margin-top: 20px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
 
         @media (max-width: 500px) {
 
-            header {
-
-                padding:
-                    15px 10px;
-
+            .login-container {
+                padding: 15px;
             }
 
-
-            header h1 {
-
-                font-size: 18px;
-
+            .login-box {
+                padding: 25px 20px;
             }
 
-
-            header p {
-
-                font-size: 11px;
-
-            }
-
-
-            .sidebar-menu {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .cards {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 8px;
-
-            }
-
-
-            .card {
-
-                padding: 13px;
-
-            }
-
-
-            .amount {
-
-                font-size: 18px;
-
-            }
-
-
-            .menu-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .dashboard-title {
-
+            h1 {
                 font-size: 20px;
-
-            }
-
-
-            .section-title {
-
-                font-size: 19px;
-
-            }
-
-
-            .decision-top {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-            }
-
-
-            .decision-actions {
-
-                flex-wrap: wrap;
-
             }
 
         }
@@ -1208,2824 +261,396 @@
 <body>
 
 
-<!-- ==================================================
-     HEADER
-================================================== -->
+    <div class="login-container">
 
-<header>
-
-    <h1>
-        🛕 P.K. வேலம்பாளையம் கிழக்கு
-    </h1>
-
-    <p>
-        வரவு • செலவு • கையிருப்பு கணக்கு
-    </p>
-
-</header>
+        <div class="login-box">
 
 
+            <!-- LOGO -->
 
-<!-- ==================================================
-     APP LAYOUT
-================================================== -->
-
-<div class="app-layout">
-
-
-    <!-- ==================================================
-         LEFT SIDEBAR
-    ================================================== -->
-
-    <aside class="sidebar">
-
-
-        <div class="sidebar-title">
-
-            <div class="sidebar-title-icon">
-                📋
+            <div class="logo">
+                🛕
             </div>
 
-            <div>
 
-                <h2>
-                    முக்கிய பிரிவுகள்
-                </h2>
+            <!-- TITLE -->
 
-                <p>
-                    Main Sections
-                </p>
+            <h1>
+                P.K. வேலம்பாளையம் கிழக்கு
+            </h1>
 
+
+            <div class="subtitle">
+                வரவு • செலவு • கையிருப்பு கணக்கு
             </div>
 
-        </div>
 
+            <!-- LOGIN FORM -->
 
-
-        <div class="sidebar-menu">
-
-
-            <!-- MEMBER -->
-
-            <button
-                id="sideMember"
-                class="side-menu"
-                onclick="
-                    window.location.href =
-                    'pages/member.html?view=list'
-                "
+            <form
+                id="loginForm"
+                autocomplete="on"
             >
 
-                <div class="side-icon">
-                    👥
-                </div>
 
-                <div class="side-menu-text">
-
-                    <b>
-                        Member List
-                    </b>
-
-                    <small>
-                        உறுப்பினர் பட்டியல்
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- PODAVI -->
-
-            <button
-                id="sidePodavi"
-                class="side-menu"
-                onclick="
-                    openModule('podavi')
-                "
-            >
-
-                <div class="side-icon">
-                    📒
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        Podavi
-                    </b>
-
-                    <small>
-                        Income • Expense • Split
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- FUND -->
-
-            <button
-                id="sideFund"
-                class="side-menu"
-                onclick="
-                    openModule('fund')
-                "
-            >
-
-                <div class="side-icon">
-                    💰
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        Fund
-                    </b>
-
-                    <small>
-                        Collection • Split • Report
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- PKV KOVIL -->
-
-            <button
-                id="sideKovil"
-                class="side-menu"
-                onclick="
-                    openModule('kovil')
-                "
-            >
-
-                <div class="side-icon">
-                    🛕
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        PKV Kovil
-                    </b>
-
-                    <small>
-                        Income • Expense • Report
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- AMAVASAI -->
-
-            <button
-                id="sideAmavasai"
-                class="side-menu"
-                onclick="
-                    openModule('amavasai')
-                "
-            >
-
-                <div class="side-icon">
-                    🌙
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        அமாவாசை பூஜை
-                    </b>
-
-                    <small>
-                        Income • Expense • Report
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- TOUR -->
-
-            <button
-                id="sideTour"
-                class="side-menu"
-                onclick="
-                    window.location.href='pages/tour.html'
-                "
-            >
-
-                <div class="side-icon">
-                    🚌
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        Tour
-                    </b>
-
-                    <small>
-                        சுற்றுலா
-                    </small>
-
-                </div>
-
-            </button>
-
-
-
-            <!-- DECISION -->
-
-            <button
-                id="sideDecision"
-                class="side-menu"
-                onclick="
-                    openModule('decision')
-                "
-            >
-
-                <div class="side-icon">
-                    📜
-                </div>
-
-                <div class="side-menu-text">
-
-                    <b>
-                        தீர்மானம்
-                    </b>
-
-                    <small>
-                        தீர்மான பதிவு
-                    </small>
-
-                </div>
-
-            </button>
-
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- ==================================================
-         MAIN CONTENT
-    ================================================== -->
-
-    <main class="main-content">
-
-
-        <!-- ==================================================
-             HOME
-        ================================================== -->
-
-        <div id="home">
-
-
-            <h2 class="dashboard-title">
-                Dashboard
-            </h2>
-
-
-
-            <div class="cards">
-
-
-                <div class="card">
-
-                    <small>
-                        மொத்த வரவு
-                    </small>
-
-                    <div
-                        id="totalIncome"
-                        class="amount green"
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        placeholder="Username"
+                        autocomplete="username"
+                        required
+                        autofocus
                     >
-                        ₹0
-                    </div>
 
                 </div>
 
 
+                <!-- PASSWORD -->
 
-                <div class="card">
+                <div class="form-group">
 
-                    <small>
-                        மொத்த செலவு
-                    </small>
+                    <label for="password">
+                        Password
+                    </label>
 
-                    <div
-                        id="totalExpense"
-                        class="amount red"
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
                     >
-                        ₹0
-                    </div>
 
                 </div>
 
 
+                <!-- LOGIN BUTTON -->
 
-                <div class="card">
-
-                    <small>
-                        கையிருப்பு
-                    </small>
-
-                    <div
-                        id="balance"
-                        class="amount purple"
-                    >
-                        ₹0
-                    </div>
-
-                </div>
+                <button
+                    id="loginButton"
+                    class="login-button"
+                    type="submit"
+                >
+                    🔐 Login
+                </button>
 
 
+                <!-- ERROR -->
 
-                <div class="card">
+                <div
+                    id="errorMessage"
+                    class="error"
+                ></div>
 
-                    <small>
-                        TOUR
-                    </small>
 
-                    <div
-                        id="totalSplit"
-                        class="amount black"
-                    >
-                        ₹0
-                    </div>
+                <!-- SUCCESS -->
 
-                </div>
+                <div
+                    id="successMessage"
+                    class="success"
+                ></div>
 
+
+            </form>
+
+
+            <!-- DEMO LOGIN -->
+
+            <div class="login-info">
+
+                <b>Demo Login</b>
+
+                <br>
+
+                Username:
+                <b>admin</b>
+
+                <br>
+
+                Password:
+                <b>admin123</b>
 
             </div>
 
-        </div>
 
+            <!-- FOOTER -->
 
+            <div class="footer">
 
-        <!-- ==================================================
-             DYNAMIC PAGE
-        ================================================== -->
+                PKV East Accounting System
 
-        <div
-            id="page"
-            class="page"
-        ></div>
-
-
-    </main>
-
-
-</div>
-
-
-
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
-
-<script type="module">
-
-
-import {
-
-    db,
-
-    collection,
-
-    addDoc,
-
-    getDocs,
-
-    updateDoc,
-
-    deleteDoc,
-
-    doc,
-
-    serverTimestamp
-
-}
-from "./firebase.js";
-
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const home =
-    document.getElementById(
-        "home"
-    );
-
-
-const page =
-    document.getElementById(
-        "page"
-    );
-
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-let totalIncome = 0;
-
-let totalExpense = 0;
-
-let totalSplit = 0;
-
-
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-const sidebarButtons = {
-
-    podavi:
-        document.getElementById(
-            "sidePodavi"
-        ),
-
-    fund:
-        document.getElementById(
-            "sideFund"
-        ),
-
-    kovil:
-        document.getElementById(
-            "sideKovil"
-        ),
-
-    amavasai:
-        document.getElementById(
-            "sideAmavasai"
-        ),
-
-    tour:
-        document.getElementById(
-            "sideTour"
-        ),
-
-    decision:
-        document.getElementById(
-            "sideDecision"
-        )
-
-};
-
-
-
-/* =====================================================
-   MODULES
-===================================================== */
-
-const modules = {
-
-
-    podavi: {
-
-        title:
-            "📒 Podavi",
-
-        subtitle:
-            "போடவி கணக்கு",
-
-        menus: [
-
-            "Income & Expense",
-
-            "Balance Amount Split to Member",
-
-            "Split Amount Collected from Member",
-
-            "Report"
-
-        ]
-
-    },
-
-
-    fund: {
-
-        title:
-            "💰 Fund",
-
-        subtitle:
-            "நிதி கணக்கு",
-
-        menus: [
-
-            "Collection",
-
-            "Split Amount to Member",
-
-            "Split Amount Collected from Member",
-
-            "Report"
-
-        ]
-
-    },
-
-
-    kovil: {
-
-        title:
-            "🛕 PKV Kovil",
-
-        subtitle:
-            "கோவில் கணக்கு",
-
-        menus: [
-
-            "Income & Expense",
-
-            "Report"
-
-        ]
-
-    },
-
-
-    amavasai: {
-
-        title:
-            "🌙 அமாவாசை பூஜை",
-
-        subtitle:
-            "அமாவாசை பூஜை கணக்கு",
-
-        menus: [
-
-            "Income & Expense",
-
-            "Report"
-
-        ]
-
-    },
-
-
-    tour: {
-
-        title:
-            "🚌 Tour",
-
-        subtitle:
-            "சுற்றுலா கணக்கு",
-
-        menus: [
-
-            "Income & Expense"
-
-        ]
-
-    },
-
-
-    decision: {
-
-        title:
-            "📜 தீர்மானம்",
-
-        subtitle:
-            "தீர்மான பதிவு",
-
-        menus: [
-
-            "தீர்மான பதிவு"
-
-        ]
-
-    }
-
-};
-
-
-
-/* =====================================================
-   SIDEBAR ACTIVE
-===================================================== */
-
-function clearSidebarActive() {
-
-    document
-        .querySelectorAll(
-            ".side-menu"
-        )
-        .forEach(
-            button => {
-
-                button.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-}
-
-
-function setSidebarActive(
-    moduleName
-) {
-
-    clearSidebarActive();
-
-    const button =
-        sidebarButtons[
-            moduleName
-        ];
-
-    if (button) {
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-function showHomePage() {
-
-    page.style.display =
-        "none";
-
-    page.innerHTML =
-        "";
-
-    home.style.display =
-        "block";
-
-    clearSidebarActive();
-
-    loadDashboard();
-
-}
-
-
-window.goHome =
-function() {
-
-    showHomePage();
-
-};
-
-
-
-/* =====================================================
-   OPEN MODULE
-===================================================== */
-
-window.openModule =
-function(moduleName) {
-
-
-    const module =
-        modules[
-            moduleName
-        ];
-
-
-    if (!module) {
-
-        console.error(
-            "Module not found:",
-            moduleName
-        );
-
-        return;
-
-    }
-
-
-
-    setSidebarActive(
-        moduleName
-    );
-
-
-
-    home.style.display =
-        "none";
-
-    page.style.display =
-        "block";
-
-
-
-    /* =================================================
-       SPECIAL DECISION PAGE
-    ================================================= */
-
-    if (
-        moduleName ===
-        "decision"
-    ) {
-
-        openDecisionPage();
-
-        return;
-
-    }
-
-
-
-    /* =================================================
-       NORMAL MODULE
-    ================================================= */
-
-    page.innerHTML = `
-
-        <button
-            class="back"
-            onclick="goHome()"
-        >
-            ← முகப்பு
-        </button>
-
-
-        <div
-            class="module-header"
-        >
-
-            <h2>
-                ${escapeHTML(
-                    module.title
-                )}
-            </h2>
-
-            <p>
-                ${escapeHTML(
-                    module.subtitle
-                )}
-            </p>
-
-        </div>
-
-
-        <div
-            class="menu-grid"
-        >
-
-            ${
-                module.menus
-                    .map(
-                        menu => `
-
-                            <button
-                                class="menu"
-                                onclick="
-                                    openForm(
-                                        '${moduleName}',
-                                        '${escapeAttribute(menu)}'
-                                    )
-                                "
-                            >
-
-                                <b>
-                                    ${escapeHTML(
-                                        menu
-                                    )}
-                                </b>
-
-                                <span>
-                                    பதிவு / கணக்கு
-                                </span>
-
-                            </button>
-
-                        `
-                    )
-                    .join("")
-            }
-
-        </div>
-
-    `;
-
-};
-
-
-
-/* =====================================================
-   CATEGORY
-===================================================== */
-
-function getCategories(type) {
-
-
-    const lowerType =
-        String(type)
-            .toLowerCase();
-
-
-
-    /* =================================================
-       EXPENSE
-    ================================================= */
-
-    if (
-
-        lowerType.includes(
-            "expense"
-        ) ||
-
-        lowerType.includes(
-            "செலவு"
-        )
-
-    ) {
-
-        return `
-
-            <option value="பூஜை பொருட்கள்">
-                பூஜை பொருட்கள்
-            </option>
-
-            <option value="பூ / மாலை">
-                பூ / மாலை
-            </option>
-
-            <option value="கற்பூரம்">
-                கற்பூரம்
-            </option>
-
-            <option value="எண்ணெய்">
-                எண்ணெய்
-            </option>
-
-            <option value="மின்சாரம்">
-                மின்சாரம்
-            </option>
-
-            <option value="பராமரிப்பு">
-                பராமரிப்பு
-            </option>
-
-            <option value="திருவிழா">
-                திருவிழா
-            </option>
-
-            <option value="அன்னதானம்">
-                அன்னதானம்
-            </option>
-
-            <option value="பயணம்">
-                பயணம்
-            </option>
-
-            <option value="கட்டுமானம்">
-                கட்டுமானம்
-            </option>
-
-            <option value="மற்றவை">
-                மற்றவை
-            </option>
-
-        `;
-
-    }
-
-
-
-    /* =================================================
-       SPLIT
-    ================================================= */
-
-    if (
-        lowerType.includes(
-            "split"
-        )
-    ) {
-
-        return `
-
-            <option value="பூஜை செலவு">
-                பூஜை செலவு
-            </option>
-
-            <option value="திருவிழா செலவு">
-                திருவிழா செலவு
-            </option>
-
-            <option value="அவசர செலவு">
-                அவசர செலவு
-            </option>
-
-            <option value="பொருள் வாங்க">
-                பொருள் வாங்க
-            </option>
-
-            <option value="கட்டுமான வேலை">
-                கட்டுமான வேலை
-            </option>
-
-            <option value="மற்றவை">
-                மற்றவை
-            </option>
-
-        `;
-
-    }
-
-
-
-    /* =================================================
-       COLLECTION
-    ================================================= */
-
-    if (
-        lowerType.includes(
-            "collection"
-        )
-    ) {
-
-        return `
-
-            <option value="உறுப்பினர் வசூல்">
-                உறுப்பினர் வசூல்
-            </option>
-
-            <option value="நன்கொடை வசூல்">
-                நன்கொடை வசூல்
-            </option>
-
-            <option value="மற்றவை">
-                மற்றவை
-            </option>
-
-        `;
-
-    }
-
-
-
-    /* =================================================
-       INCOME
-    ================================================= */
-
-    return `
-
-        <option value="காணிக்கை">
-            காணிக்கை
-        </option>
-
-        <option value="நன்கொடை">
-            நன்கொடை
-        </option>
-
-        <option value="உபயம்">
-            உபயம்
-        </option>
-
-        <option value="அபிஷேகம்">
-            அபிஷேகம்
-        </option>
-
-        <option value="அர்ச்சனை">
-            அர்ச்சனை
-        </option>
-
-        <option value="திருவிழா">
-            திருவிழா
-        </option>
-
-        <option value="அன்னதானம்">
-            அன்னதானம்
-        </option>
-
-        <option value="வட்டி வருமானம்">
-            வட்டி வருமானம்
-        </option>
-
-        <option value="வாடகை வருமானம்">
-            வாடகை வருமானம்
-        </option>
-
-        <option value="மற்றவை">
-            மற்றவை
-        </option>
-
-    `;
-
-}
-
-
-
-/* =====================================================
-   OPEN NORMAL FORM
-===================================================== */
-
-window.openForm =
-function(
-
-    moduleName,
-
-    menuName
-
-) {
-
-
-    setSidebarActive(
-        moduleName
-    );
-
-
-    page.innerHTML = `
-
-        <button
-            class="back"
-            onclick="
-                openModule(
-                    '${moduleName}'
-                )
-            "
-        >
-            ← பின்செல்
-        </button>
-
-
-        <div
-            class="module-header"
-        >
-
-            <h2>
-                ${escapeHTML(
-                    menuName
-                )}
-            </h2>
-
-            <p>
-                பதிவு / கணக்கு
-            </p>
-
-        </div>
-
-
-        <div class="form">
-
-
-            <label>
-                தேதி
-            </label>
-
-            <input
-                id="date"
-                type="date"
-                value="${
-                    new Date()
-                        .toISOString()
-                        .split("T")[0]
-                }"
-            >
-
-
-
-            <label>
-                பெயர் / விவரம்
-            </label>
-
-            <input
-                id="person"
-                type="text"
-                placeholder="பெயர் / விவரம்"
-            >
-
-
-
-            <label>
-                Category
-            </label>
-
-            <select
-                id="category"
-            >
-
-                ${getCategories(
-                    menuName
-                )}
-
-            </select>
-
-
-
-            <label>
-                தொகை
-            </label>
-
-            <input
-                id="amount"
-                type="number"
-                min="0"
-                step="0.01"
-                placeholder="₹"
-            >
-
-
-
-            <label>
-                குறிப்பு
-            </label>
-
-            <textarea
-                id="note"
-                placeholder="கூடுதல் விவரம்"
-            ></textarea>
-
-
-
-            <button
-                class="save"
-                onclick="
-                    saveEntry(
-                        '${moduleName}',
-                        '${escapeAttribute(menuName)}'
-                    )
-                "
-            >
-                💾 சேமிக்கவும்
-            </button>
-
-
-        </div>
-
-
-
-        <div
-            id="records"
-            class="records"
-        >
-
-            <div class="loading">
-                பதிவுகள் ஏற்றப்படுகிறது...
             </div>
 
+
         </div>
 
-    `;
+    </div>
 
 
+    <!-- =====================================================
+         LOGIN JAVASCRIPT
+    ===================================================== -->
 
-    loadEntries(
-        moduleName,
-        menuName
-    );
+    <script>
 
-};
-
-
-
-/* =====================================================
-   SAVE NORMAL ENTRY
-===================================================== */
-
-window.saveEntry =
-async function(
-
-    moduleName,
-
-    menuName
-
-) {
+        "use strict";
 
 
-    const dateElement =
-        document.getElementById(
-            "date"
+        console.log(
+            "PKV East Login Page Loaded"
         );
 
 
-    const personElement =
-        document.getElementById(
-            "person"
-        );
-
-
-    const categoryElement =
-        document.getElementById(
-            "category"
-        );
-
-
-    const amountElement =
-        document.getElementById(
-            "amount"
-        );
-
-
-    const noteElement =
-        document.getElementById(
-            "note"
-        );
-
-
-
-    if (
-        !dateElement ||
-        !amountElement
-    ) {
-
-        return;
-
-    }
-
-
-
-    const date =
-        dateElement.value;
-
-
-    const person =
-        personElement
-            .value
-            .trim();
-
-
-    const category =
-        categoryElement.value;
-
-
-    const amount =
-        Number(
-            amountElement.value
-        );
-
-
-    const note =
-        noteElement
-            .value
-            .trim();
-
-
-
-    if (!date) {
-
-        alert(
-            "தேதியை தேர்வு செய்யவும்"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !amount ||
-        amount <= 0
-    ) {
-
-        alert(
-            "சரியான தொகையை உள்ளிடவும்"
-        );
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        await addDoc(
-
-            collection(
-                db,
-                "transactions"
-            ),
-
-            {
-
-                module:
-                    moduleName,
-
-                type:
-                    menuName,
-
-                date:
-                    date,
-
-                person:
-                    person,
-
-                category:
-                    category,
-
-                amount:
-                    amount,
-
-                note:
-                    note,
-
-                createdAt:
-                    serverTimestamp()
-
-            }
-
-        );
-
-
-
-        alert(
-            "✅ கணக்கு வெற்றிகரமாக சேமிக்கப்பட்டது"
-        );
-
-
-        amountElement.value =
-            "";
-
-        personElement.value =
-            "";
-
-        noteElement.value =
-            "";
-
-
-        loadEntries(
-            moduleName,
-            menuName
-        );
-
-
-        loadDashboard();
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Firebase Save Error:",
-            error
-        );
-
-        alert(
-            "Firebase Error: " +
-            error.message
-        );
-
-    }
-
-};
-
-
-
-/* =====================================================
-   LOAD ENTRIES
-===================================================== */
-
-async function loadEntries(
-
-    moduleName,
-
-    menuName
-
-) {
-
-
-    const records =
-        document.getElementById(
-            "records"
-        );
-
-
-    if (!records) {
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        const snapshot =
-            await getDocs(
-
-                collection(
-                    db,
-                    "transactions"
-                )
-
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        const usernameInput =
+            document.getElementById(
+                "username"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+        const successMessage =
+            document.getElementById(
+                "successMessage"
             );
 
 
-        let html = "";
+        /* =====================================================
+           STORAGE KEY
+        ===================================================== */
+
+        const LOGIN_KEY =
+            "pkvEastLoggedIn";
 
 
+        /* =====================================================
+           SHOW ERROR
+        ===================================================== */
 
-        snapshot.forEach(
-            transactionDoc => {
+        function showError(message) {
+
+            errorMessage.textContent =
+                message;
+
+            errorMessage.style.display =
+                "block";
+
+            successMessage.style.display =
+                "none";
+
+        }
 
 
-                const data =
-                    transactionDoc.data();
+        /* =====================================================
+           SHOW SUCCESS
+        ===================================================== */
+
+        function showSuccess(message) {
+
+            successMessage.textContent =
+                message;
+
+            successMessage.style.display =
+                "block";
+
+            errorMessage.style.display =
+                "none";
+
+        }
 
 
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        loginForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                console.log(
+                    "Login button clicked"
+                );
+
+
+                const username =
+                    usernameInput.value
+                        .trim()
+                        .toLowerCase();
+
+                const password =
+                    passwordInput.value
+                        .trim();
+
+
+                console.log(
+                    "Username:",
+                    username
+                );
+
+
+                /* CLEAR MESSAGES */
+
+                errorMessage.style.display =
+                    "none";
+
+                successMessage.style.display =
+                    "none";
+
+
+                /* =================================================
+                   VALIDATION
+                ================================================= */
+
+                if (!username) {
+
+                    showError(
+                        "❌ Username உள்ளிடவும்."
+                    );
+
+                    usernameInput.focus();
+
+                    return;
+
+                }
+
+
+                if (!password) {
+
+                    showError(
+                        "❌ Password உள்ளிடவும்."
+                    );
+
+                    passwordInput.focus();
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   LOGIN CHECK
+                ================================================= */
 
                 if (
-
-                    data.module ===
-                        moduleName &&
-
-                    data.type ===
-                        menuName
-
+                    username === "admin" &&
+                    password === "admin123"
                 ) {
 
 
-                    html += `
-
-                        <div
-                            class="record"
-                        >
-
-                            <div
-                                class="record-top"
-                            >
-
-                                <b
-                                    class="record-amount"
-                                >
-
-                                    ₹${Number(
-                                        data.amount ||
-                                        0
-                                    ).toLocaleString(
-                                        "en-IN"
-                                    )}
-
-                                </b>
-
-                                <small>
-
-                                    ${escapeHTML(
-                                        data.date ||
-                                        ""
-                                    )}
-
-                                </small>
-
-                            </div>
-
-
-                            <div
-                                class="record-person"
-                            >
-
-                                ${escapeHTML(
-                                    data.person ||
-                                    "-"
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="record-category"
-                            >
-
-                                Category:
-                                ${escapeHTML(
-                                    data.category ||
-                                    "-"
-                                )}
-
-                            </div>
-
-
-                            ${
-                                data.note
-                                ? `
-                                    <div
-                                        class="record-note"
-                                    >
-                                        ${escapeHTML(
-                                            data.note
-                                        )}
-                                    </div>
-                                `
-                                : ""
-                            }
-
-                        </div>
-
-                    `;
-
-                }
-
-            }
-        );
-
-
-
-        records.innerHTML =
-            html ||
-
-            `
-
-                <div
-                    class="loading"
-                >
-                    இன்னும் பதிவுகள் இல்லை
-                </div>
-
-            `;
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Load Entries Error:",
-            error
-        );
-
-
-        records.innerHTML = `
-
-            <div class="loading">
-                ❌ Firebase data load error
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-
-/* =====================================================
-   DECISION PAGE
-===================================================== */
-
-function openDecisionPage() {
-
-
-    page.innerHTML = `
-
-        <button
-            class="back"
-            onclick="goHome()"
-        >
-            ← முகப்பு
-        </button>
-
-
-        <div
-            class="module-header"
-        >
-
-            <h2>
-                📜 தீர்மானம்
-            </h2>
-
-            <p>
-                தீர்மான பதிவு
-            </p>
-
-        </div>
-
-
-        <!-- ============================================
-             DECISION FORM
-        ============================================ -->
-
-        <div class="form">
-
-            <h3 class="form-title">
-                ➕ புதிய தீர்மானம்
-            </h3>
-
-
-            <!-- DATE -->
-
-            <label>
-                தேதி
-            </label>
-
-            <input
-                id="decisionDate"
-                type="date"
-                value="${
-                    new Date()
-                        .toISOString()
-                        .split("T")[0]
-                }"
-            >
-
-
-
-            <!-- DECISION NUMBER -->
-
-            <label>
-                தீர்மான எண்
-            </label>
-
-            <input
-                id="decisionNo"
-                type="text"
-                placeholder="001"
-            >
-
-
-
-            <!-- DESCRIPTION -->
-
-            <label>
-                தீர்மான விவரம்
-            </label>
-
-            <textarea
-                id="decisionDescription"
-                placeholder="தீர்மான விவரத்தை உள்ளிடவும்"
-            ></textarea>
-
-
-
-            <!-- STATUS -->
-
-            <label>
-                நிலை
-            </label>
-
-            <select
-                id="decisionStatus"
-            >
-
-                <option value="நிறைவேற்றப்பட்டது">
-                    நிறைவேற்றப்பட்டது
-                </option>
-
-                <option value="நிலுவையில்">
-                    நிலுவையில்
-                </option>
-
-                <option value="நிராகரிக்கப்பட்டது">
-                    நிராகரிக்கப்பட்டது
-                </option>
-
-            </select>
-
-
-
-            <!-- SAVE -->
-
-            <button
-                id="decisionSaveButton"
-                class="save"
-                type="button"
-                onclick="saveDecision()"
-            >
-                💾 தீர்மானம் சேமிக்கவும்
-            </button>
-
-
-            <button
-                id="decisionCancelButton"
-                class="cancel"
-                type="button"
-                onclick="cancelDecisionEdit()"
-                style="display:none"
-            >
-                ❌ Cancel
-            </button>
-
-
-
-            <div
-                id="decisionMessage"
-                class="message"
-            ></div>
-
-        </div>
-
-
-
-        <!-- ============================================
-             DECISION LIST
-        ============================================ -->
-
-        <div class="decision-list">
-
-
-            <div
-                class="decision-list-header"
-            >
-
-                <h3>
-                    📋 தீர்மான பட்டியல்
-                </h3>
-
-
-                <input
-                    id="decisionSearch"
-                    class="decision-search"
-                    type="text"
-                    placeholder="🔍 தீர்மான எண் / விவரம் / தேதி தேடவும்..."
-                >
-
-            </div>
-
-
-
-            <div
-                id="decisionRecords"
-            >
-
-                <div class="loading">
-                    தீர்மானங்கள் ஏற்றப்படுகிறது...
-                </div>
-
-            </div>
-
-
-        </div>
-
-    `;
-
-
-
-    window.editingDecisionId =
-        null;
-
-
-    loadDecisions();
-
-
-
-    const searchInput =
-        document.getElementById(
-            "decisionSearch"
-        );
-
-
-    searchInput.addEventListener(
-        "input",
-        filterDecisions
-    );
-
-}
-
-
-
-/* =====================================================
-   DECISION DATA
-===================================================== */
-
-let decisionData = [];
-
-
-
-/* =====================================================
-   LOAD DECISIONS
-===================================================== */
-
-async function loadDecisions() {
-
-
-    const records =
-        document.getElementById(
-            "decisionRecords"
-        );
-
-
-    if (!records) {
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        records.innerHTML = `
-
-            <div class="loading">
-                தீர்மானங்கள் ஏற்றப்படுகிறது...
-            </div>
-
-        `;
-
-
-
-        const snapshot =
-            await getDocs(
-
-                collection(
-                    db,
-                    "decisions"
-                )
-
-            );
-
-
-
-        decisionData = [];
-
-
-
-        snapshot.forEach(
-            decisionDoc => {
-
-                decisionData.push({
-
-                    id:
-                        decisionDoc.id,
-
-                    ...decisionDoc.data()
-
-                });
-
-            }
-        );
-
-
-
-        decisionData.sort(
-            (a, b) => {
-
-                const aTime =
-                    a.createdAt?.seconds ||
-                    0;
-
-                const bTime =
-                    b.createdAt?.seconds ||
-                    0;
-
-                return bTime - aTime;
-
-            }
-        );
-
-
-
-        displayDecisions(
-            decisionData
-        );
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Decision Load Error:",
-            error
-        );
-
-
-        records.innerHTML = `
-
-            <div class="empty">
-                ❌ தீர்மானங்கள் load செய்ய முடியவில்லை
-                <br><br>
-                ${escapeHTML(
-                    error.message
-                )}
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-
-/* =====================================================
-   DISPLAY DECISIONS
-===================================================== */
-
-function displayDecisions(
-    data
-) {
-
-
-    const records =
-        document.getElementById(
-            "decisionRecords"
-        );
-
-
-    if (!records) {
-
-        return;
-
-    }
-
-
-
-    if (
-        !data ||
-        data.length === 0
-    ) {
-
-        records.innerHTML = `
-
-            <div class="empty">
-
-                📜 இன்னும் தீர்மானங்கள் இல்லை
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-
-    let html = "";
-
-
-
-    data.forEach(
-        decision => {
-
-
-            html += `
-
-                <div
-                    class="decision-card"
-                >
-
-
-                    <div
-                        class="decision-top"
-                    >
-
-                        <div
-                            class="decision-number"
-                        >
-
-                            தீர்மான எண்:
-                            ${escapeHTML(
-                                decision.decisionNo ||
-                                "-"
-                            )}
-
-                        </div>
-
-
-                        <div
-                            class="decision-date"
-                        >
-
-                            📅
-                            ${escapeHTML(
-                                decision.date ||
-                                "-"
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div
-                        class="decision-description"
-                    >
-
-                        ${escapeHTML(
-                            decision.description ||
-                            "-"
-                        )}
-
-                    </div>
-
-
-
-                    <span
-                        class="status"
-                    >
-
-                        ${escapeHTML(
-                            decision.status ||
-                            "-"
-                        )}
-
-                    </span>
-
-
-
-                    <div
-                        class="decision-actions"
-                    >
-
-                        <button
-                            class="edit-btn"
-                            type="button"
-                            onclick="
-                                editDecision(
-                                    '${escapeAttribute(
-                                        decision.id
-                                    )}'
-                                )
-                            "
-                        >
-                            ✏️ Edit
-                        </button>
-
-
-                        <button
-                            class="delete-btn"
-                            type="button"
-                            onclick="
-                                deleteDecision(
-                                    '${escapeAttribute(
-                                        decision.id
-                                    )}'
-                                )
-                            "
-                        >
-                            🗑️ Delete
-                        </button>
-
-                    </div>
-
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-
-    records.innerHTML =
-        html;
-
-}
-
-
-
-/* =====================================================
-   SAVE DECISION
-===================================================== */
-
-window.saveDecision =
-async function() {
-
-
-    const date =
-        document.getElementById(
-            "decisionDate"
-        ).value;
-
-
-    const decisionNo =
-        document.getElementById(
-            "decisionNo"
-        ).value.trim();
-
-
-    const description =
-        document.getElementById(
-            "decisionDescription"
-        ).value.trim();
-
-
-    const status =
-        document.getElementById(
-            "decisionStatus"
-        ).value;
-
-
-
-    /* =================================================
-       VALIDATION
-    ================================================= */
-
-    if (!date) {
-
-        showDecisionMessage(
-            "❌ தேதியை தேர்வு செய்யவும்",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!decisionNo) {
-
-        showDecisionMessage(
-            "❌ தீர்மான எண்ணை உள்ளிடவும்",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!description) {
-
-        showDecisionMessage(
-            "❌ தீர்மான விவரத்தை உள்ளிடவும்",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        const editingId =
-            window.editingDecisionId;
-
-
-
-        /* =================================================
-           UPDATE
-        ================================================= */
-
-        if (editingId) {
-
-
-            await updateDoc(
-
-                doc(
-                    db,
-                    "decisions",
-                    editingId
-                ),
-
-                {
-
-                    date:
-                        date,
-
-                    decisionNo:
-                        decisionNo,
-
-                    description:
-                        description,
-
-                    status:
-                        status
-
-                }
-
-            );
-
-
-
-            showDecisionMessage(
-                "✅ தீர்மானம் மாற்றப்பட்டது",
-                "success"
-            );
-
-        }
-
-
-
-        /* =================================================
-           ADD
-        ================================================= */
-
-        else {
-
-
-            await addDoc(
-
-                collection(
-                    db,
-                    "decisions"
-                ),
-
-                {
-
-                    date:
-                        date,
-
-                    decisionNo:
-                        decisionNo,
-
-                    description:
-                        description,
-
-                    status:
-                        status,
-
-                    createdAt:
-                        serverTimestamp()
-
-                }
-
-            );
-
-
-
-            showDecisionMessage(
-                "✅ தீர்மானம் வெற்றிகரமாக சேமிக்கப்பட்டது",
-                "success"
-            );
-
-        }
-
-
-
-        /* =================================================
-           RESET
-        ================================================= */
-
-        resetDecisionForm();
-
-
-        await loadDecisions();
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Decision Save Error:",
-            error
-        );
-
-
-        showDecisionMessage(
-            "❌ Firebase Error: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-};
-
-
-
-/* =====================================================
-   EDIT DECISION
-===================================================== */
-
-window.editDecision =
-function(id) {
-
-
-    const decision =
-        decisionData.find(
-            item =>
-                item.id === id
-        );
-
-
-    if (!decision) {
-
-        alert(
-            "தீர்மானம் கிடைக்கவில்லை"
-        );
-
-        return;
-
-    }
-
-
-
-    window.editingDecisionId =
-        id;
-
-
-
-    document.getElementById(
-        "decisionDate"
-    ).value =
-        decision.date || "";
-
-
-
-    document.getElementById(
-        "decisionNo"
-    ).value =
-        decision.decisionNo || "";
-
-
-
-    document.getElementById(
-        "decisionDescription"
-    ).value =
-        decision.description || "";
-
-
-
-    document.getElementById(
-        "decisionStatus"
-    ).value =
-        decision.status ||
-        "நிறைவேற்றப்பட்டது";
-
-
-
-    document.getElementById(
-        "decisionSaveButton"
-    ).textContent =
-        "💾 தீர்மானத்தை Update செய்யவும்";
-
-
-
-    document.getElementById(
-        "decisionCancelButton"
-    ).style.display =
-        "inline-block";
-
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-};
-
-
-
-/* =====================================================
-   DELETE DECISION
-===================================================== */
-
-window.deleteDecision =
-async function(id) {
-
-
-    const decision =
-        decisionData.find(
-            item =>
-                item.id === id
-        );
-
-
-    if (!decision) {
-
-        return;
-
-    }
-
-
-
-    const confirmed =
-        confirm(
-
-            `தீர்மான எண் ${
-                decision.decisionNo || ""
-            }-ஐ delete செய்ய வேண்டுமா?`
-
-        );
-
-
-    if (!confirmed) {
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        await deleteDoc(
-
-            doc(
-                db,
-                "decisions",
-                id
-            )
-
-        );
-
-
-
-        alert(
-            "✅ தீர்மானம் Delete செய்யப்பட்டது"
-        );
-
-
-
-        await loadDecisions();
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Decision Delete Error:",
-            error
-        );
-
-
-        alert(
-            "❌ Delete Error: " +
-            error.message
-        );
-
-    }
-
-};
-
-
-
-/* =====================================================
-   CANCEL EDIT
-===================================================== */
-
-window.cancelDecisionEdit =
-function() {
-
-    resetDecisionForm();
-
-};
-
-
-
-/* =====================================================
-   RESET DECISION FORM
-===================================================== */
-
-function resetDecisionForm() {
-
-
-    const date =
-        document.getElementById(
-            "decisionDate"
-        );
-
-
-    const no =
-        document.getElementById(
-            "decisionNo"
-        );
-
-
-    const description =
-        document.getElementById(
-            "decisionDescription"
-        );
-
-
-    const status =
-        document.getElementById(
-            "decisionStatus"
-        );
-
-
-    const saveButton =
-        document.getElementById(
-            "decisionSaveButton"
-        );
-
-
-    const cancelButton =
-        document.getElementById(
-            "decisionCancelButton"
-        );
-
-
-
-    if (!date) {
-
-        return;
-
-    }
-
-
-
-    date.value =
-        new Date()
-            .toISOString()
-            .split("T")[0];
-
-
-    no.value =
-        "";
-
-
-    description.value =
-        "";
-
-
-    status.value =
-        "நிறைவேற்றப்பட்டது";
-
-
-
-    window.editingDecisionId =
-        null;
-
-
-
-    saveButton.textContent =
-        "💾 தீர்மானம் சேமிக்கவும்";
-
-
-    cancelButton.style.display =
-        "none";
-
-}
-
-
-
-/* =====================================================
-   DECISION MESSAGE
-===================================================== */
-
-function showDecisionMessage(
-    text,
-    type
-) {
-
-
-    const message =
-        document.getElementById(
-            "decisionMessage"
-        );
-
-
-    if (!message) {
-
-        return;
-
-    }
-
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        "message " +
-        type;
-
-
-
-    setTimeout(
-        () => {
-
-            message.textContent =
-                "";
-
-            message.className =
-                "message";
-
-        },
-        3000
-    );
-
-}
-
-
-
-/* =====================================================
-   SEARCH DECISIONS
-===================================================== */
-
-function filterDecisions() {
-
-
-    const search =
-        document.getElementById(
-            "decisionSearch"
-        ).value
-        .trim()
-        .toLowerCase();
-
-
-
-    if (!search) {
-
-        displayDecisions(
-            decisionData
-        );
-
-        return;
-
-    }
-
-
-
-    const filtered =
-        decisionData.filter(
-            decision => {
-
-
-                const no =
-                    String(
-                        decision.decisionNo ||
-                        ""
-                    ).toLowerCase();
-
-
-                const date =
-                    String(
-                        decision.date ||
-                        ""
-                    ).toLowerCase();
-
-
-                const description =
-                    String(
-                        decision.description ||
-                        ""
-                    ).toLowerCase();
-
-
-                const status =
-                    String(
-                        decision.status ||
-                        ""
-                    ).toLowerCase();
-
-
-
-                return (
-
-                    no.includes(
-                        search
-                    ) ||
-
-                    date.includes(
-                        search
-                    ) ||
-
-                    description.includes(
-                        search
-                    ) ||
-
-                    status.includes(
-                        search
-                    )
-
-                );
-
-            }
-        );
-
-
-
-    displayDecisions(
-        filtered
-    );
-
-}
-
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-async function loadDashboard() {
-
-
-    try {
-
-
-        const snapshot =
-            await getDocs(
-
-                collection(
-                    db,
-                    "transactions"
-                )
-
-            );
-
-
-
-        let income = 0;
-
-        let expense = 0;
-
-        let split = 0;
-
-
-
-        snapshot.forEach(
-            transactionDoc => {
-
-
-                const data =
-                    transactionDoc.data();
-
-
-                const amount =
-                    Number(
-                        data.amount ||
-                        0
+                    console.log(
+                        "LOGIN SUCCESS"
                     );
 
 
-                const type =
-                    String(
-                        data.type ||
-                        ""
-                    ).toLowerCase();
+                    /* =============================================
+                       SAVE LOGIN
+                    ============================================= */
+
+                    sessionStorage.setItem(
+                        LOGIN_KEY,
+                        "true"
+                    );
+
+                    localStorage.setItem(
+                        LOGIN_KEY,
+                        "true"
+                    );
 
 
+                    /* =============================================
+                       SUCCESS MESSAGE
+                    ============================================= */
 
-                /* EXPENSE */
+                    showSuccess(
+                        "✅ Login successful. Dashboard திறக்கப்படுகிறது..."
+                    );
 
-                if (
 
-                    type.includes(
-                        "expense"
-                    ) ||
+                    /* =============================================
+                       DISABLE BUTTON
+                    ============================================= */
 
-                    type.includes(
-                        "செலவு"
-                    )
+                    loginButton.disabled =
+                        true;
 
-                ) {
+                    loginButton.textContent =
+                        "⏳ Opening Dashboard...";
 
-                    expense +=
-                        amount;
+
+                    /* =============================================
+                       OPEN DASHBOARD
+                       
+                       IMPORTANT:
+                       dashboard.html is in the SAME ROOT
+                       folder as index.html.
+                    ============================================= */
+
+                    setTimeout(
+                        function() {
+
+                            console.log(
+                                "Opening dashboard.html"
+                            );
+
+                            window.location.assign(
+                                "./dashboard.html"
+                            );
+
+                        },
+                        700
+                    );
 
                 }
-
-
-
-                /* SPLIT */
-
-                else if (
-
-                    type.includes(
-                        "split amount to"
-                    )
-
-                ) {
-
-                    split +=
-                        amount;
-
-                }
-
-
-
-                /* COLLECTION */
-
-                else if (
-
-                    type.includes(
-                        "collection"
-                    )
-
-                ) {
-
-                    income +=
-                        amount;
-
-                }
-
-
-
-                /* INCOME */
 
                 else {
 
-                    income +=
-                        amount;
+
+                    console.log(
+                        "LOGIN FAILED"
+                    );
+
+
+                    showError(
+                        "❌ Username அல்லது Password தவறாக உள்ளது."
+                    );
+
+
+                    passwordInput.value = "";
+
+                    passwordInput.focus();
 
                 }
 
@@ -4033,178 +658,93 @@ async function loadDashboard() {
         );
 
 
+        /* =====================================================
+           PASSWORD ENTER KEY
+        ===================================================== */
 
-        totalIncome =
-            income;
+        passwordInput.addEventListener(
+            "keydown",
+            function(event) {
 
+                if (
+                    event.key === "Enter"
+                ) {
 
-        totalExpense =
-            expense;
+                    event.preventDefault();
 
+                    loginForm.requestSubmit();
 
-        totalSplit =
-            split;
+                }
 
-
-
-        const incomeElement =
-            document.getElementById(
-                "totalIncome"
-            );
-
-
-        if (incomeElement) {
-
-            incomeElement.textContent =
-                "₹" +
-                income.toLocaleString(
-                    "en-IN"
-                );
-
-        }
-
-
-
-        const expenseElement =
-            document.getElementById(
-                "totalExpense"
-            );
-
-
-        if (expenseElement) {
-
-            expenseElement.textContent =
-                "₹" +
-                expense.toLocaleString(
-                    "en-IN"
-                );
-
-        }
-
-
-
-        const balanceElement =
-            document.getElementById(
-                "balance"
-            );
-
-
-        if (balanceElement) {
-
-            const balance =
-                income -
-                expense -
-                split;
-
-
-            balanceElement.textContent =
-                "₹" +
-                balance.toLocaleString(
-                    "en-IN"
-                );
-
-        }
-
-
-
-        const splitElement =
-            document.getElementById(
-                "totalSplit"
-            );
-
-
-        if (splitElement) {
-
-            splitElement.textContent =
-                "₹" +
-                split.toLocaleString(
-                    "en-IN"
-                );
-
-        }
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "Dashboard Error:",
-            error
+            }
         );
 
-    }
 
-}
+        /* =====================================================
+           CHECK EXISTING LOGIN
+           
+           IMPORTANT:
+           If already logged in, automatically open
+           dashboard.html.
+        ===================================================== */
+
+        const existingSession =
+            sessionStorage.getItem(
+                LOGIN_KEY
+            );
 
 
+        const existingLocal =
+            localStorage.getItem(
+                LOGIN_KEY
+            );
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
 
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
+        console.log(
+            "Session Login:",
+            existingSession
         );
 
-}
-
-
-
-/* =====================================================
-   ESCAPE ATTRIBUTE
-===================================================== */
-
-function escapeAttribute(value) {
-
-    return String(value)
-
-        .replaceAll(
-            "\\",
-            "\\\\"
-        )
-
-        .replaceAll(
-            "'",
-            "\\'"
+        console.log(
+            "Local Login:",
+            existingLocal
         );
 
-}
+
+        /* =====================================================
+           AUTO OPEN DASHBOARD
+        ===================================================== */
+
+        if (
+            existingSession === "true" ||
+            existingLocal === "true"
+        ) {
+
+            console.log(
+                "Existing login found."
+            );
 
 
+            /*
+             * Small delay prevents browser navigation
+             * issues while Vite is loading.
+             */
 
-/* =====================================================
-   START
-===================================================== */
+            setTimeout(
+                function() {
 
-loadDashboard();
+                    window.location.assign(
+                        "./dashboard.html"
+                    );
+
+                },
+                100
+            );
+
+        }
 
 
-</script>
+    </script>
 
 
 </body>
